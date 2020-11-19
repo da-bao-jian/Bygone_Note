@@ -3,9 +3,9 @@ import React from 'react';
 import {login, removeErrors} from '../../actions/session_actions';
 import LoginForm from './login_form';
 
-const mapStateToProps = (state, ownProp) => {
+const mapStateToProps = ({errors}) => {
     return {
-        errors: state.errors.session,
+        errors: errors.session,
         // formType: 'login'
     }   
 }
