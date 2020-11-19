@@ -5,7 +5,7 @@ import SignupForm from './signup_form';
 
 
 const mapStateToProps = ({errors}) => {
-    debugger
+    // debugger
     return {
         
         errors: errors.session
