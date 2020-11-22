@@ -39,6 +39,7 @@ class LoginForm extends React.Component{
 
     render(){
         return (
+          <div className='form-backgound'>
             <div className='log-in-form'>
                 <h1>Bygone Note</h1>
                 <p>Don't let your memories fade...</p>
@@ -71,6 +72,7 @@ class LoginForm extends React.Component{
 
                     Write to me...</p>
             </div>
+          </div>
         )
     }
 

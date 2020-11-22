@@ -6,7 +6,7 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
   <Route 
     path={path} 
     exact={exact} 
-    render={(props) => (loggedIn ? (<Redirect to="/" />): (<Component {...props} />) )} /> 
+    render={(props) => (loggedIn ? (<Redirect to="/notes" />): (<Component {...props} />) )} /> 
     //logged in user needs to be redirected; subject to change
 );
 
@@ -14,7 +14,7 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => (
   <Route 
   path={path} 
   exact={exact} 
-  render={(props) => (loggedIn ? (<Component {...props} />) : (<Redirect to="/login" />))} />
+  render={(props) => (loggedIn ? (<Component {...props} />) : (<Redirect to="/" />))} />
 );
 
 const mapStateToProps = state => (
