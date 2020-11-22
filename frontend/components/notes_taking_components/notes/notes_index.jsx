@@ -12,7 +12,7 @@ export default class NotesIndex extends React.Component{
         this.props.createNote({
             title: 'Untitled',
             user_id: this.props.currentUser.id,
-            body: 'Start writing here...',
+            body: 'Start writing here',
             notebook_id: ''
         })
     }
