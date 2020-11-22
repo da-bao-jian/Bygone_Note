@@ -1,4 +1,5 @@
 class Note < ApplicationRecord
+    include ActionView::Helpers::DateHelper
     validates :title, presence: true
     validates :body, presence: true
     validates :user_id, presence: true
@@ -8,6 +9,8 @@ class Note < ApplicationRecord
     foreign_key: :user_id,
     class_name: :User
 
-
+    def time_ago
+        time_ago_in_words(self.created_at)
+    end
 
 end
