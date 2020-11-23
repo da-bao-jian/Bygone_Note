@@ -1,0 +1,44 @@
+body {background-color: grayscale($color: #131212);}
+
+.greeting-nav-bar{
+    padding: 10px 100px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.5px solid green;
+}
+
+
+.navbar-logo {
+    color: green;
+    font-family: $text;
+    font-size: 20px;
+    align-items: center;
+    display: flex;
+}
+.navbar-logo a:hover{
+    border-bottom: 2px solid green;
+    outline: 3px solid green;
+}
+.signup-button {
+    padding: 10px 10px;
+}
+.login-button {
+    padding: 10px 10px;
+}
+.sl-buttons {
+    font-family: $text;
+    padding-left: 50px;
+    display: flex;
+}
+.sl-buttons >a:hover {
+    color: green;
+    border-bottom: 0.5px solid green;
+}
+
+.grid-line-right {
+    border-right: 0.5px solid green;
+    height: 500px;
+    margin-right: 300px;
+}
+
+

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import Middle from './middle_section';
 
 const Greeting = ({currentUser, logout}) => {
     
@@ -17,15 +18,21 @@ const Greeting = ({currentUser, logout}) => {
             )
     } else {
         return (
-            <div>
-                <Link to='/signup'>
-                    Sign up
-                </Link>
-                <br/>
-                <Link to='/login'>
-                    Log in
-                </Link>
+        <div className='main-page'>
+            <div className='greeting-nav-bar'>
+                <nav className='navbar-logo'>Bygone Note</nav>
+                    <div className='sl-buttons'>
+                            <Link to='/signup' className='signup-button'>
+                                Sign up
+                            </Link>
+                            <Link to='/login' className='login-button'>
+                                Log in
+                            </Link>                        
+                    </div>
             </div>
+            <Middle/>
+        </div>
+
         )
     }
 

@@ -8,6 +8,10 @@ class Note < ApplicationRecord
     belongs_to :user,
     foreign_key: :user_id,
     class_name: :User
+    
+    belongs_to :notebook,
+    foreign_key: :notebook_id,
+    class_name: :Notebook
 
     def time_ago_created
         time_ago_in_words(self.created_at)

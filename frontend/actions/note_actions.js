@@ -63,7 +63,7 @@ export const updateNote = (note) => dispatch => {
         ))
 };
 export const deleteNotes = (noteId) => dispatch => {
-    console.log(noteId)
+    // console.log(noteId)
     return NoteApiUtil.deleteNote(noteId).then(
         note => dispatch(removeNote(note))
         , err => (
