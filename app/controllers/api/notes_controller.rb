@@ -31,6 +31,7 @@ class Api::NotesController < ApplicationController
 
     def destroy 
         @note = Note.find_by(id: params[:id])
+        # debugger
         if @note.destroy
             render :show 
         else  

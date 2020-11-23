@@ -7,6 +7,7 @@ export const RECEIVE_NOTE_ERRORS = 'RECEIVE_NOTE_ERRORS';
 // export const REMOVE_NOTE_ERRORS = 'REMOVE_SESSION_ERRORS';
 
 export const receiveNotes = notes => {
+    // console.log(notes)
     return {
         type: RECEIVE_NOTES,
         notes
@@ -35,7 +36,7 @@ export const receiveNoteErrors = errors => ({
 
 export const fetchNotes = () => dispatch => {
     return NoteApiUtil.fetchNotes().then(
-        user => dispatch(receiveNotes())
+        notes => dispatch(receiveNotes(notes))
         , err => (
             dispatch(receiveNoteErrors(err.responseJSON))
         ))
@@ -62,6 +63,7 @@ export const updateNote = (note) => dispatch => {
         ))
 };
 export const deleteNotes = (noteId) => dispatch => {
+    console.log(noteId)
     return NoteApiUtil.deleteNote(noteId).then(
         note => dispatch(removeNote(note))
         , err => (

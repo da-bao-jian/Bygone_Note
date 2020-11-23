@@ -5,26 +5,38 @@ import NoteIndexItems from './notes_index_items';
 export default class NotesIndex extends React.Component{
     constructor(props) {
         super(props);
-        this.newNote = this.newNote.bind(this);
+        this.removeNote=this.removeNote.bind(this);
     };
 
-    newNote(){ //might need to put this in sidebar
-        this.props.createNote({
-            title: 'Untitled',
-            user_id: this.props.currentUser.id,
-            body: 'Start writing here',
-            notebook_id: ''
-        })
+    componentDidMount(){
+        this.props.fetchNotes();
+
+    };
+
+    componentDidUpdate(prevProps){
+        // console.log(this.props.notes)
+        if(this.props.notes === prevProps.notes){
+            this.props.fetchNotes();
+        }
+
+    };
+
+    removeNote(note){
+        this.props.deleteNotes(note.id)
+        .then(
+            ()=>{this.props.history.replace('/notes')}
+        );
     }
 
 
+
     render(){
-        const {notes} = this.props;
-        console.log(notes)
+        const {notes, deleteNotes} = this.props;
         const notesList = notes.map(note=>(
             <NoteIndexItems
                 key={note.id}
                 note={note}
+                removeNote={this.removeNote}
                 //methods from props and tags later to be added
             />
         ));

@@ -9,8 +9,11 @@ class Note < ApplicationRecord
     foreign_key: :user_id,
     class_name: :User
 
-    def time_ago
+    def time_ago_created
         time_ago_in_words(self.created_at)
+    end
+    def time_ago_updated
+        time_ago_in_words(self.updated_at)
     end
 
 end

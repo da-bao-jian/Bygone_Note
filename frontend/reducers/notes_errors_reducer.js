@@ -4,6 +4,7 @@ const notesErrorsReducer = (state = [], action) => {
     Object.freeze(state);
     switch(action.type){
         case RECEIVE_NOTE_ERRORS:
+            // console.log(action.errors)
             return action.errors;
         case RECEIVE_NOTES:
             return [];
