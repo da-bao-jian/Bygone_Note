@@ -7,3 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
 demo_user = User.create!([{email: 'demo@gmail.com', password: '123456'}])
+demo_first_notebook = Notebook.create!([{title: 'My First Notebook', user_id: demo_user[0].id}])
+demo_user[0].first_notebook_id=demo_first_notebook[0].id
+demo_user[0].save

@@ -49,6 +49,7 @@ export const fetchNote = (noteId) => dispatch => {
         ))
 };
 export const createNote = (note) => dispatch => {
+    // debugger
     return NoteApiUtil.createNote(note).then(
         note => dispatch(receiveNote(note))
         , err => (

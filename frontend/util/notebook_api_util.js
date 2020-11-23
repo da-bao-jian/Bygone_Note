@@ -24,7 +24,7 @@ export const updateNotebook = (notebook) => (
         data: {notebook}
     })
 )
-export const deleteNote = noteId => (
+export const deleteNotebook = noteId => (
     $.ajax({
         method: 'DELETE',
         url: `api/notebooks/${noteId}`,

@@ -1,6 +1,7 @@
 import React from 'react';
 import NotesIndex from './notes/notes_index_container';
 import SideBar from './sidebar/side_bar_container';
+import NotebookIndex from './notebook/notebooks_index_container';
 
 
 export default class MainNotesTakingPage extends React.Component{

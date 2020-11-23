@@ -8,8 +8,11 @@ class Notebook < ApplicationRecord
 
     has_many :notes,
     foreign_key: :notebook_id,
-    class_name: :Note
+    class_name: :Note,
+    dependent: :destroy
 
-
+    def time_ago_updated
+        time_ago_in_words(self.updated_at)
+    end
 
 end

@@ -6,7 +6,8 @@ import {fetchNotes, createNote} from '../../../actions/note_actions';
 import {withRouter} from 'react-router-dom';
 
 const mSTP = (state) => ({
-    notes: Object.values(state.entities.notes)
+    notes: Object.values(state.entities.notes),
+    current_user: state.entities.users[state.session.id]
 
 });
 

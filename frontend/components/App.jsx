@@ -17,6 +17,7 @@ const App = () => (
       <AuthRoute exact path='/signup' component={SignupContainer}/>
       <ProtectedRoute exact path='/notes' component={MainNotesTakingPage}/>
       <ProtectedRoute exact path='/notes/:noteId' component={MainNotesTakingPage}/>
+      <ProtectedRoute exact path='/notebooks' component={MainNotesTakingPage}/>
       
     </Switch>
   </div>

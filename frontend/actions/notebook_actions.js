@@ -57,8 +57,8 @@ export const updateNotebook = (notebook) => dispatch => {
             dispatch(receiveNoteErrors(err.responseJSON))
         ))
 };
-export const deleteNote = (notebookId) => dispatch => {
-    return NotebookApiUtil.deleteNote(notebookId).then(
+export const deleteNotebook = (notebookId) => dispatch => {
+    return NotebookApiUtil.deleteNotebook(notebookId).then(
         notebook => dispatch(removeNotebook(notebook))
         , err => (
             dispatch(receiveNoteErrors(err.responseJSON))

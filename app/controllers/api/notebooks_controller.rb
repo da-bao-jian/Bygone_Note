@@ -41,7 +41,7 @@ class Api::NotebooksController < ApplicationController
 
     private 
     def notebook_params
-        params.require(:notebook).permit(:title, :user_id) 
+        params.require(:notebook).permit(:title) #:user_id) user_id will be assigned by create method
     end
 
 
