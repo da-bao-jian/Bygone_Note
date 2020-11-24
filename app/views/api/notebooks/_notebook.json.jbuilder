@@ -1,6 +1,7 @@
 json.extract! notebook, :id, :title, :user_id, :created_at, :updated_at
+json.updated_in_word notebook.time_ago_updated
 json.notes do 
-    json.array! notebook.notes#.ids
+    json.array! notebook.notes
     #setting an array of notes that has a top level key 'note'
 end
 
@@ -9,23 +10,14 @@ end
 
 
 #state shape:
-    # [4] pry(main)> Notebook.all[0].notes
-    # #   Notebook Load (1.3ms)  SELECT "notebooks".* FROM "notebooks"
-    # #   Note Load (3.0ms)  SELECT "notes".* FROM "notes" WHERE "notes"."notebook_id" = $1  [["notebook_id", 1]]
-    # [<Note:0x00007f9f1fa3b680
-    #  id: 60,
-    #  id: 63,
-    #  title: "good day",
-    #  user_id: 8,
-    #  created_at: Mon, 23 Nov 2020 20:01:04 UTC +00:00,
-    #  updated_at: Mon, 23 Nov 2020 20:01:04 UTC +00:00,
-    #  notebook_id: 1,
-    #  body: "with wild card">,
-    # #<Note:0x00007f9f1fa39588
-    #  id: 64,
-    #  title: "good day",
-    #  user_id: 8,
-    #  created_at: Mon, 23 Nov 2020 20:01:29 UTC +00:00,
-    #  updated_at: Mon, 23 Nov 2020 20:01:29 UTC +00:00,
-    #  notebook_id: 1,
-    #  body: "without wild card">]
+    # 0:
+        # created_at: "2020-11-23T21:06:37.279Z"
+        # id: 8
+        # notes: Array(2)
+            # 0: {id: 84, title: "Untitled", user_id: 22, created_at: "2020-11-24T03:05:54.597Z", updated_at: "2020-11-24T03:05:54.597Z", …}
+            # 1: {id: 85, title: "Untitled", user_id: 22, created_at: "2020-11-24T03:05:56.928Z", updated_at: "2020-11-24T03:05:56.928Z", …}
+        # length: 2
+        # __proto__: Array(0)
+        # title: "My First Notebook"
+        # updated_at: "2020-11-23T21:06:37.279Z"
+        # user_id: 22

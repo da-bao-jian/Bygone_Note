@@ -5,6 +5,7 @@ export default class SideBar extends React.Component{
     constructor(props){
         super(props)
         this.newNote = this.newNote.bind(this);
+        this.renderNotebooks = this.renderNotebooks.bind(this);
 
     };
 
@@ -14,18 +15,18 @@ export default class SideBar extends React.Component{
         let path = '';
         if (current_path.includes('notebooks') && current_path.length>2){
             path = `/notebooks/${current_path[2]}/notes`;
-        } else {
-            path = `/notes`;
-        };
-        if(current_path.length > 2){
             current_notebook_id = current_path[2] 
         } else {
+            path = `/notes`;
             current_notebook_id = this.props.current_user.first_notebook_id
         };
+        // if(current_path.length > 2){
+        // } else {
+        // };
         this.props.createNote({
             title: 'Untitled',
             body: 'Start writing here...',
-            notebook_id: current_notebook_id //defualt notebook_id should be 'first notebook'
+            notebook_id: current_notebook_id 
         }).then(
             returned=>{this.props.history.push(`${path}/${returned.note.id}`)}
             //adding the change of address promise to the end of request 
@@ -33,18 +34,25 @@ export default class SideBar extends React.Component{
         )
     };
 
+    renderNotebooks(){
+        this.props.history.push('/notebooks')
+    };
+
 
     render(){
         return(
             <div className='sidebar-items'>
                 <div className='account-dropdown'> 
-                    {/* watch tutorial on how to create dropdown */}
                     <AccountDropdown logout={this.props.logout}/>
+                    {/* use toggle or onBlur */}
                 </div>
                 <div className='create-new-note'>
                     <button onClick={this.newNote}>
                         Create A New Note
                     </button>
+                </div>
+                <div className='sidebar-notebook'>
+                    <button onClick={this.renderNotebooks}>Notebooks</button>
                 </div>
             </div>
         )

@@ -14,7 +14,6 @@ export default class NotesIndex extends React.Component{
     };
 
     componentDidUpdate(prevProps){
-        // console.log(this.props.notes)
         if(this.props.notes === prevProps.notes){
             this.props.fetchNotes();
         }

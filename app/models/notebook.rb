@@ -1,4 +1,5 @@
 class Notebook < ApplicationRecord
+    include ActionView::Helpers::DateHelper
     validates :title, presence: true
     validates :user_id, presence: true
 
