@@ -22,12 +22,16 @@ const Greeting = ({currentUser, logout}) => {
             <div className='greeting-nav-bar'>
                 <nav className='navbar-logo'>Bygone Note</nav>
                     <div className='sl-buttons'>
-                            <Link to='/signup' className='signup-button'>
+                        <div className='su-button'>
+                            <Link id='su' to='/signup' className='signup-button'>
                                 Sign up
                             </Link>
-                            <Link to='/login' className='login-button'>
+                        </div>
+                        <div className='li-button'>
+                            <Link id='lg' to='/login' className='login-button'>
                                 Log in
                             </Link>                        
+                        </div>
                     </div>
             </div>
             <Middle/>

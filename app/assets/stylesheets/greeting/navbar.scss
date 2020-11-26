@@ -1,44 +1,99 @@
-body {background-color: grayscale($color: #131212);}
+body {background-color: $background}
+
+.main-page{
+    position: relative;
+}
 
 .greeting-nav-bar{
-    padding: 10px 100px;
+    width: 95%;
+    padding: 5px 25px;
     display: flex;
     justify-content: space-between;
-    border-bottom: 0.5px solid green;
+    border-bottom: 0.3px solid greenyellow;
 }
 
 
 .navbar-logo {
-    color: green;
+    color: greenyellow;
     font-family: $text;
-    font-size: 20px;
+    font-size: 30px;
     align-items: center;
-    display: flex;
-}
-.navbar-logo a:hover{
-    border-bottom: 2px solid green;
-    outline: 3px solid green;
-}
-.signup-button {
-    padding: 10px 10px;
-}
-.login-button {
-    padding: 10px 10px;
-}
-.sl-buttons {
-    font-family: $text;
     padding-left: 50px;
     display: flex;
-}
-.sl-buttons >a:hover {
-    color: green;
-    border-bottom: 0.5px solid green;
+    animation: glow 5s ease-in-out infinite ;
+};
+@keyframes glow{
+    from {text-shadow: 0 0 10px green, 0 0 20px green, 0 0 30px green;} //start color
+    to {text-shadow: 00 20px green, 0 0 20px green, 0 0 30px greenyellow;}
 }
 
-.grid-line-right {
-    border-right: 0.5px solid green;
-    height: 500px;
-    margin-right: 300px;
+
+
+.signup-button {
+    padding: 10px 5px;
+}
+.login-button {
+    padding: 10px 5px;
+}
+.sl-buttons{
+
+    width: 25%;
+    text-align: right;
+}
+
+.su-button {
+    font-size: 20px;
+    font-family: $text;
+    padding-left: 40px ;
+    display: flex;
+
+}
+.li-button {
+    font-size: 20px;
+    font-family: $text;
+    padding-left: 40px;
+    display: flex;
+
+}
+#su{
+    text-decoration: none;
+    color: greenyellow;
+    &:hover{
+    text-shadow: 3px 3px green
+    }
+}
+#lg{
+    text-decoration: none;
+    color: greenyellow;
+    &:hover{
+        text-shadow: 3px 3px green
+    }
+}
+
+.greeting-textarea{
+    resize: vertical; max-height: 600px; min-height: 600px;
+    resize: horizontal; max-width:600px; min-width: 600px;
+    height: 90%;
+    padding-top: 15px;
+    padding-left: 25px;
+    line-height: 50px;
+    border-color: transparent;
+    font-size: 25px;
+    color: greenyellow;
+    font-family: $text;
+    text-shadow: 3px 3px green;
+    background: repeating-linear-gradient(
+        0,
+        $background,
+        greenyellow 3px,
+        $background 1px,
+        $background 50px
+      );
+    
+}
+
+.bottom-line{
+    border-color: greenyellow;
 }
 
 
