@@ -12,13 +12,13 @@ const App = () => (
     </header>
     <Switch>
       <AuthRoute exact path='/' component={GreetingContainer}/> 
-      {/* Why can't use AuthRoute? */}
       <AuthRoute exact path='/login' component={LoginContainer}/>
       <AuthRoute exact path='/signup' component={SignupContainer}/>
       <ProtectedRoute exact path='/notes' component={MainNotesTakingPage}/>
       <ProtectedRoute exact path='/notes/:noteId' component={MainNotesTakingPage}/>
       <ProtectedRoute exact path='/notebooks' component={MainNotesTakingPage}/>
-      
+      <ProtectedRoute exact path='/notebooks/:notebooks_id/notes' component={MainNotesTakingPage}/>
+      <ProtectedRoute exact path='/notebooks/:notebooks_id/notes/*' component={MainNotesTakingPage}/>
     </Switch>
   </div>
 );

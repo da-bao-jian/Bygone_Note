@@ -20,8 +20,8 @@ const NoteIndexItems = props => (
             {/* needs to change to updated ago later */}
         </div>
         <div className='note-text'>
+            {/* change the schema to null false*/}
             {`${props.note.body.slice(0,20)}...`}
-            {console.log(props.note.id)}
         </div>
         <button className='note-delete-button' onClick={()=>props.removeNote(props.note)}>
             Delete

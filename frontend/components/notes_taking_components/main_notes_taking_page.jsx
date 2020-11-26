@@ -10,9 +10,13 @@ import {AuthRoute, ProtectedRoute} from '../../util/route_util'
 export default class MainNotesTakingPage extends React.Component{
     constructor(props) {
         super(props);
-    }
+
+
+    };
+ 
 
     render(){
+
         return (
             <div className='note-taking-page'>
                 <Modal />
@@ -20,12 +24,9 @@ export default class MainNotesTakingPage extends React.Component{
                 <Switch>
                     <ProtectedRoute exact path='/notebooks' component={NotebooksIndex}/>
                     <ProtectedRoute path='/notes' component={NotesIndex}/>
-                    <ProtectedRoute path='/notebooks/:notebook_id/notes' component={NotesIndex}/>
+                    <ProtectedRoute path='/notebooks/*' component={NotesIndex}/>
                 </Switch>
-                {/* user pathname.location conditional logic here */}
-                {/* <div>
-                    <NotesIndex/>
-                </div> */}
+  
             </div>
         )
     };

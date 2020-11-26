@@ -35,6 +35,7 @@ export default class SideBar extends React.Component{
     };
 
     renderNotebooks(){
+        console.log('a')
         this.props.history.push('/notebooks')
     };
 
