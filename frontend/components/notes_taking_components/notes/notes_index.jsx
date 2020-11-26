@@ -35,10 +35,7 @@ export default class NotesIndex extends React.Component{
         let current_notebook_id = Number(current_path[2])
         
         if (current_path.includes('notebooks') && current_path.length>2){
-            // console.log(current_notebook_id);
-            // console.log(notes.filter(note=> (note.notebook_id===9)))
-            // console.log(notes.filter(note=> (note.notebook_id===current_notebook_id)))
-            return notes.filter(note=> (note.notebook_id === current_notebook_id)); //string vs integer
+            return notes.filter(note=> (note.notebook_id === current_notebook_id)); 
         } else {
             return notes;
         }; 

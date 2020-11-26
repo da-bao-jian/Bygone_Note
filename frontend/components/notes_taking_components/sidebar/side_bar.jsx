@@ -6,6 +6,7 @@ export default class SideBar extends React.Component{
         super(props)
         this.newNote = this.newNote.bind(this);
         this.renderNotebooks = this.renderNotebooks.bind(this);
+        this.renderNotes = this.renderNotes.bind(this);
 
     };
 
@@ -34,8 +35,12 @@ export default class SideBar extends React.Component{
         )
     };
 
+    renderNotes(){
+        this.props.history.push('/notes')
+    }
+
     renderNotebooks(){
-        console.log('a')
+        // console.log('a')
         this.props.history.push('/notebooks')
     };
 
@@ -51,6 +56,9 @@ export default class SideBar extends React.Component{
                     <button onClick={this.newNote}>
                         Create A New Note
                     </button>
+                </div>
+                <div className='sidebar-note'>
+                    <button onClick={this.renderNotes}>All Notes</button>
                 </div>
                 <div className='sidebar-notebook'>
                     <button onClick={this.renderNotebooks}>Notebooks</button>
