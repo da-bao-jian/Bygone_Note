@@ -40,10 +40,13 @@ class LoginForm extends React.Component{
     render(){
         return (
           <div className='login-page'>
+          <link rel="stylesheet" href="https://unpkg.com/98.css" />
             <div className='form-backgound'>
                 <div className='log-in-form'>
-                  <h1 className='login-title'>Bygone Note</h1>
-                  <br/>
+                  <div className='login-title'>Bygone Note</div>
+                  <div className='bar-buttons'>
+                    <button aria-label='Minimize'/>
+                  </div>
                   <p className='login-text'>Don't let your memories fade...</p>
                   <form onSubmit={this.handleSubmit}>
                       <input type="email"
@@ -61,6 +64,16 @@ class LoginForm extends React.Component{
                       <input type="submit" value='Login'/>
 
                   </form>
+                              <div className="window" >
+                                  <div className="title-bar">
+                                    <div className="title-bar-text">A Complete Window</div>
+                                    <div className="title-bar-controls">
+                                      <button aria-label="Minimize"></button>
+                                      <button aria-label="Maximize"></button>
+                                      <button aria-label="Close"></button>
+                                    </div>
+                                  </div>
+                                </div>
               </div>
             </div>
           </div>
