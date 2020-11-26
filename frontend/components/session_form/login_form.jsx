@@ -39,38 +39,29 @@ class LoginForm extends React.Component{
 
     render(){
         return (
-          <div className='form-backgound'>
-            <div className='log-in-form'>
-                <h1>Bygone Note</h1>
-                <p>Don't let your memories fade...</p>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="email"
-                    value={this.state.email}
-                    onChange={this.update('email')}
-                    placeholder='Email'/>
+          <div className='login-page'>
+            <div className='form-backgound'>
+                <div className='log-in-form'>
+                  <h1 className='login-title'>Bygone Note</h1>
+                  <br/>
+                  <p className='login-text'>Don't let your memories fade...</p>
+                  <form onSubmit={this.handleSubmit}>
+                      <input type="email"
+                      value={this.state.email}
+                      onChange={this.update('email')}
+                      placeholder='Email'/>
 
-                    <input type="password"
-                    value={this.state.password}
-                    onChange={this.update('password')}
-                    placeholder='Password'/>
+                      <input type="password"
+                      value={this.state.password}
+                      onChange={this.update('password')}
+                      placeholder='Password'/>
 
-                    {this.renderErrors()}
+                      {this.renderErrors()}
 
-                    <input type="submit" value='Login'/>
+                      <input type="submit" value='Login'/>
 
-                </form>
-                <p className='login-text'>Stationery
-                    Agha Shahid Ali
-
-                    The moon did not become the sun.
-                    It just fell on the desert
-                    in great sheets, reams
-                    of silver handmade by you.
-                    The night is your cottage industry now,
-                    the day is your brisk emporium.
-                    The world is full of paper.
-
-                    Write to me...</p>
+                  </form>
+              </div>
             </div>
           </div>
         )

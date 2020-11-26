@@ -7,8 +7,7 @@ const mSTP = (state) => {
     return {
         
         currentUser: state.entities.users[state.session.id]
-        //how to use the object deconstructuring 
-        //{session, entities: {users}}?
+        
     }
 
 };
