@@ -1,4 +1,4 @@
-
+import {Link} from 'react-router-dom';
 import React from 'react';
 
 class LoginForm extends React.Component{
@@ -42,19 +42,21 @@ class LoginForm extends React.Component{
           <div className='login-page'>
           <link rel="stylesheet" href="https://unpkg.com/98.css" />
             <div className='form-backgound'>
-                <div className='log-in-form'>
-                  <div className='login-title'>Bygone Note</div>
-                  <div className='bar-buttons'>
-                    <button aria-label='Minimize'/>
+                <div className='window'>
+                  <div className='title-bar'>
+                      <div className='title-bar-text'>
+                      <Link to='/' className='link-to'>Bygone Note</Link> 
+                      </div> 
                   </div>
-                  <p className='login-text'>Don't let your memories fade...</p>
-                  <form onSubmit={this.handleSubmit}>
-                      <input type="email"
+                  <p className='login-text'>Don't  let   your    memories <br/>  fade...</p>
+                  <form onSubmit={this.handleSubmit} className='login-form'>
+                      <p>Email</p>
+                      <input type="email" className='login-email'
                       value={this.state.email}
                       onChange={this.update('email')}
                       placeholder='Email'/>
-
-                      <input type="password"
+                      <p>Password</p>
+                      <input type="password" className='login-password'
                       value={this.state.password}
                       onChange={this.update('password')}
                       placeholder='Password'/>
@@ -62,18 +64,11 @@ class LoginForm extends React.Component{
                       {this.renderErrors()}
 
                       <input type="submit" value='Login'/>
-
                   </form>
-                              <div className="window" >
-                                  <div className="title-bar">
-                                    <div className="title-bar-text">A Complete Window</div>
-                                    <div className="title-bar-controls">
-                                      <button aria-label="Minimize"></button>
-                                      <button aria-label="Maximize"></button>
-                                      <button aria-label="Close"></button>
-                                    </div>
-                                  </div>
-                                </div>
+                <p className='bottom-line'>Do not have an account?</p>
+                <button>
+                <Link to='/signup' className='link-to-alternate'>Sign Up</Link> 
+                </button>
               </div>
             </div>
           </div>

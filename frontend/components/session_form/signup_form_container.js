@@ -3,7 +3,6 @@ import React from 'react';
 import {signup, removeErrors, login} from '../../actions/session_actions';
 import SignupForm from './signup_form';
 
-
 const mapStateToProps = ({errors}) => {
     // debugger
     return {

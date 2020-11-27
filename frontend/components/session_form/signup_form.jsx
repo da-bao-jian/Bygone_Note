@@ -1,4 +1,4 @@
-
+import {Link} from 'react-router-dom';
 import React from 'react';
 
 class SignupForm extends React.Component{
@@ -47,46 +47,54 @@ class SignupForm extends React.Component{
       }
 
     render(){
+      // <div className='login-page'>
+      // <link rel="stylesheet" href="https://unpkg.com/98.css" />
+        // <div className='form-backgound'>
+            // <div className='window'>
+              // <div className='title-bar'>
+              //     <div className='title-bar-text'>
+              //       Bygone Note
+              //     </div> 
+              // </div>
         return (
-            <div className='log-in-form'>
-                <h1>Bygone Note</h1>
-                <p>Don't let your memories fade...</p>
-                <div>
-                    <button className='demo-button' onClick={this.demoLogin}>
-                        Try Browsing With A Demo Account
+          <div className='login-page'>
+            <link rel="stylesheet" href="https://unpkg.com/98.css" />
+             <div className='form-backgound'>
+                <div className='window'>
+                  <div className='title-bar'>
+                      <div className='title-bar-text'>
+                        <Link to='/' className='link-to'>Bygone Note</Link> 
+                      </div> 
+                  </div>
+                  <p className='sigup-text'>Don't  let   your    memories <br/>  fade...</p>
+                    <div>
+                        <button className='demo-button' onClick={this.demoLogin}>
+                            Try Browsing With A Demo Account
+                        </button>
+                    </div>
+                    <form onSubmit={this.handleSubmit} className='signup-form'>
+                          <p>Email</p>
+                          <input type="email" className='signup-email'
+                          value={this.state.email}
+                          onChange={this.update('email')}
+                          placeholder='Email'/>
+                          <p>Password</p>
+                          <input type="password" className='signup-password'
+                          value={this.state.password}
+                          onChange={this.update('password')}
+                          placeholder='Password'/>
+
+                          {this.renderErrors()}
+
+                          <input type="submit" value='Sign up'/>
+                    </form>
+                    <p className='bottom-line'>Already have an account?</p>
+                    <button>
+                    <Link to='/login' className='link-to-alternate'>Log In</Link> 
                     </button>
-                </div>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="email"
-                    value={this.state.email}
-                    onChange={this.update('email')}
-                    placeholder='Email'/>
-
-                    <input type="password"
-                    value={this.state.password}
-                    onChange={this.update('password')}
-                    placeholder='Password'/>
-
-                    {this.renderErrors()}
-
-                    <input type="submit" value='Sign Up'/>
-
-                </form>
-
-                <p className='login-text'>
-                    Stationery <br/>
-                    Agha Shahid Ali <br/>
-                    <br/>
-                    The moon did not become the sun. <br/>
-                    It just fell on the desert <br/>
-                    in great sheets, reams <br/>
-                    of silver handmade by you. <br/>
-                    The night is your cottage industry now, <br/>
-                    the day is your brisk emporium. <br/>
-                    The world is full of paper. <br/>
-
-                    Write to me...</p>
+              </div>
             </div>
+          </div>
         )
     }
 
