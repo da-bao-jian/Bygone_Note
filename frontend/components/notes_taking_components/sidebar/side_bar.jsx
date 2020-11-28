@@ -47,23 +47,26 @@ export default class SideBar extends React.Component{
 
     render(){
         return(
-            <div className='sidebar-items'>
+        <div className='whole-bar'>
                 <div className='account-dropdown'> 
                     <AccountDropdown logout={this.props.logout}/>
                     {/* use toggle or onBlur */}
                 </div>
                 <div className='create-new-note'>
-                    <button onClick={this.newNote}>
-                        Create A New Note
+                    <button onClick={this.newNote} className='create-new-note-button'>
+                        {'+  Create A New Note'}
+                        <img id='create-note-button-img' src=''></img>
                     </button>
                 </div>
                 <div className='sidebar-note'>
-                    <button onClick={this.renderNotes}>All Notes</button>
+                    <button onClick={this.renderNotes} className='all-notes-button'>
+                    {'  All Notes'}
+                    </button>
                 </div>
-                <div className='sidebar-notebook'>
-                    <button onClick={this.renderNotebooks}>Notebooks</button>
+                <div className='sidebar-note'>
+                    <button onClick={this.renderNotebooks} className='notebook-button'>Notebooks</button>
                 </div>
-            </div>
+        </div>
         )
     };
 };

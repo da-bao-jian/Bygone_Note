@@ -7,10 +7,7 @@ const Middle = () => {
         <div>
             <div >
                 <textarea  className='greeting-textarea' rows='26' cols='50' >
-                STATIONERY                                   by Agha Shahid Ali                             The moon did not become the sun.          It just fell on the desert
-                            in great sheets,         reams
-                            of silver handmade by you.          The night is your cottage industry now,
-                            the day is your brisk emporium.                  The world is full of paper.                  WRITE TO ME...                                     Type here:
+                “You mean old books?"   "Stories written before space travel but about space travel."                   "How could there have been stories about space travel before..."                    "The writers," Pris said, "made it up.”                                                        ― Philip K. Dick,               'Do Androids Dream of Electric Sheep?' 🐑
                 </textarea>
             </div>
             <div>

@@ -5,8 +5,9 @@ import {fetchNotes, createNote, deleteNotes} from '../../../actions/note_actions
 import {withRouter} from 'react-router-dom';
 
 const mSTP = (state) => ({
-    notes: Object.values(state.entities.notes),
-    currentUser: state.session.currentUser
+    notes: Object.values(state.entities.notes).reverse(),
+    currentUser: state.session.currentUser,
+    notebooks: state.entities.notebooks
     // user: state.entities.users[state.session.id]
 });
 

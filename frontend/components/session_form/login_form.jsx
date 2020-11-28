@@ -62,13 +62,25 @@ class LoginForm extends React.Component{
                       placeholder='Password'/>
 
                       {this.renderErrors()}
-
+                    
                       <input type="submit" value='Login'/>
                   </form>
                 <p className='bottom-line'>Do not have an account?</p>
                 <button>
                 <Link to='/signup' className='link-to-alternate'>Sign Up</Link> 
                 </button>
+                <p className='quote'>
+                  Stationery <br/>
+                  by Agha Shahid Ali <br/><br/>
+                    The moon did not become the sun. <br/><br/>
+                    It just fell on the desert <br/><br/>
+                    in great sheets, reams <br/><br/>
+                    of silver handmade by you. <br/><br/>
+                    The night is your cottage industry now, <br/><br/>
+                    the day is your brisk emporium. <br/><br/>
+                    The world is full of paper. <br/><br/>
+                    Write to me...
+                  </p>
               </div>
             </div>
           </div>

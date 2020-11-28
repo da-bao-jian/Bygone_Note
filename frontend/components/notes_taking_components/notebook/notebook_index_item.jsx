@@ -26,50 +26,53 @@ class NotebooksIndexItem extends React.Component{
     // }
     actionDropdownClicked(){
         if(this.state.opened){
-            this.setState({opened: false});
+            setTimeout(() => this.setState({opened: false}), 100);
         } else {
             this.setState({opened: true});
         }
+        // refer to https://codepen.io/quafoo/pen/jONdwWG for toggle actions
     };
 
 
 
     render(){
         const {history, notebook} = this.props
-
+        // console.log(notebook.id)
         return(
             //notebook name
             //number of notes in the notebook
             //creator's name
             //updated date
             //dropdown
-            <div className='table-area'>
-                <div className='title-column'>
+            <tr className='table-area'>
+                <td className='title-column'>
                     <button className='table-title' onClick={()=>history.push(`/notebooks/${notebook.id}/notes`)}>
                         {`${notebook.title}(${notebook.notes.length})`}
                     </button>
-                </div >
-                <div className='notebook-dropdown'>
+                </td >
+                {/* <td className='notebook-dropdown'> */}
                     {/* toggle */}
-                </div>
-                <div className='created-by'>
-                    {notebook.user_id.email}
-                </div>
-                <div className='updated-at'>
-                    {notebook.updated_in_word}
-                </div>
-                <div className='action-dropdown'>
-                    <button className='more-actions-arrow' onClick={this.actionDropdownClicked} onBlur={this.actionDropdownClicked}>dropdown</button>
+                {/* </td> */}
+                <td className='created-by'>
+                    {this.props.users[notebook.user_id].email}
+                </td>
+                <td className='updated-at'>
+                    {`${notebook.updated_at.toString().substring(0,10)} ${notebook.updated_at.toString().substring(12,19)}`}
+                </td>
+                {notebook.title!=='My First Notebook'?
+                <td className='action-dropdown'>
+                    <button className='more-actions-dots' onClick={this.actionDropdownClicked} onBlur={this.actionDropdownClicked}>•••</button>
                     {/* <button className='more-actions-arrow' onClick={this.setState({opened: true})} onBlur={this.setState({opened: false})}></button> */}
-                    <div className='more-action-hide'>More Actions</div> 
                     {this.state.opened?(
-                        <ul>
-                            <li><button>Delete notebook</button></li>
+                        
+                        <ul className='dots-menu'>
+                            <li><button onClick={()=>{this.props.removeNotebook(notebook);this.actionDropdownClicked}}>Delete notebook</button></li>
                             <li><button>Add new note</button></li>
                         </ul>
                     ):null} 
-                </div>
-            </div>
+                </td>
+                :null}
+            </tr>
 
 
         )

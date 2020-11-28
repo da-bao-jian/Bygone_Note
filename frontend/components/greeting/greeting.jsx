@@ -24,7 +24,7 @@ const Greeting = ({currentUser, logout}) => {
                     <div className='sl-buttons'>
                         <div className='su-button'>
                             <Link id='su' to='/signup' className='signup-button'>
-                                Sign up
+                               <img src="" /> Sign up
                             </Link>
                         </div>
                         <div className='li-button'>

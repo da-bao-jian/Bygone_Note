@@ -9,12 +9,12 @@ body {background-color: $background}
     padding: 5px 25px;
     display: flex;
     justify-content: space-between;
-    border-bottom: 0.3px solid greenyellow;
+    border-bottom: 0.3px solid rgb(218, 238, 180);
 }
 
 
 .navbar-logo {
-    color: greenyellow;
+    color: rgb(218, 238, 180);
     font-family: $text;
     font-size: 30px;
     align-items: center;
@@ -23,8 +23,8 @@ body {background-color: $background}
     animation: glow 5s ease-in-out infinite ;
 };
 @keyframes glow{
-    from {text-shadow: 0 0 10px green, 0 0 20px green, 0 0 30px green;} //start color
-    to {text-shadow: 00 20px green, 0 0 20px green, 0 0 30px greenyellow;}
+    from {text-shadow: 0 0 10px yellowgreen, 0 0 20px yellowgreen, 0 0 30px yellowgreen;} //start color
+    to {text-shadow: 00 20px yellowgreen, 0 0 20px yellowgreen, 0 0 30px yellowgreen;}
 }
 
 
@@ -57,35 +57,35 @@ body {background-color: $background}
 }
 #su{
     text-decoration: none;
-    color: greenyellow;
+    color: rgb(218, 238, 180);;
     &:hover{
-    text-shadow: 3px 3px green
+    text-shadow: 3px 3px yellowgreen
     }
 }
 #lg{
     text-decoration: none;
-    color: greenyellow;
+    color: rgb(218, 238, 180);;
     &:hover{
-        text-shadow: 3px 3px green
+        text-shadow: 3px 3px yellowgreen
     }
 }
 
 .greeting-textarea{
     resize: vertical; max-height: 600px; min-height: 600px;
-    resize: horizontal; max-width:600px; min-width: 600px;
+    resize: horizontal; max-width:400px; min-width: 400px;
     height: 90%;
     padding-top: 15px;
     padding-left: 25px;
     line-height: 50px;
     border-color: transparent;
     font-size: 25px;
-    color: greenyellow;
+    color: yellowgreen;
     font-family: $text;
     text-shadow: 3px 3px green;
     background: repeating-linear-gradient(
         0,
         $background,
-        greenyellow 3px,
+        rgb(218, 238, 180) 3px,
         $background 1px,
         $background 50px
       );
@@ -93,7 +93,7 @@ body {background-color: $background}
 }
 
 .bottom-line{
-    border-color: greenyellow;
+    border-color: rgb(218, 238, 180);
 }
 
 

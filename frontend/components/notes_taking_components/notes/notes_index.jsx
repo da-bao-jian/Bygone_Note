@@ -24,10 +24,24 @@ export default class NotesIndex extends React.Component{
     };
 
     removeNote(note){
-        this.props.deleteNotes(note.id)
-        .then(
-            ()=>{this.props.history.replace('/notes')}
-        );
+        let current_path = this.props.location.pathname.split('/');
+        let notebook_number = null;
+        if(current_path.length>2){
+            notebook_number = current_path[2];
+        }
+        if(current_path.length<4){
+            // console.log('a')
+            this.props.deleteNotes(note.id)
+            .then(
+                ()=>{this.props.history.replace('/notes')}
+            );
+        }else{
+            // console.log('b')
+            this.props.deleteNotes(note.id)
+            .then(
+                ()=>{this.props.history.replace(`/notebooks/${notebook_number}/notes`)}
+            );
+        }
     }
 
     filterNotes(notes){
@@ -44,7 +58,7 @@ export default class NotesIndex extends React.Component{
 
 
     render(){
-        const {notes, deleteNotes} = this.props;
+        const {notes, notebooks} = this.props;
         // console.log(this.props)
 
         // console.log(notes)
@@ -55,14 +69,35 @@ export default class NotesIndex extends React.Component{
                 removeNote={this.removeNote}
             />
         ));
-        // console.log(this.filterNotes(notes))
-
+        const path=this.props.location.pathname.split('/')
+        let notebook_to_render=null;
+        if(path.length>3){
+            // console.log(notebooks)
+            notebook_to_render = notebooks.filter(notebook=>(notebook.id === parseInt(path[2])));
+        }
+        // console.log(notebook_to_render)
         return (
-          <div className='note-index-items'>
-            <ul className='notes-list'>
-                {notesList}
-            </ul>
-          </div>
+        <div className='note-index-items'>
+            {path.length<4?
+            <div className='header-box'>
+                <h1 className='header-box-h1'>All Notes</h1>
+                <div className='number-of-notes'>
+                    {`${this.props.notes.length} notes`}
+                </div>
+            </div>:<div className='header-box'>
+            <h1 className='header-box-h1'>{notebook_to_render[0].title}</h1>
+                <div className='number-of-notes'>
+                    {`${notebook_to_render[0].notes.length} notes`}
+                </div>
+            </div>
+            }
+            <div className='notes-list'>
+                <ul className='notes-list-index'>
+                    {notesList}
+                </ul>
+            </div>
+            
+        </div>
         )
     }
 

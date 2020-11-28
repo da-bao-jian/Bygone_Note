@@ -7,6 +7,7 @@ import {openModal} from '../../../actions/modal_actions'
 
 const mSTP = (state) => ({
     notebooks: Object.values(state.entities.notebooks),
+    users: state.entities.users
 });
 
 const mDTP = (dispatch) => ({
