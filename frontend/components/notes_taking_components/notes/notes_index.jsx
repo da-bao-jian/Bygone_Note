@@ -87,7 +87,7 @@ export default class NotesIndex extends React.Component{
             </div>:<div className='header-box'>
             <h1 className='header-box-h1'>{notebook_to_render[0].title}</h1>
                 <div className='number-of-notes'>
-                    {`${notebook_to_render[0].notes.length} notes`}
+                    {/* {`${notebook_to_render[0].notes.length} notes`} */}
                 </div>
             </div>
             }

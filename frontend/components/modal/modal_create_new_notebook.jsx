@@ -16,30 +16,37 @@ class ModalCreateNewNotebook extends React.Component{
     update(field){
         return e=>this.setState({[field]: e.currentTarget.value})
     }
-
+    
     render(){
         const {closeModal, createNotebook} = this.props;
         return(
-            <form>
-                <h1>Create new notebook</h1>
-                <label className='create-form-modal-button'>Name
-                    <input 
-                    type="text"
-                    value={this.state.title}
-                    onChange={this.update('title')}
-                    />
-                </label>
-                <ul>
-                    {this.props.errors}
-                </ul>
-                <button className='cancel-button' onClick={closeModal}>
-                    Cancel
-                </button>
-                <button className='continue-button' onClick={()=>createNotebook(this.state).then(()=>closeModal())}
-                        disabled={this.state.title === ''}>
-                    Continue
-                </button>
-            </form>
+            <div className='create-new-notebook-form'>
+                <form>
+                    <h1 className='head-tagline'>Create a new notebook</h1>
+                    <h3 className='subhread-tagline'>Notebooks are useful for grouping notes around a common topic. They can be private or shared.</h3>
+                    <div className='input-area'>
+                        <label className='create-form-modal-button' >Title: 
+                        </label>
+                        <input className='create-form-input' 
+                        type="text"
+                        value={this.state.title}
+                        onChange={this.update('title')}
+                        />
+                    </div>
+                    <ul>
+                        {this.props.errors}
+                    </ul>
+                    <div className='buttons-area'>
+                        <button className='cancel-button' onClick={closeModal}>
+                            Cancel
+                        </button>
+                        <button className='continue-button' onClick={()=>createNotebook(this.state).then(()=>closeModal())}
+                                disabled={this.state.title === ''}>
+                            Continue
+                        </button>
+                    </div>
+                </form>
+            </div>
 
         )
     }

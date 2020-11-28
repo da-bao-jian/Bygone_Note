@@ -14,14 +14,14 @@ export default class NotebooksIndex extends React.Component{
     componentDidMount(){
         this.props.fetchNotebooks();
     }
-    // componentDidUpdate(prevProps){
-    //     console.log(this.props)
-    //     console.log(prevProps)
-    //     if(this.props.notebooks === prevProps.notebooks){
-    //         this.props.fetchNotebooks();
-    //     }
+    componentDidUpdate(prevProps){
+        console.log(this.props)
+        console.log(prevProps)
+        if(this.props.notebooks === prevProps.notebooks){
+            this.props.fetchNotebooks();
+        }
 
-    // };
+    };
     removeNotebook(notebook){
         this.props.deleteNotebook(notebook.id)
         // if(this.state.toggle === false){
