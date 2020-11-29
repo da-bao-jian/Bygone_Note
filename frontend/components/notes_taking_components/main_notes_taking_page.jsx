@@ -24,7 +24,8 @@ export default class MainNotesTakingPage extends React.Component{
                 <Switch>
                     <ProtectedRoute exact path='/notebooks' component={NotebooksIndex}/>
                     <ProtectedRoute path='/notes' component={NotesIndex}/>
-                    <ProtectedRoute path='/notebooks/*' component={NotesIndex}/>
+                    <ProtectedRoute path='/notebooks/:notebook_id/notes' component={NotesIndex}/>
+                    {/* <ProtectedRoute path='/notebooks/*' component={NotesIndex}/> */}
                 </Switch>
   
             </div>

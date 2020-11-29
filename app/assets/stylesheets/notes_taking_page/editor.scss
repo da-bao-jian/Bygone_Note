@@ -1,0 +1,14 @@
+.text-editor{
+    flex-grow: 1;
+    position: absolute; 
+    width: 80%; 
+    margin-left: 800px;  
+    z-index: 10;
+    // overflow-y: auto;
+    // overflow-x: auto;
+    flex-direction: column;
+
+    // position: relative;
+    // margin-left: 400px;
+    // overflow: hidden;
+}
