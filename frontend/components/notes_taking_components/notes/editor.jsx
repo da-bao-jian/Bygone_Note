@@ -1,6 +1,6 @@
 import React from "react";
 import ReactQuill from "react-quill";
-import QuillToolbar, { modules, formats } from "./EditorToolbar";
+import QuillToolbar, { modules, formats } from "./editorToolbar";
 
 
 export default class Editor extends React.Component {

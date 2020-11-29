@@ -92,12 +92,15 @@
         background-color: honeydew;
         display: flex;
         position: absolute; 
-        width: 100%; 
+        width: 60%px; 
         height: 100%;
         margin-left: 300px;  
         // z-index: 10;
         overflow-y: auto;
         overflow-x: auto;
+        .edit-area{
+            width: 100%;
+        }
         .tool-bar{
             position: relative;
             background-color: #e2e5de;
@@ -126,6 +129,5 @@
                 border: none;
             }
         }
-
     }
 }
