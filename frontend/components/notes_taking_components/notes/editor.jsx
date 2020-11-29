@@ -1,7 +1,6 @@
 import React from "react";
 import ReactQuill from "react-quill";
 import QuillToolbar, { modules, formats } from "./EditorToolbar";
-// import 'react-quill/dist/quill.core.css'
 
 
 export default class Editor extends React.Component {
@@ -9,9 +8,7 @@ export default class Editor extends React.Component {
         super(props)
         console.log(this.props)
 
-        // this.state = ({
-        //     note: this.props.notes[this.props.noteId]
-        // })
+
     }
 
     update(){
@@ -30,14 +27,12 @@ export default class Editor extends React.Component {
                             type="text"
                             placeholder='Title'
                             // value={}
-                            // onChange={}
+                        
                             />            
                     </div>
                     <div className='editor-area'>
-                        <ReactQuill
+                        <ReactQuill id='editor-field'
                             theme="snow"
-                            // value={state.value}
-                            // onChange={handleChange}
                             modules={modules}
                             formats={formats}
                             placeholder={"Start writing, or drag files"}
