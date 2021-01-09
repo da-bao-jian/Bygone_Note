@@ -30,29 +30,20 @@ class NotebooksIndexItem extends React.Component{
         } else {
             this.setState({opened: true});
         }
-        // refer to https://codepen.io/quafoo/pen/jONdwWG for toggle actions
     };
 
 
 
     render(){
         const {history, notebook} = this.props
-        // console.log(notebook.id)
         return(
-            //notebook name
-            //number of notes in the notebook
-            //creator's name
-            //updated date
-            //dropdown
+
             <tr className='table-area'>
                 <td className='title-column'>
-                    <button className='table-title' onClick={()=>history.push(`/notebooks/${notebook.id}/notes`)}>
+                    <button className='table-title' onClick={()=>history.push(`/notebooks/${notebook.title}/notes`)}>
                         {`${notebook.title}(${notebook.notes.length})`}
                     </button>
                 </td >
-                {/* <td className='notebook-dropdown'> */}
-                    {/* toggle */}
-                {/* </td> */}
                 <td className='created-by'>
                     {this.props.users[notebook.user_id].email}
                 </td>
@@ -62,7 +53,6 @@ class NotebooksIndexItem extends React.Component{
                 {notebook.title!=='My First Notebook'?
                 <td className='action-dropdown'>
                     <button className='more-actions-dots' onClick={this.actionDropdownClicked} onBlur={this.actionDropdownClicked}>•••</button>
-                    {/* <button className='more-actions-arrow' onClick={this.setState({opened: true})} onBlur={this.setState({opened: false})}></button> */}
                     {this.state.opened?(
                         
                         <ul className='dots-menu'>

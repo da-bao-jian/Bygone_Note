@@ -13,13 +13,10 @@ export default class NotesIndex extends React.Component{
         this.removeNote=this.removeNote.bind(this);
         this.filterNotes = this.filterNotes.bind(this);
         this.handleClick = this.handleClick.bind(this);
-
     };
 
     componentDidMount(){
-        
         this.props.fetchNotes();
-        //this.handleClick(this.props.notes[0].id)
     };
 
     componentDidUpdate(prevProps){ //can use location.pathname to see if the location changed
@@ -46,13 +43,11 @@ export default class NotesIndex extends React.Component{
             notebook_number = current_path[2];
         }
         if(current_path.length<4){
-            // console.log('a')
             this.props.deleteNotes(note.id)
             .then(
                 ()=>{this.props.history.replace('/notes')}
             );
         }else{
-            // console.log('b')
             this.props.deleteNotes(note.id)
             .then(
                 ()=>{this.props.history.replace(`/notebooks/${notebook_number}/notes`)}
@@ -62,10 +57,13 @@ export default class NotesIndex extends React.Component{
 
     filterNotes(notes){
         let current_path = this.props.location.pathname.split('/');
-        let current_notebook_id = Number(current_path[2])
+        let current_notebook_title = current_path[2];
         
         if (current_path.includes('notebooks') && current_path.length>2){
-            return notes.filter(note=> (note.notebook_id === current_notebook_id)); 
+            
+            const current_notebook = this.props.notebooks.filter(nb=>(nb.title === current_notebook_title));
+            debugger
+            return notes.filter(note=> (note.notebook_id === current_notebook[0].id)); 
         } else {
             return notes;
         }; 
@@ -75,9 +73,6 @@ export default class NotesIndex extends React.Component{
 
     render(){
         const {notes, notebooks} = this.props;
-        // console.log(this.props)
-
-        // console.log(notes)
         const notesList = this.filterNotes(notes).map(note=>(
             <NoteIndexItems
                 key={note.id}
@@ -86,14 +81,17 @@ export default class NotesIndex extends React.Component{
                 removeNote={this.removeNote}
                 handleClick={this.handleClick}
             />
-        ));
+            ));
         const path=this.props.location.pathname.split('/')
-        let notebook_to_render=null;
-        if(path.length>3){
-            // console.log(notebooks)
-            notebook_to_render = notebooks.filter(notebook=>(notebook.id === parseInt(path[2])));
-        }
-        // console.log(notebook_to_render)
+        let header = path[2];
+        if(path.length>=3){
+            // debugger
+            // notebook_to_render = notebooks.filter(notebook=>(notebook.id === parseInt(path[2])));
+            if(header.includes('%')){
+                header = header.split('%').join(' ');
+            };
+        };
+        
         return (
         <div className='notetaking-space'>
             <div className='note-index-items'>
@@ -104,7 +102,7 @@ export default class NotesIndex extends React.Component{
                         {`${this.props.notes.length} notes`}
                     </div>
                 </div>:<div className='header-box'>
-                <h1 className='header-box-h1'>{notebook_to_render[0].title}</h1>
+                <h1 className='header-box-h1'>{header}</h1>
                     <div className='number-of-notes'>
                         {/* {`${notebook_to_render[0].notes.length} notes`} */}
                     </div>

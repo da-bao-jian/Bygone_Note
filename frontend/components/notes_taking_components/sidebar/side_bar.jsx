@@ -11,12 +11,17 @@ export default class SideBar extends React.Component{
     };
 
     newNote(){ //always stays on the page
+        const {notebooks} = this.props;
         let current_path = this.props.location.pathname.split('/');
-        let current_notebook_id;
+        let current_notebook_id, matchingRoom;
         let path = '';
         if (current_path.includes('notebooks') && current_path.length>2){
             path = `/notebooks/${current_path[2]}/notes`;
-            current_notebook_id = current_path[2] 
+            matchingRoom = notebooks.filter(nb=>{
+                return nb.title === current_path[2]
+            });
+            debugger
+            current_notebook_id = matchingRoom[0].id
         } else {
             path = `/notes`;
             current_notebook_id = this.props.current_user.first_notebook_id
@@ -24,6 +29,7 @@ export default class SideBar extends React.Component{
         // if(current_path.length > 2){
         // } else {
         // };
+        debugger
         this.props.createNote({
             title: 'Untitled',
             body: 'Start writing here...',
@@ -36,12 +42,11 @@ export default class SideBar extends React.Component{
     };
 
     renderNotes(){
-        this.props.history.push('/notes')
-    }
+        this.props.history.push('/notes');
+    };
 
     renderNotebooks(){
-        // console.log('a')
-        this.props.history.push('/notebooks')
+        this.props.history.push('/notebooks');
     };
 
 
@@ -50,7 +55,6 @@ export default class SideBar extends React.Component{
         <div className='whole-bar'>
                 <div className='account-dropdown'> 
                     <AccountDropdown logout={this.props.logout}/>
-                    {/* use toggle or onBlur */}
                 </div>
                 <div className='create-new-note'>
                     <button onClick={this.newNote} className='create-new-note-button'>

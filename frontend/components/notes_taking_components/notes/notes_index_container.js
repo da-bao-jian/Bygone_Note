@@ -7,8 +7,8 @@ import {withRouter} from 'react-router-dom';
 const mSTP = (state) => ({
     notes: Object.values(state.entities.notes).reverse(),
     currentUser: state.session.currentUser,
-    notebooks: state.entities.notebooks
-    // user: state.entities.users[state.session.id]
+    notebooks: state.entities.notebooks,
+    nb: state.entities
 });
 
 const mDTP = (dispatch) => ({

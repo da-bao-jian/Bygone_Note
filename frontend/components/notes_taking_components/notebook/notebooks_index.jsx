@@ -5,35 +5,43 @@ export default class NotebooksIndex extends React.Component{
     constructor(props) {
         super(props);
         this.state={
-            toggle:false
-        }
-
+            toggle:false,
+            notebooks: []
+        };
         this.removeNotebook=this.removeNotebook.bind(this);
     };
     
     componentDidMount(){
-        this.props.fetchNotebooks();
-    }
-    componentDidUpdate(prevProps){
-        console.log(this.props)
-        console.log(prevProps)
-        if(this.props.notebooks === prevProps.notebooks){
-            this.props.fetchNotebooks();
-        }
-
+        this.props.fetchNotebooks()
+        .then(()=>{
+            const newNotebooks = this.props.notebooks.filter(nb => (!this.state.notebooks.includes(nb.title)))
+            return this.setState({notebooks: newNotebooks})
+        });
+        
     };
+
+    componentDidUpdate(prevProps){
+        if(this.props.notebooks.length !== prevProps.notebooks.length){
+            const newNotebooks = this.props.notebooks
+            this.setState({notebooks: newNotebooks})
+        };
+    };
+
+
     removeNotebook(notebook){
         this.props.deleteNotebook(notebook.id)
-        // if(this.state.toggle === false){
-        //     this.setState({toggle:true})
-        // }else{
-        //     this.setState({toggle:false})
-        // }
-    }
+        const newState = this.state.notebooks.filter(nb => (
+                nb.title !== notebook.title
+        ));        
+        this.setState({notebooks: newState})
+
+    };
+
+
 
     render(){
-        const {notebooks, users} = this.props;
-        // console.log(notebooks) //notebook didn't update
+        const {users} = this.props;
+        const {notebooks} = this.state;
         const notebooksList = notebooks.map(notebook=>(
             <NotebookIndexItems
                 key={notebook.id}
