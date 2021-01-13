@@ -6,14 +6,25 @@ import QuillToolbar, { modules, formats } from "./editorToolbar";
 export default class Editor extends React.Component {
     constructor(props){
         super(props)
-        console.log(this.props)
+        this.state = {
+            title: '',
+            body: ''
+        };
 
+        this.handleTitleInput = this.handleTitleInput.bind(this);
+        this.updateNoteTitles = this.updateNoteTitles.bind(this);
+    };
 
-    }
+    handleTitleInput(e){
+        this.setState({title: e.currentTarget.value});
+    };
 
-    update(){
-        
-    }
+    updateNoteTitles(title){
+        this.props.updateNote({
+            title: title,
+            body: this.state.body
+        });
+    };
 
     render(){
         return (
@@ -26,9 +37,9 @@ export default class Editor extends React.Component {
                         <input id='input-box'
                             type="text"
                             placeholder='Title'
-                            // value={}
-                        
-                            />            
+                            onChange={this.handleTitleInput}
+                            onBlur={()=>this.updateNoteTitles(this.state.title)}
+                        />            
                     </div>
                     <div className='editor-area'>
                         <ReactQuill id='editor-field'

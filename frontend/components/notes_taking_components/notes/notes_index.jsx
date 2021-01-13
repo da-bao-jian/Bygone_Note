@@ -7,7 +7,8 @@ export default class NotesIndex extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            noteEditor: null
+            noteEditor: null,
+            allNotes: []
         };
 
         this.removeNote=this.removeNote.bind(this);
@@ -16,23 +17,35 @@ export default class NotesIndex extends React.Component{
     };
 
     componentDidMount(){
-        this.props.fetchNotes();
+        debugger
+        this.props.fetchNotes().then(
+            ()=>{
+                this.setState({allNotes: 
+                    this.state.allNotes.concat(this.props.notes)
+                });
+            });
     };
 
-    componentDidUpdate(prevProps){ //can use location.pathname to see if the location changed
-        if(this.props.notes === prevProps.notes){
-            this.props.fetchNotes();
-        }
+    componentDidUpdate(prevProps){ 
+        if(this.props.notes.length !== prevProps.notes.length){
+            this.props.fetchNotes().then(
+            ()=>{
+                this.setState({allNotes: 
+                    this.props.notes
+                });
+            });
+        };
 
     };
 
     handleClick(key){
         let path_after_note_clicked=this.props.match.url;
-        // path_after_note_clicked=this.props.location.pathname; use match.url insread since notes index component is used for both /notes and //notebooks/:notebook_id/notes
-        //useful resource https://www.freecodecamp.org/news/hitchhikers-guide-to-react-router-v4-4b12e369d10/
         this.props.history.push(`${path_after_note_clicked}/${key}`);
         this.setState({
-            noteEditor: <Editor noteId={key}/>
+            noteEditor: <Editor 
+                        noteId={key}
+                        body={this.props.notes}
+                        />
         });
     }
 
@@ -44,11 +57,17 @@ export default class NotesIndex extends React.Component{
         }
         if(current_path.length<4){
             this.props.deleteNotes(note.id)
+            .then(()=>{this.setState({allNotes: 
+                this.state.allNotes.filter(n => (n.id !== note.id))    
+            })})
             .then(
                 ()=>{this.props.history.replace('/notes')}
             );
         }else{
             this.props.deleteNotes(note.id)
+            .then(()=>{this.setState({allNotes: 
+                this.state.allNotes.filter(n => (n.id !== note.id))    
+            })})
             .then(
                 ()=>{this.props.history.replace(`/notebooks/${notebook_number}/notes`)}
             );
@@ -60,9 +79,7 @@ export default class NotesIndex extends React.Component{
         let current_notebook_title = current_path[2];
         
         if (current_path.includes('notebooks') && current_path.length>2){
-            
             const current_notebook = this.props.notebooks.filter(nb=>(nb.title === current_notebook_title));
-            debugger
             return notes.filter(note=> (note.notebook_id === current_notebook[0].id)); 
         } else {
             return notes;
@@ -72,8 +89,10 @@ export default class NotesIndex extends React.Component{
 
 
     render(){
-        const {notes, notebooks} = this.props;
-        const notesList = this.filterNotes(notes).map(note=>(
+        const {allNotes} = this.state;
+        const notesList = this.filterNotes(allNotes).map(note=>{
+            debugger
+            return (
             <NoteIndexItems
                 key={note.id}
                 note={note}
@@ -81,17 +100,16 @@ export default class NotesIndex extends React.Component{
                 removeNote={this.removeNote}
                 handleClick={this.handleClick}
             />
-            ));
+            )});
         const path=this.props.location.pathname.split('/')
         let header = path[2];
         if(path.length>=3){
-            // debugger
-            // notebook_to_render = notebooks.filter(notebook=>(notebook.id === parseInt(path[2])));
             if(header.includes('%')){
                 header = header.split('%').join(' ');
             };
         };
-        
+
+        debugger
         return (
         <div className='notetaking-space'>
             <div className='note-index-items'>

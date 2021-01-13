@@ -20,25 +20,20 @@ export default class SideBar extends React.Component{
             matchingRoom = notebooks.filter(nb=>{
                 return nb.title === current_path[2]
             });
-            debugger
-            current_notebook_id = matchingRoom[0].id
+            current_notebook_id = matchingRoom[0].id;
         } else {
             path = `/notes`;
-            current_notebook_id = this.props.current_user.first_notebook_id
+            current_notebook_id = this.props.current_user.first_notebook_id;
         };
-        // if(current_path.length > 2){
-        // } else {
-        // };
-        debugger
+
         this.props.createNote({
             title: 'Untitled',
             body: 'Start writing here...',
             notebook_id: current_notebook_id 
         }).then(
             returned=>{this.props.history.push(`${path}/${returned.note.id}`)}
-            //adding the change of address promise to the end of request 
-            //to redirect the page
-        )
+
+        );
     };
 
     renderNotes(){

@@ -1,8 +1,3 @@
-//when clicked it changes the url
-//it shows the title 
-//it shows a fraction of the body 
-//it shows date added 
-//it shows tags
 import React from 'react';
 
 const NoteIndexItems = ({handleClick, removeNote, note, noteId}) => (
