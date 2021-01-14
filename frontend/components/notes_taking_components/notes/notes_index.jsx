@@ -129,7 +129,7 @@ export default class NotesIndex extends React.Component{
                         {notesList}
                     </ul>
                 </div>
-                {path.length === 2 ? null : this.state.noteEditor}
+                {(path.length === 2 || (path[1] === 'notebooks' && path[3] === 'notes' && path.length === 4)) ? null : this.state.noteEditor}
             </div>
         </div>
         )

@@ -54,7 +54,6 @@ export default class Editor extends React.Component {
         let id;
         if(url.length>2){
             id = this.props.notes.notes[parseInt(url[url.length-1])].title;
-            
         };
         debugger
 
