@@ -8,7 +8,6 @@ const NoteIndexItems = ({handleClick, removeNote, note, noteId}) => (
                 {note.title}
             </div>
             <div className='note-text'>
-                {/* change the schema to null false*/}
                 {`${note.body.slice(0,20)}...`}
             </div>
             <div className='time-since-created'>
@@ -16,9 +15,7 @@ const NoteIndexItems = ({handleClick, removeNote, note, noteId}) => (
             </div>
             <div className='time-since-updated'>
                 {note.time_ago_updated}
-                {/* needs to change to updated ago later */}
             </div>
-
             <button className='note-delete-button' onClick={()=>removeNote(note)}>
                 Delete
             </button>

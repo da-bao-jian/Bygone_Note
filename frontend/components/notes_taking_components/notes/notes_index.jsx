@@ -42,11 +42,11 @@ export default class NotesIndex extends React.Component{
         this.setState({
             noteEditor: 
             <Editor 
-            noteId={key}
-            body={this.props.notes}
+                noteId={key}
+                body={this.props.notes}
             />
         });
-    }
+    };
 
     removeNote(note){
         let current_path = this.props.location.pathname.split('/');
@@ -90,7 +90,6 @@ export default class NotesIndex extends React.Component{
     render(){
         const {allNotes} = this.state;
         const notesList = this.filterNotes(allNotes).map(note=>{
-            
             return (
             <NoteIndexItems
                 key={note.id}
@@ -100,7 +99,7 @@ export default class NotesIndex extends React.Component{
                 handleClick={this.handleClick}
             />
             )});
-        const path=this.props.location.pathname.split('/')
+        const path = this.props.location.pathname.split('/')
         let header = path[2];
         if(path.length>=3){
             if(header.includes('%')){
@@ -108,7 +107,7 @@ export default class NotesIndex extends React.Component{
             };
         };
 
-        
+        debugger
         return (
         <div className='notetaking-space'>
             <div className='note-index-items'>
@@ -130,7 +129,7 @@ export default class NotesIndex extends React.Component{
                         {notesList}
                     </ul>
                 </div>
-                {this.state.noteEditor}
+                {path.length === 2 ? null : this.state.noteEditor}
             </div>
         </div>
         )

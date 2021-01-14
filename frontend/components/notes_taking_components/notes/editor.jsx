@@ -24,7 +24,6 @@ export default class Editor extends React.Component {
     };
 
     updateNoteTitles(title){
-        //here, get the notebook id using the method from sidebar
         const {notebooks} = this.props;
         let current_path = this.props.location.pathname.split('/');
         let current_notebook_id, matchingRoom;
@@ -51,6 +50,14 @@ export default class Editor extends React.Component {
     };
 
     render(){
+        let url = this.props.location.pathname.split('/');
+        let id;
+        if(url.length>2){
+            id = this.props.notes.notes[parseInt(url[url.length-1])].title;
+            
+        };
+        debugger
+
         return (
             <div className="text-editor">
                 <div className='edit-area'>
@@ -60,7 +67,7 @@ export default class Editor extends React.Component {
                     <div className='title-bar'>
                         <input id='input-box'
                             type="text"
-                            placeholder='Title'
+                            placeholder={id}
                             onChange={this.handleTitleInput}
                             onBlur={()=>this.updateNoteTitles(this.state.title)}
                         />            
