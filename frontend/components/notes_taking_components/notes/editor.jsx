@@ -15,15 +15,39 @@ export default class Editor extends React.Component {
         this.updateNoteTitles = this.updateNoteTitles.bind(this);
     };
 
+    componentDidMount() {
+        this.setState({body: 'Start writing here...'})
+    };
+
     handleTitleInput(e){
         this.setState({title: e.currentTarget.value});
     };
 
     updateNoteTitles(title){
+        //here, get the notebook id using the method from sidebar
+        const {notebooks} = this.props;
+        let current_path = this.props.location.pathname.split('/');
+        let current_notebook_id, matchingRoom;
+        let path = '';
+        if (current_path.includes('notebooks') && current_path.length>2){
+            path = `/notebooks/${current_path[2]}/notes`;
+            matchingRoom = notebooks.filter(nb=>{
+                return nb.title === current_path[2]
+            });
+            current_notebook_id = matchingRoom[0].id;
+        } else {
+            path = `/notes`;
+            current_notebook_id = this.props.current_user.first_notebook_id;
+        };
         this.props.updateNote({
+            id: this.props.noteId,
             title: title,
-            body: this.state.body
-        });
+            body: this.state.body,
+            notebook_id: current_notebook_id
+        }).then(
+            returned=>{this.props.history.push(`${path}/${returned.note.id}`)}
+
+        );
     };
 
     render(){

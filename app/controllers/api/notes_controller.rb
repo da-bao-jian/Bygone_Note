@@ -21,7 +21,7 @@ class Api::NotesController < ApplicationController
 
     def update
         @note = Note.find_by(id: params[:id])
-        debugger
+        # debugger
         if @note.update(note_params)
             render :show 
         else  

@@ -17,7 +17,6 @@ export default class NotesIndex extends React.Component{
     };
 
     componentDidMount(){
-        debugger
         this.props.fetchNotes().then(
             ()=>{
                 this.setState({allNotes: 
@@ -35,17 +34,17 @@ export default class NotesIndex extends React.Component{
                 });
             });
         };
-
     };
 
     handleClick(key){
         let path_after_note_clicked=this.props.match.url;
         this.props.history.push(`${path_after_note_clicked}/${key}`);
         this.setState({
-            noteEditor: <Editor 
-                        noteId={key}
-                        body={this.props.notes}
-                        />
+            noteEditor: 
+            <Editor 
+            noteId={key}
+            body={this.props.notes}
+            />
         });
     }
 
@@ -91,7 +90,7 @@ export default class NotesIndex extends React.Component{
     render(){
         const {allNotes} = this.state;
         const notesList = this.filterNotes(allNotes).map(note=>{
-            debugger
+            
             return (
             <NoteIndexItems
                 key={note.id}
@@ -109,7 +108,7 @@ export default class NotesIndex extends React.Component{
             };
         };
 
-        debugger
+        
         return (
         <div className='notetaking-space'>
             <div className='note-index-items'>
