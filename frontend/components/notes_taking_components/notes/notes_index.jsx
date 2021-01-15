@@ -1,13 +1,12 @@
-
 import React from 'react';
 import NoteIndexItems from './notes_index_items';
-import Editor from './editor_container';
 
 export default class NotesIndex extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            allNotes: []
+            allNotes: [],
+            noteOpened: null
         };
 
         this.removeNote=this.removeNote.bind(this);
@@ -16,11 +15,14 @@ export default class NotesIndex extends React.Component{
     };
 
     componentDidMount(){
-        this.props.fetchNotes().then(
-            ()=>{
+        this.props.fetchNotes()
+            .then(()=>{
                 this.setState({allNotes: 
                     this.state.allNotes.concat(this.props.notes)
                 });
+            })
+            .then(()=>{
+                this.setState({noteOpened: this.state.allNotes[0].id})
             });
     };
 
@@ -38,13 +40,7 @@ export default class NotesIndex extends React.Component{
     handleClick(key){
         let path_after_note_clicked=this.props.match.url;
         this.props.history.push(`${path_after_note_clicked}/${key}`);
-        // this.setState({
-        //     noteEditor: 
-        //     <Editor 
-        //         noteId={key}
-        //         body={this.props.notes}
-        //     />
-        // });
+        this.setState({noteOpened: key})
     };
 
     removeNote(note){
@@ -116,12 +112,12 @@ export default class NotesIndex extends React.Component{
                 removeNote={this.removeNote}
                 handleClick={this.handleClick}
                 body={this.props.notes}
-                path={path}
                 allNotes={allNotes}
+                noteOpened={this.state.noteOpened}
             />
             )});
 
-        
+        debugger
         return (
         <div className='notetaking-space'>
             <div className='note-index-items'>

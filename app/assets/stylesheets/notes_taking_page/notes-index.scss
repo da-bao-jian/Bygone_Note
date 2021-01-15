@@ -106,6 +106,10 @@
             height: 100px;
             #toolbar{
                 height: 100%;
+                display: flex;
+            }
+            .ql-formats{
+                margin-right: 5px;
             }
         }
         .title-bar{
