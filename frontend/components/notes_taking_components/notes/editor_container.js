@@ -4,7 +4,7 @@ import Editor from './editor';
 import {updateNote, deleteNotes} from '../../../actions/note_actions';
 import {withRouter} from 'react-router-dom';
 
-const mSTP = (state, ownProps) => ({
+const mSTP = (state) => ({
     notes: state.entities,
     notebooks: state.entities.notebooks,
     current_user: state.entities.users[state.session.id]

@@ -2,9 +2,7 @@
 import React from "react";
 import { Quill } from "react-quill";
 //copied from https://medium.com/@mircea.calugaru/react-quill-editor-with-full-toolbar-options-and-custom-buttons-undo-redo-176d79f8d375
-// Custom Undo button icon component for Quill editor. You can import it directly
-// from 'quill/assets/icons/undo.svg' but I found that a number of loaders do not
-// handle them correctly
+
 const CustomUndo = () => (
   <svg viewBox="0 0 18 18">
     <polygon className="ql-fill ql-stroke" points="6 10 4 12 2 10 6 10" />

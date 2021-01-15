@@ -46,7 +46,6 @@ export default class Editor extends React.Component {
             notebook_id: current_notebook_id
         }).then(
             returned=>{this.props.history.push(`${path}/${returned.note.id}`)}
-
         );
     };
 

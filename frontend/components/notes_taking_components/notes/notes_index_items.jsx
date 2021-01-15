@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import Editor from './editor_container';
-
+import {Editor} from './editor_using_hooks';
+// import Editor from './editor_container';
 
 const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body, noteOpened}) => {
     let notebookTitle = '';
@@ -19,6 +19,7 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
             }
         });
     };
+
     return (
         <div className="single-note-item">
             <div onClick={()=>{handleClick(noteId)}} className="single-note-item-side" >
@@ -46,7 +47,7 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
                                 notebookTitle={notebookTitle}
                                 noteId={noteId}
                                 body={body}
-                                id={note.title}
+                                id={title}
                                 changeTitle={changeTitle}
                             /> : null}
 
