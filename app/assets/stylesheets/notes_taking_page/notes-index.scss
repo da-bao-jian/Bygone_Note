@@ -25,7 +25,7 @@
         justify-content: space-between;
         border-bottom: honeydew 2px solid;
         width: 23%;
-        height: 100px;
+        height: 137px;
         border-right: white;
         .header-box-h1{
             color: black;
@@ -103,13 +103,19 @@
         .tool-bar{
             position: relative;
             background-color: #e2e5de;
-            height: 100px;
+            height: 120px;
             #toolbar{
                 height: 100%;
                 display: flex;
             }
             .ql-formats{
                 margin-right: 5px;
+                margin-top: 50px;
+                border: outset;
+            }
+            .toolbar-notebook-title{
+                position: absolute;
+                margin: 20px;
             }
         }
         .title-bar{

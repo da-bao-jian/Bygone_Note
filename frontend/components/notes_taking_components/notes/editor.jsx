@@ -21,6 +21,7 @@ export default class Editor extends React.Component {
 
     handleTitleInput(e){
         this.setState({title: e.currentTarget.value});
+        this.props.changeTitle(e.currentTarget.value);
     };
 
     updateNoteTitles(title){
@@ -50,11 +51,14 @@ export default class Editor extends React.Component {
     };
 
     render(){
-        debugger
+        
         return (
             <div className="text-editor">
                 <div className='edit-area'>
                     <div className='tool-bar'>
+                        <div className='toolbar-notebook-title'>
+                            {this.props.notebookTitle}
+                        </div>
                         <QuillToolbar />
                     </div>
                     <div className='title-bar'>

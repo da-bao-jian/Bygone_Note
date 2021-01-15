@@ -2,27 +2,29 @@ import React, {useState, useEffect} from 'react';
 import Editor from './editor_container';
 
 
-const NoteIndexItems = ({handleClick, removeNote, note, noteId, body, noteOpened}) => {
+const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body, noteOpened}) => {
+    let notebookTitle = '';
 
-    // const [editor, setEditor] = useState(note.id === noteOpened);
+    const [title, setTitle] = useState(`${note.title}`)
 
-    // useEffect(() => {
-    //     if(note.id === allNotes[0].id){
-    //         setEditor(true);
-    //     };
-    // }, []);
+    function changeTitle(title){
+        setTitle(title);
+    };
 
-    // function toggleEditor(editor) {
-    //     setEditor(!editor);
-    // };
-
-    debugger
+    if(notebooks){
+        notebooks.forEach((notebook) => {
+            if(notebook.id === note.notebook_id){
+                notebookTitle = notebook.title;
+                return notebookTitle;
+            }
+        });
+    };
     return (
         <div className="single-note-item">
             <div onClick={()=>{handleClick(noteId)}} className="single-note-item-side" >
                 <li className='note-list-index-items' >
                     <div className='list-header'>
-                        {note.title}
+                        {title}
                     </div>
                     <div className='note-text'>
                         {`${note.body.slice(0,20)}...`}
@@ -38,11 +40,14 @@ const NoteIndexItems = ({handleClick, removeNote, note, noteId, body, noteOpened
                     </button>
                 </li>
             </div>
-            <div >
-                {note.id === noteOpened ?  <Editor
-                            noteId={noteId}
-                            body={body}
-                            id={note.title}
+            <div>
+                {note.id === noteOpened ?  
+                            <Editor
+                                notebookTitle={notebookTitle}
+                                noteId={noteId}
+                                body={body}
+                                id={note.title}
+                                changeTitle={changeTitle}
                             /> : null}
 
             </div>

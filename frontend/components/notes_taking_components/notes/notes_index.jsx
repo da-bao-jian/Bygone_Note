@@ -6,7 +6,8 @@ export default class NotesIndex extends React.Component{
         super(props);
         this.state = {
             allNotes: [],
-            noteOpened: null
+            noteOpened: null,
+            notebooks: null
         };
 
         this.removeNote=this.removeNote.bind(this);
@@ -23,6 +24,12 @@ export default class NotesIndex extends React.Component{
             })
             .then(()=>{
                 this.setState({noteOpened: this.state.allNotes[0].id})
+            })
+            .then(()=>{
+                this.props.fetchNotebooks()
+                    .then((res)=>{
+                        this.setState({notebooks: res.notebooks})
+                    });
             });
     };
 
@@ -93,7 +100,7 @@ export default class NotesIndex extends React.Component{
     };
 
 
-
+    
     render(){
         const {allNotes} = this.state;
         const path = this.props.location.pathname.split('/')
@@ -112,12 +119,13 @@ export default class NotesIndex extends React.Component{
                 removeNote={this.removeNote}
                 handleClick={this.handleClick}
                 body={this.props.notes}
-                allNotes={allNotes}
                 noteOpened={this.state.noteOpened}
+                notebooks={this.state.notebooks}
             />
-            )});
+        )});
+        
 
-        debugger
+        
         return (
         <div className='notetaking-space'>
             <div className='note-index-items'>
@@ -125,7 +133,7 @@ export default class NotesIndex extends React.Component{
                 <div className='header-box'>
                     <h1 className='header-box-h1'>All Notes</h1>
                     <div className='number-of-notes'>
-                        {`${this.props.notes.length} notes`}
+                        {`${this.state.allNotes.length} notes`}
                     </div>
                 </div>:<div className='header-box'>
                 <h1 className='header-box-h1'>{header}</h1>
