@@ -8,6 +8,8 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
 
     const [title, setTitle] = useState(`${note.title}`);
     let [text, setText] = useState(`${note.body}`);
+    let cleanedText = removingHTMLTags(text);
+    let dummyTitle = title.slice();
     
     function changeTitle(title){
         setTitle(title);
@@ -31,9 +33,7 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
         return str.slice(0,40).replace( /(<([^>]+)>)/ig, ''); 
     };
 
-    let cleanedText = removingHTMLTags(text);
 
-    let dummyTitle = title.slice();
     if(dummyTitle.length > 10) {
         dummyTitle = `${title.slice(0,10)}...`;
     } else if (dummyTitle.length < 1) { 
