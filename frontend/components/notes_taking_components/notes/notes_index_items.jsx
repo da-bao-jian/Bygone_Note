@@ -1,16 +1,23 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {Editor} from './editor_using_hooks';
+import {ACContext} from './../../root';
 // import Editor from './editor_container';
 
 const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body, noteOpened}) => {
     let notebookTitle = '';
 
-    const [title, setTitle] = useState(`${note.title}`)
-
+    const [title, setTitle] = useState(`${note.title}`);
+    let [text, setText] = useState(`${note.body}`);
+    
     function changeTitle(title){
         setTitle(title);
     };
 
+    function changeText(text){
+        setText(text);
+    };
+
+    
     if(notebooks){
         notebooks.forEach((notebook) => {
             if(notebook.id === note.notebook_id){
@@ -20,15 +27,21 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
         });
     };
 
+    function removingHTMLTags(str){
+        return str.slice(0,40).replace( /(<([^>]+)>)/ig, ''); 
+    };
+
+    let cleanedText = removingHTMLTags(text);
+    
     return (
         <div className="single-note-item">
             <div onClick={()=>{handleClick(noteId)}} className="single-note-item-side" >
                 <li className='note-list-index-items' >
                     <div className='list-header'>
-                        {title}
+                        {title.length > 10 ? `${title.slice(0,10)}...` : title}
                     </div>
                     <div className='note-text'>
-                        {`${note.body.slice(0,20)}...`}
+                        {cleanedText.length > 20 ? `${cleanedText.slice(0,20)}...` : cleanedText} 
                     </div>
                     <div className='time-since-created'>
                         {`created at ${note.created_at} ago`}
@@ -49,6 +62,7 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
                                 body={body}
                                 id={title}
                                 changeTitle={changeTitle}
+                                changeText={changeText}
                             /> : null}
 
             </div>
