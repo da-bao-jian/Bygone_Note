@@ -32,13 +32,20 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
     };
 
     let cleanedText = removingHTMLTags(text);
+
+    let dummyTitle = title.slice();
+    if(dummyTitle.length > 10) {
+        dummyTitle = `${title.slice(0,10)}...`;
+    } else if (dummyTitle.length < 1) { 
+        dummyTitle = 'Untitled';
+    };
     
     return (
         <div className="single-note-item">
             <div onClick={()=>{handleClick(noteId)}} className="single-note-item-side" >
                 <li className='note-list-index-items' >
                     <div className='list-header'>
-                        {title.length > 10 ? `${title.slice(0,10)}...` : title}
+                        {dummyTitle}
                     </div>
                     <div className='note-text'>
                         {cleanedText.length > 20 ? `${cleanedText.slice(0,20)}...` : cleanedText} 

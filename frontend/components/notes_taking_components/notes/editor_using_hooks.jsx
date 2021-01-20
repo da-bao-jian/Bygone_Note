@@ -65,7 +65,10 @@ export const Editor = (props) => {
             path = `/notes`;
             current_notebook_id = current_user.first_notebook_id;
         };
-        
+
+        if(name.length<1){
+            name = 'Untitled';
+        };
 
         dispatch(updateNote({
             id: props.noteId,
@@ -89,7 +92,7 @@ export const Editor = (props) => {
         } else { 
             current_notebook_id = current_user.first_notebook_id;
         };
-        debugger
+        
         setBody(value);
         props.changeText(value);
 
@@ -107,14 +110,14 @@ export const Editor = (props) => {
             <div className='edit-area'>
                 <div className='tool-bar'>
                     <div className='toolbar-notebook-title'>
-                        {props.notebookTitle}
+                        {props.id}
                     </div>
                     <QuillToolbar />
                 </div>
                 <div className='title-bar'>
                     <input id='input-box'
                         type="text"
-                        placeholder={props.id}
+                        placeholder={props.id.length > 1 ? props.id : 'Untitled'}
                         onChange={handleTitleInput}
                         onBlur={()=>updateNoteTitles(title)}
                     />            
