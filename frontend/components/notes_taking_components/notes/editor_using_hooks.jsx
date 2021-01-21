@@ -96,15 +96,18 @@ export const Editor = (props) => {
         setBody(value);
         props.changeText(value);
 
-        currentChannels.send({
-            id: props.noteId,
-            title: props.id,
-            body: body,
-            notebook_id: current_notebook_id
-        })
+        if(currentChannels !== null) {
+
+            currentChannels.send({
+                id: props.noteId,
+                title: props.id,
+                body: body,
+                notebook_id: current_notebook_id
+            })
+        }
     };
 
-        
+    debugger
     return (
         <div className="text-editor">
             <div className='edit-area'>
@@ -128,6 +131,7 @@ export const Editor = (props) => {
                         modules={modules}
                         formats={formats}
                         placeholder={"Start writing, or drag files"}
+                        value={body !== 'Start writing here...' ? body : null}
                         onChange={updateNoteBody}
                     />
                 </div>
