@@ -30,7 +30,22 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
     };
 
     function removingHTMLTags(str){
-        return str.slice(0,40).replace( /(<([^>]+)>)/ig, ''); 
+        
+        // str = str.slice(0,40);
+        let res='';
+        for(let i=0; i<str.length-1; i++){ 
+            
+            if(str[i] === '>' && str[i+1] !== '<'){
+                for(let j = i+1; j<str.length; j++){
+                    if(str[j] !== '<'){
+                        res += str[j];
+                    } else {
+                        break
+                    }
+                }
+            }
+        }
+        return res; 
     };
 
 
