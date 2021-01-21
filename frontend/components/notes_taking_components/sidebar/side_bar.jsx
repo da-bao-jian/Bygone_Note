@@ -28,7 +28,7 @@ export default class SideBar extends React.Component{
 
         this.props.createNote({
             title: 'Untitled',
-            body: 'Start writing here...',
+            body: 'Start writing in the editor...',
             notebook_id: current_notebook_id 
         }).then(
             returned=>{this.props.history.push(`${path}/${returned.note.id}`)}

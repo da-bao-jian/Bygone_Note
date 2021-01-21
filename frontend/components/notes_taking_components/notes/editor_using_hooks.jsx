@@ -67,7 +67,7 @@ export const Editor = (props) => {
         };
 
         if(name.length<1){
-            name = 'Untitled';
+            name = props.id.length<1 ? 'Untitled' : props.id;
         };
 
         dispatch(updateNote({
@@ -107,7 +107,7 @@ export const Editor = (props) => {
         }
     };
 
-    debugger
+    
     return (
         <div className="text-editor">
             <div className='edit-area'>
@@ -131,8 +131,10 @@ export const Editor = (props) => {
                         modules={modules}
                         formats={formats}
                         placeholder={"Start writing, or drag files"}
-                        value={body !== 'Start writing here...' ? body : null}
+                        value={body !== 'Start writing in the editor...' ? body : null}
                         onChange={updateNoteBody}
+                        onBlur={()=>updateNoteTitles(title)}
+
                     />
                 </div>
             </div>
