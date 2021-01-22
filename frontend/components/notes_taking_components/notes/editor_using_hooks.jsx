@@ -134,7 +134,6 @@ export const Editor = (props) => {
                         value={body !== 'Start writing in the editor...' ? body : null}
                         onChange={updateNoteBody}
                         onBlur={()=>updateNoteTitles(title)}
-
                     />
                 </div>
             </div>

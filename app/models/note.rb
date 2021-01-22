@@ -13,6 +13,15 @@ class Note < ApplicationRecord
     foreign_key: :notebook_id,
     class_name: :Notebook
 
+    has_many :taggings, 
+    foreign_key: :note_id,
+    class_name: :Tagging,
+    dependent: :destroy
+
+    has_many :tags, 
+    through: :taggings,
+    source: :tag
+
     def time_ago_created
         time_ago_in_words(self.created_at)
     end

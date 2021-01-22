@@ -25,26 +25,23 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
             if(notebook.id === note.notebook_id){
                 notebookTitle = notebook.title;
                 return notebookTitle;
-            }
+            };
         });
     };
 
     function removingHTMLTags(str){
-        
-        // str = str.slice(0,40);
         let res='';
         for(let i=0; i<str.length-1; i++){ 
-            
             if(str[i] === '>' && str[i+1] !== '<'){
                 for(let j = i+1; j<str.length; j++){
                     if(str[j] !== '<'){
                         res += str[j];
                     } else {
-                        break
+                        break;
                     }
-                }
-            }
-        }
+                };
+            };
+        };
         return res; 
     };
 
