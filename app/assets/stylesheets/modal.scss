@@ -110,3 +110,105 @@
         }
     }
 }
+.modal-child-tag{
+    border-radius: 25px;
+    background-color: $button_green;
+    width: 30%;
+    height: 30vh;
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    box-shadow:  0 0 10px rgb(218, 238, 180), 0 0 30px rgb(218, 238, 180), 0 0 60px rgb(218, 238, 180);
+    .head-tagline{
+        color: rgb(175, 159, 159);
+        display: flex;
+        margin: 25px;
+        font-size: 20px;
+        font-family: $notes;
+        font-weight: 300;
+
+    }
+    .subhread-tagline{
+        color: rgb(175, 159, 159);
+        display: flex;
+        margin-right: 25px;
+        margin-left: 25px;
+        font-size: 15px;
+        font-family: $notes;
+        font-weight: 300;
+    }
+    .input-area{
+        position: relative;
+        width: 100%;
+        margin-right: 25px;
+        margin-left: 25px;
+        margin-top: 30px;
+        margin-bottom: 5px;
+    }
+    .create-form-modal-button{
+        color: rgb(175, 159, 159);
+        cursor: text;
+        position: relative;
+        width: 100%;
+        transition: 0.5s ;
+
+    }
+    .create-form-input{
+        color: rgb(175, 159, 159);
+        background-color: transparent;
+        width: 60%;
+        border-bottom: 2px solid rgb(175, 159, 159);
+        border-top: 0;
+        border-right: 0;
+        border-left: 0;
+        outline: 0;
+    }
+
+    .create-form-input:focus{
+        border-color:  rgb(175, 159, 159);
+        box-shadow:  0 10px 10px -5px white, 0 10px 10px -5px white, 0 10px 10px -5px white;
+    }
+
+    .buttons-area{
+        position: relative;
+        margin-top: 20px;
+        margin-left: 25px;
+        display: flex;
+        .cancel-button{
+            margin-left: 30%;
+            margin-right: 5%;
+            background-color: rgb(175, 159, 159);
+            color: white;
+            width: 28%;
+            height: 5vh;
+            border: none;
+            text-decoration: none;
+            outline: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        .cancel-button:hover{
+            box-shadow:  0 0 10px white, 0 0 30px white, 0 0 60px white;
+        }
+        .continue-button{
+            margin-right: 5%;
+            background-color: rgb(175, 159, 159);
+            color: white;
+            width: 28%;
+            height: 5vh;
+            border: none;
+            text-decoration: none;
+            outline: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        .continue-button:disabled{
+            background-color: lightgrey;
+
+        }
+        .continue-button:hover{
+            box-shadow:  0 0 10px white, 0 0 30px white, 0 0 60px white;
+        }
+    }
+}

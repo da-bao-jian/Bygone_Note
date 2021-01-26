@@ -1,16 +1,22 @@
 import React from 'react';
 import AccountDropdown from './account_status_dropdown';
+import {TagPad} from './tag_pad';
+import {switches} from '../../notes_taking_components/state_sharing';
 
 export default class SideBar extends React.Component{
     constructor(props){
         super(props)
+
+        this.state = {
+            tagPad: false
+        };
         this.newNote = this.newNote.bind(this);
         this.renderNotebooks = this.renderNotebooks.bind(this);
         this.renderNotes = this.renderNotes.bind(this);
-
+        this.toggleTagPad = this.toggleTagPad.bind(this);
     };
 
-    newNote(){ //always stays on the page
+    newNote(){ 
         const {notebooks} = this.props;
         let current_path = this.props.location.pathname.split('/');
         let current_notebook_id, matchingRoom;
@@ -44,6 +50,10 @@ export default class SideBar extends React.Component{
         this.props.history.push('/notebooks');
     };
 
+    toggleTagPad(){ 
+        switches.sendExpand(!this.state.tagPad);
+        this.state.tagPad ? this.setState({tagPad: false}) : this.setState({tagPad: true});
+    };
 
     render(){
         return(
@@ -64,6 +74,12 @@ export default class SideBar extends React.Component{
                 </div>
                 <div className='sidebar-note'>
                     <button onClick={this.renderNotebooks} className='notebook-button'>Notebooks</button>
+                </div>
+                <div className='sidebar-tag'>
+                    <button onClick={this.toggleTagPad} className='notebook-button'>Tags</button>
+                </div>
+                <div className='tag-pad'>
+                    {this.state.tagPad ? <TagPad /> : null}
                 </div>
         </div>
         )

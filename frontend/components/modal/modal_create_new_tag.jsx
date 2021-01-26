@@ -1,37 +1,39 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {createNotebook} from '../../actions/notebook_actions'
-import {closeModal} from '../../actions/modal_actions'
+import {createTag} from '../../actions/tag_actions';
+import {closeModal} from '../../actions/modal_actions';
+import {tagPadRegresh} from './../notes_taking_components/state_sharing';
 
-
-class ModalCreateNewNotebook extends React.Component{
+class ModalCreateNewTag extends React.Component{
 
     constructor(props){
         super(props)
         this.state = {
             title: ''
-        }
+        };
+    };
 
-    }
+
     update(field){
-        return e=>this.setState({[field]: e.currentTarget.value})
-    }
+        return e=>this.setState({[field]: e.currentTarget.value});
+    };
+
+
     
     render(){
-        const {closeModal, createNotebook} = this.props;
+        let {closeModal, createTag} = this.props;
         return(
-            <div className='modal-child'>
-                <div className='create-new-notebook-form'>
+            <div className="modal-child-tag">
+                <div className='create-new-tag-form'>
                     <form>
-                        <h1 className='head-tagline'>Create a new notebook</h1>
-                        <h3 className='subhread-tagline'>Notebooks are useful for grouping notes around a common topic. They can be private or shared.</h3>
+                        <h1 className='head-tagline'>Create a new tag</h1>
                         <div className='input-area'>
-                            <label className='create-form-modal-button' >Title: 
+                            <label className='create-form-modal-button' >Name: 
                             </label>
                             <input className='create-form-input' 
-                            type="text"
-                            value={this.state.title}
-                            onChange={this.update('title')}
+                                type="text"
+                                value={this.state.title}
+                                onChange={this.update('title')}
                             />
                         </div>
                         <ul>
@@ -41,7 +43,7 @@ class ModalCreateNewNotebook extends React.Component{
                             <button className='cancel-button' onClick={closeModal}>
                                 Cancel
                             </button>
-                            <button className='continue-button' onClick={()=>createNotebook(this.state).then(()=>closeModal())}
+                            <button className='continue-button' onClick={()=>createTag(this.state).then(()=>tagPadRegresh.sendTag(true)).then(()=>closeModal())}
                                     disabled={this.state.title === ''}>
                                 Continue
                             </button>
@@ -49,19 +51,16 @@ class ModalCreateNewNotebook extends React.Component{
                     </form>
                 </div>
             </div>
-
         )
     }
 }
 
 const mSTP = state => ({
     errors: state.errors.notebook
-})
+});
 const mDTP = dispatch => ({
-    createNotebook: notebook => dispatch(createNotebook(notebook)),
+    createTag: tag => dispatch(createTag(tag)),
     closeModal: () => dispatch(closeModal())
+});
 
-
-})
-
-export default connect(mSTP, mDTP)(ModalCreateNewNotebook)
+export default connect(mSTP, mDTP)(ModalCreateNewTag);

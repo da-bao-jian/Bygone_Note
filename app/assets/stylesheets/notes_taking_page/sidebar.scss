@@ -104,6 +104,17 @@
     color: rgb(218, 238, 180);
     background: rgb(218, 238, 180);
     box-shadow:  0 0 10px rgb(218, 238, 180), 0 0 30px rgb(218, 238, 180), 0 0 60px rgb(218, 238, 180);
+};
+
+.pad{ 
+    margin-left: 200px;
+    position: absolute;
+    z-index: 99;
+    display: flex;
+    height: 100%;
+    background-color: blanchedalmond;
+    top: 0;
+    width: 200px;
 }
 
 

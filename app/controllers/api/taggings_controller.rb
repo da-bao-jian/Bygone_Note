@@ -1,4 +1,10 @@
 class Api::TaggingsController < ApplicationController
+
+    # def index 
+    #     @taggings = Tagging.all
+    # end
+
+
     def create 
         @tagging = Tagging.new(tagging_params)
         if @tagging.save
@@ -11,7 +17,7 @@ class Api::TaggingsController < ApplicationController
     def destroy 
         @tagging = Tagging.find_by(note_id: params[:note_id], tag_id: params[:tag_id])
         if @tagging.destroy
-            render :show
+            # render :show
         else
             render json: {error: "Tagging not found"}
         end    

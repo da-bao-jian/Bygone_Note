@@ -25,7 +25,6 @@ export default class MainNotesTakingPage extends React.Component{
                     <ProtectedRoute exact path='/notebooks' component={NotebooksIndex}/>
                     <ProtectedRoute path='/notes' component={NotesIndex}/>
                     <ProtectedRoute path='/notebooks/:notebook_id/notes' component={NotesIndex}/>
-                    {/* <ProtectedRoute path='/notebooks/*' component={NotesIndex}/> */}
                 </Switch>
   
             </div>
@@ -33,4 +32,3 @@ export default class MainNotesTakingPage extends React.Component{
     };
 
 }
-//add conditional logic on this page to make sure which page to show

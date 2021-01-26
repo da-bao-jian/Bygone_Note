@@ -1,5 +1,6 @@
 import React from 'react';
 import NoteIndexItems from './notes_index_items';
+import {switches} from '../state_sharing';
 
 export default class NotesIndex extends React.Component{
     constructor(props) {
@@ -7,7 +8,8 @@ export default class NotesIndex extends React.Component{
         this.state = {
             allNotes: [],
             noteOpened: null,
-            notebooks: null
+            notebooks: null,
+            contracted: false
         };
 
         this.removeNote=this.removeNote.bind(this);
@@ -16,8 +18,7 @@ export default class NotesIndex extends React.Component{
     };
 
     componentDidMount(){
-        this.props.fetchNotes()
-            .then(()=>{
+        this.props.fetchNotes().then(()=>{
                 this.setState({allNotes: 
                     this.state.allNotes.concat(this.props.notes)
                 });
@@ -26,11 +27,15 @@ export default class NotesIndex extends React.Component{
                 this.setState({noteOpened: this.state.allNotes[0].id})
             })
             .then(()=>{
-                this.props.fetchNotebooks()
-                    .then((res)=>{
+                this.props.fetchNotebooks().then((res)=>{
                         this.setState({notebooks: res.notebooks})
                     });
-            });
+        });
+
+        this.subscription = switches.receiveExpand().subscribe(command=>{                
+            this.setState({contracted: command});
+        });
+        
     };
 
     componentDidUpdate(prevProps){ 
@@ -125,9 +130,8 @@ export default class NotesIndex extends React.Component{
         )});
         
 
-        
         return (
-        <div className='notetaking-space'>
+        <div className={this.state.contracted ? 'notetaking-space-contracted' : 'notetaking-space'}>
             <div className='note-index-items'>
                 {path.length<4?
                 <div className='header-box'>
