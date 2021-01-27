@@ -19,7 +19,7 @@ export const receiveTag = tag => {
 };
 
 export const removeTag = (tagId) => ({
-    type: RECEIVE_TAG,
+    type: REMOVE_TAG,
     tagId
 });
 

@@ -15,10 +15,11 @@ export const TagItem = (props) => {
 
 
 
-    
+    debugger
     return ( 
-        <div>
+        <div className='tag-items'>
             {props.title}
+            <button onClick={()=>dispatch(deleteTag(props.id))}>delete</button>
         </div>
     );
 

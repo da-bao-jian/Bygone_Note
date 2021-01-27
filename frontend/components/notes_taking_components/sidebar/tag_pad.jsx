@@ -14,18 +14,15 @@ export const TagPad = () => {
     const location = useLocation();
     const history = useHistory();
 
-
     const [tagList, setTagList] = useState(null);
 
     let orderedTags = {};
-    let objectifiedList, tagPadList;
 
     useEffect(() => {
         dispatch(fetchTags())
-        .then(() => {
-            setTagList(Object.values(Object.values(data)[1]).map(tag=>(tag.title)))
-            
-            debugger});
+        .then((data) => {
+            setTagList(Object.values(Object.values(data)[1]).map(tag=>(tag.title)));    
+        });
             
     }, []);
         
@@ -53,23 +50,27 @@ export const TagPad = () => {
     
     return ( 
         <div className="pad">
-            <div className='create-new-tag-modal'>
-                <button onClick={()=>dispatch(openModal('createTag'))} className='create-new-tag-modal-button'>
-                    + New Tag
-                </button>
+            <div className="tag-pad-header">     
+                <div className='create-new-tag-modal'>
+                    <button onClick={()=>dispatch(openModal('createTag'))} className='create-new-tag-modal-button'>
+                        + New Tag
+                    </button>
+                </div>
             </div>
-            <div>
-                <ul>
-                    {orderedTags ? Object.entries(orderedTags).map(alpha=> {debugger
+            <div className='tag-pad-index'>
+                <ul className='tag-initializers'>
+                    {orderedTags ? Object.entries(orderedTags).sort().map(alpha => {
                         return(
                             <div classname='tag-groups'>
                                 <div className='tag-initial'>
                                     {alpha[0]}
                                 </div>
-                                <div>
-                                    {alpha[1].map(t=>(
-                                        t
-                                    ))}
+                                <div className='tag-items-group'>
+                                    <ul>
+                                        {alpha[1].map(t=>(
+                                            t
+                                        ))}
+                                    </ul>
                                 </div>
                             </div>
                         )
