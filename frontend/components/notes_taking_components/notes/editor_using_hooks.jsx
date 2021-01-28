@@ -5,12 +5,16 @@ import {updateNote} from '../../../actions/note_actions';
 import ReactQuill from "react-quill";
 import QuillToolbar, { modules, formats } from "./editorToolbar";
 import {ACContext} from './../../root';
+import {TagSearchBar} from './tag_searchbar';
+import {fetchTags, fetchTag, createTag, updateTag, deleteTag} from '../../../actions/tag_actions';
+
 
 
 
 export const Editor = (props) => {
 
     const current_user = useSelector(state => state.entities.users[state.session.id]);
+    const tags = useSelector(state => state.entities.tags);
     const notebooks = useSelector(state => state.entities.notebooks);
     const dispatch = useDispatch();
     const location = useLocation();
@@ -22,11 +26,13 @@ export const Editor = (props) => {
     const [body, setBody] = useState('');
     const [currentChannels, setCurrentChannels] = useState(null);
 
-    let content = props.body.filter(b=>(b.id===props.noteId))[0].body
+    let content = props.body.filter(b=>(b.id === props.noteId))[0].body
 
 
     useEffect(() => { 
-        setBody(`${content}`)
+        setBody(`${content}`);
+        dispatch(fetchTags());
+
     },[]);
     
     useEffect(() => {
@@ -137,6 +143,9 @@ export const Editor = (props) => {
                     />
                 </div>
             </div>
+            <TagSearchBar
+                tags={tags}
+            />
         </div>
     );
 

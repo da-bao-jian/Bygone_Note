@@ -15,7 +15,7 @@ export const TagItem = (props) => {
 
 
 
-    debugger
+    
     return ( 
         <div className='tag-items'>
             {props.title}
