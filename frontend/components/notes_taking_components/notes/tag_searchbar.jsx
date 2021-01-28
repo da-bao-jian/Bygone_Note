@@ -25,10 +25,16 @@ export const TagSearchBar = (props) => {
     };
 
     function tagSelection(tag){
-        tagList.push(tag)
-        setTagList(tagList)
-        setSearchInput('')
-        debugger
+        tagList.push(tag);
+        setTagList(tagList);
+        setSearchInput('');
+    };
+
+    function removeTag(title){
+        let dup = tagList.filter(t=>{
+            t.title !== title
+        });
+        setTagList(dup);
     };
 
     if(props.tags){ 
@@ -71,11 +77,12 @@ export const TagSearchBar = (props) => {
             </div>
             <div>
                 {tagList ? tagList.map(t=>{
-                    debugger
+                    
                     return (
 
                         <ul>
                             {t.title}
+                            <button onClick={()=>removeTag(t.title)}>delete</button>
                         </ul>
                     )
                 }) : null}
