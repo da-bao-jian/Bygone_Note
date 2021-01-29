@@ -34,6 +34,6 @@ export const deleteTagging = (taggingId) => dispatch => {
     return TaggingApiUtil.deleteTagging(taggingId).then(
         (taggingId) => dispatch(removeTagging(taggingId))
         , err => (
-            dispatch(receiveTagErrors(err.responseJSON))
+            dispatch(receiveTaggingErrors(err.responseJSON))
         ))
 };

@@ -14,7 +14,7 @@ export const createTagging = (tagId, noteId) => (
     $.ajax({
         method: 'POST',
         url: 'api/taggings',
-        data: {tag_id: tagId, note_id: noteId}
+        data: {taggings:{tag_id: tagId, note_id: noteId}}
     })
 )
 

@@ -1,1 +1,1 @@
-json.partial! 'api/taggins/tagging', tagging: @tagging
+json.partial! 'api/taggings/tagging', tagging: @tagging

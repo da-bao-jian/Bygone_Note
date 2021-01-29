@@ -7,6 +7,7 @@ const TagsReducer = (state = {}, action) => {
             return Object.assign({}, state, { [action.tagging.id]: action.tagging });
         case (REMOVE_TAGGING):
             let nextState = Object.assign({}, state);
+            
             delete nextState[action.taggingId.id]
             return nextState;
         default:

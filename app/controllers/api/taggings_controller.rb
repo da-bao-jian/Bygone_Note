@@ -6,7 +6,10 @@ class Api::TaggingsController < ApplicationController
 
 
     def create 
+        tagging_params[:note_id] = tagging_params[:note_id].to_i 
+        tagging_params[:tag_id] = tagging_params[:tag_id].to_i 
         @tagging = Tagging.new(tagging_params)
+        
         if @tagging.save
             render :show 
         else 
@@ -15,9 +18,9 @@ class Api::TaggingsController < ApplicationController
     end 
 
     def destroy 
-        @tagging = Tagging.find_by(note_id: params[:note_id], tag_id: params[:tag_id])
+        @tagging = Tagging.find_by(tag_id: params[:id])
         if @tagging.destroy
-            # render :show
+            render :show
         else
             render json: {error: "Tagging not found"}
         end    
@@ -25,6 +28,6 @@ class Api::TaggingsController < ApplicationController
 
     private
     def tagging_params
-        params.require(:tagging).permit(:note_id, :tag_id)
+        params.require(:taggings).permit(:note_id, :tag_id)
     end
 end

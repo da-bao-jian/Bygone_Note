@@ -6,7 +6,7 @@ import {ACContext} from './../../root';
 const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body, noteOpened}) => {
     let notebookTitle = '';
 
-    const [title, setTitle] = useState(`${note.title}`);
+    let [title, setTitle] = useState(`${note.title}`);
     let [text, setText] = useState(`${note.body}`);
     let cleanedText = removingHTMLTags(text);
     let dummyTitle = title.slice();

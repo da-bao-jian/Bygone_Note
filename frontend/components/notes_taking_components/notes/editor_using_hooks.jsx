@@ -145,6 +145,7 @@ export const Editor = (props) => {
             </div>
             <TagSearchBar
                 tags={tags}
+                noteId={props.noteId}
             />
         </div>
     );

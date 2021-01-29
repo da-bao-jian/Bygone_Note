@@ -5,8 +5,10 @@ class Api::TagsController < ApplicationController
     end
 
     def create
+        
         @tag = Tag.new(tags_params)
         @tag.user_id = current_user.id
+        debugger
         if @tag.save
             render :show
         else
