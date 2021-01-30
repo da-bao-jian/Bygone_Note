@@ -1,15 +1,11 @@
-// export const fetchTags = () => (
-//     $.ajax({
-//         method: 'GET',
-//         url: 'api/tags'
-//     })
-// )
-// export const fetchTagging = taggingId => (
-//     $.ajax({
-//         method: 'GET',
-//         url: `api/taggings/${taggingId}`,
-//     })
-// )
+
+export const fetchTaggings = () => (
+    
+    $.ajax({
+        method: 'GET',
+        url: 'api/taggings',
+    })
+)
 export const createTagging = (tagId, noteId) => (
     $.ajax({
         method: 'POST',
@@ -18,10 +14,10 @@ export const createTagging = (tagId, noteId) => (
     })
 )
 
-export const deleteTagging = (tagging) => (
+export const deleteTagging = (tagId, noteId) => (
     $.ajax({
         method: 'DELETE',
-        url: `api/taggings/${tagging.id}`,
-        // data: {tag_id: tagId, note_id: noteId}
+        url: `api/taggings/${tagId.id}`,
+        data: {note_id: noteId}
     })
 )

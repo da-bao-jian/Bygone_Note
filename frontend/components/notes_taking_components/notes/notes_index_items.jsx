@@ -1,13 +1,18 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {Editor} from './editor_using_hooks';
 import {ACContext} from './../../root';
-// import Editor from './editor_container';
+import {fetchTags, fetchTag, createTag, updateTag, deleteTag} from '../../../actions/tag_actions';
+import {createTagging, deleteTagging, fetchTaggings} from '../../../actions/tagging_action';
+import {useDispatch, useSelector} from "react-redux";
 
 const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body, noteOpened}) => {
     let notebookTitle = '';
 
+
+    let dispatch = useDispatch();
     let [title, setTitle] = useState(`${note.title}`);
     let [text, setText] = useState(`${note.body}`);
+    let [loaded, setLoaded] = useState(false);
     let cleanedText = removingHTMLTags(text);
     let dummyTitle = title.slice();
     
@@ -19,7 +24,14 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
         setText(text);
     };
 
-    
+    useEffect(()=> {
+        dispatch(fetchTags()).then(()=>{
+            setLoaded(true);
+        });
+        
+    },[]);
+
+
     if(notebooks){
         notebooks.forEach((notebook) => {
             if(notebook.id === note.notebook_id){
@@ -74,7 +86,7 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
                 </li>
             </div>
             <div>
-                {note.id === noteOpened ?  
+                {loaded && note.id === noteOpened ?  
                             <Editor
                                 notebookTitle={notebookTitle}
                                 noteId={noteId}

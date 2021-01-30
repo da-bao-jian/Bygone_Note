@@ -18,6 +18,10 @@ export default class NotesIndex extends React.Component{
     };
 
     componentDidMount(){
+        // this.props.fetchTags().then(()=>{
+
+            // this.props.fetchTaggings().then(()=>{
+
         this.props.fetchNotes().then(()=>{
                 this.setState({allNotes: 
                     this.state.allNotes.concat(this.props.notes)
@@ -30,7 +34,9 @@ export default class NotesIndex extends React.Component{
                 this.props.fetchNotebooks().then((res)=>{
                         this.setState({notebooks: res.notebooks})
                     });
-        });
+                // });
+            // });
+            });
 
         this.subscription = switches.receiveExpand().subscribe(command=>{                
             this.setState({contracted: command});
