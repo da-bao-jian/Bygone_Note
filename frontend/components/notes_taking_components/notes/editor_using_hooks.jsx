@@ -29,11 +29,7 @@ export const Editor = (props) => {
     const [tagList, setTagList] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
-
     let content = props.body.filter(b=>(b.id === props.noteId))[0].body
-
-
-
     
     useEffect(() => {
         const c = context.subscriptions.create({
@@ -58,8 +54,6 @@ export const Editor = (props) => {
             setLoaded(true);
         });
 
-
-        
         return () => {
             console.log(`Note ${props.id} is disconnected`)
             c.unsubscribe()
@@ -233,6 +227,4 @@ export const Editor = (props) => {
                     }) : null }
             </div>
     );
-
-
 }

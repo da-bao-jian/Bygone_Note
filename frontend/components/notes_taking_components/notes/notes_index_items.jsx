@@ -95,7 +95,6 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
                                 changeTitle={changeTitle}
                                 changeText={changeText}
                             /> : null}
-
             </div>
         </div>
     )

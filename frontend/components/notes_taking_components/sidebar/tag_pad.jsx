@@ -15,6 +15,7 @@ export const TagPad = () => {
     const history = useHistory();
 
     const [tagList, setTagList] = useState(null);
+    const [tagSelected, setTagSelected] = useState(null);
 
     let orderedTags = {};
 
@@ -25,6 +26,10 @@ export const TagPad = () => {
         });
             
     }, []);
+
+    function tagSelection(tag){ 
+        setTagSelected(tag);
+    };
         
     Object.values(tags).forEach(t=>{
         if(!orderedTags.hasOwnProperty(t.title[0])){ 
@@ -33,6 +38,7 @@ export const TagPad = () => {
                 id={t.id}
                 title={t.title}
                 user_id={t.user_id}
+                tagSelection={tagSelection}
             />]
         } else { 
             orderedTags[t.title[0]].push(
@@ -40,6 +46,7 @@ export const TagPad = () => {
                 id={t.id}
                 title={t.title}
                 user_id={t.user_id}
+                tagSelection={tagSelection}
             />)
         }      
             
@@ -56,6 +63,9 @@ export const TagPad = () => {
                         + New Tag
                     </button>
                 </div>
+            </div>
+            <div className='tag-search'>
+                {tagSelected}
             </div>
             <div className='tag-pad-index'>
                 <ul className='tag-initializers'>

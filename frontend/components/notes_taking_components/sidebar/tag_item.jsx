@@ -11,14 +11,9 @@ export const TagItem = (props) => {
     const location = useLocation();
     const history = useHistory();
 
-
-
-
-
-    
     return ( 
         <div className='tag-items'>
-            {props.title}
+            <button onClick={()=>{props.tagSelection(props.title)}}>{props.title}</button>
             <button onClick={()=>dispatch(deleteTag(props.id))}>delete</button>
         </div>
     );

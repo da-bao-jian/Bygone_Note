@@ -8,7 +8,7 @@ class Api::TagsController < ApplicationController
         
         @tag = Tag.new(tags_params)
         @tag.user_id = current_user.id
-        debugger
+        
         if @tag.save
             render :show
         else
