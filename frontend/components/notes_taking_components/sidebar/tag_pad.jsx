@@ -40,7 +40,6 @@ export const TagPad = ({tagPad, toggleTagPad, node}) => {
     function handleClick(e) {
         let modal = document.getElementsByClassName('modal-child-tag');
         if(node.current){//to prevent error message in the console
-            debugger
             if(!node.current.contains(e.target) && modal.length===0){
                 toggleTagPad();
             };

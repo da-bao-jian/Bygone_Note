@@ -48,6 +48,7 @@ export default class SideBar extends React.Component{
     
     renderNotebooks(){
         this.props.history.push('/notebooks');
+        this.setState({tagPad: false});
     };
     
     toggleTagPad(){ 
@@ -82,8 +83,8 @@ export default class SideBar extends React.Component{
             <div className='sidebar-tag' ref={node}>
                 <button onClick={this.toggleTagPad} className='tag-button' disabled={current_path.includes('notebooks') && current_path.length===2}>Tags</button>
             </div>
-            <div className='tag-pad' ref={this.myRef}>
-                {this.state.tagPad && current_path.includes('notes') ? 
+            <div className='tag-pad' ref={node}>
+                {this.state.tagPad  ? 
                 <TagPad tagPad={this.state.tagPad} toggleTagPad={this.toggleTagPad} node={node}/> 
                 : 
                 null}
