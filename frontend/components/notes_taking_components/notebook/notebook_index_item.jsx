@@ -13,17 +13,7 @@ class NotebooksIndexItem extends React.Component{
         this.actionDropdownClicked=this.actionDropdownClicked.bind(this)
     };
     
-    // dropdown(){
-    //     if(this.state.opend){
-    //         return (
-    //             <ul>
-    //                 {/* <li className='more-actions-modal' onClick={this.props.openModal('moreActions')>Rename notebook</li> */}
-    //                 <li>Delete notebook</li>
-    //                 <li>Add new note</li>
-    //             </ul>
-    //         )
-    //     }
-    // }
+
     actionDropdownClicked(){
         if(this.state.opened){
             setTimeout(() => this.setState({opened: false}), 100);

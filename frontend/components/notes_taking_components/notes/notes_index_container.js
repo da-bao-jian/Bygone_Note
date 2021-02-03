@@ -11,7 +11,7 @@ const mSTP = (state) => ({
     notes: Object.values(state.entities.notes).reverse(),
     currentUser: state.session.currentUser,
     notebooks: state.entities.notebooks,
-    nb: state.entities
+    taggings: state.entities.taggings
 });
 
 const mDTP = (dispatch) => ({

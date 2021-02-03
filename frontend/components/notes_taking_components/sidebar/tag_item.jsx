@@ -13,9 +13,8 @@ export const TagItem = (props) => {
 
     return ( 
         <div className='tag-items'>
-            <button onClick={()=>{props.tagSelection(props.title)}}>{props.title}</button>
+            <button onClick={()=>{props.tagSelection(props.id, props.title)}}>{props.title}</button>
             <button onClick={()=>dispatch(deleteTag(props.id))}>delete</button>
         </div>
     );
-
 };

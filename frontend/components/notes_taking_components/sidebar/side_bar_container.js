@@ -18,5 +18,3 @@ const mDTP = (dispatch) => ({
 })
 
 export default withRouter(connect(mSTP, mDTP)(SideBar));
-// export default (connect(mSTP, mDTP)(SideBar)); 
-//withRouter gives current routing information which passes location, math, history to props

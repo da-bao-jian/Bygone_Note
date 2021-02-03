@@ -9,19 +9,15 @@ export default class NotesIndex extends React.Component{
             allNotes: [],
             noteOpened: null,
             notebooks: null,
-            contracted: false
+            contracted: false,
+            loaded: false
         };
 
         this.removeNote=this.removeNote.bind(this);
         this.filterNotes = this.filterNotes.bind(this);
         this.handleClick = this.handleClick.bind(this);
     };
-
     componentDidMount(){
-        // this.props.fetchTags().then(()=>{
-
-            // this.props.fetchTaggings().then(()=>{
-
         this.props.fetchNotes().then(()=>{
                 this.setState({allNotes: 
                     this.state.allNotes.concat(this.props.notes)
@@ -33,9 +29,14 @@ export default class NotesIndex extends React.Component{
             .then(()=>{
                 this.props.fetchNotebooks().then((res)=>{
                         this.setState({notebooks: res.notebooks})
-                    });
-                // });
-            // });
+                });
+            })
+            .then(()=>{
+                this.props.fetchTaggings().then(()=>(
+
+                    this.setState({loaded: true})
+                ))
+                    debugger
             });
 
         this.subscription = switches.receiveExpand().subscribe(command=>{                
@@ -58,6 +59,7 @@ export default class NotesIndex extends React.Component{
     handleClick(key){
         let path_after_note_clicked=this.props.match.url;
         this.props.history.push(`${path_after_note_clicked}/${key}`);
+        
         this.setState({noteOpened: key})
     };
 
@@ -94,17 +96,38 @@ export default class NotesIndex extends React.Component{
             let current_notebook;
             
             if(this.props.notebooks.length){
+                
                 current_notebook = this.props.notebooks.filter(nb=>(nb.title === current_notebook_title));
                 return notes.filter(note=> (note.notebook_id === current_notebook[0].id)); 
 
             } else {
-                
                 this.props.fetchNotebooks().then(()=>{
                     current_notebook = this.props.notebooks.filter(nb=>(nb.title === current_notebook_title));
                     return current_notebook;
                 })
                 return notes.filter(note=> (note.notebook_id === current_notebook[0].id)); 
             };
+        } else if (current_path.includes('tag')){
+                let tagId = [];
+                let taggedNotes = [];
+                for(let i = 0; i<current_path.length-1; i++){ 
+                    if(current_path[i] === 'tag'){
+                        tagId.push(parseInt(current_path[i+1]));
+                        i++;
+                    };
+                };
+                debugger
+                Object.values(this.props.taggings).forEach(t=>{
+                    debugger
+                    if(tagId.includes(t.tag_id)){
+                        notes.forEach(n=>{ 
+                            if(t.note_id === n.id){
+                                taggedNotes.push(n);
+                            }
+                        });
+                    };
+                })
+                return taggedNotes;
         } else {
             return notes;
         }; 
@@ -114,6 +137,7 @@ export default class NotesIndex extends React.Component{
     
     render(){
         const {allNotes} = this.state;
+        let notesList=[];
         const path = this.props.location.pathname.split('/')
         let header = path[2];
         if(path.length>=3){
@@ -121,31 +145,36 @@ export default class NotesIndex extends React.Component{
                 header = header.split('%').join(' ');
             };
         };
-        const notesList = this.filterNotes(allNotes).map(note=>{
-            return (
-            <NoteIndexItems
-                key={note.id}
-                note={note}
-                noteId={note.id}
-                removeNote={this.removeNote}
-                handleClick={this.handleClick}
-                body={this.props.notes}
-                noteOpened={this.state.noteOpened}
-                notebooks={this.state.notebooks}
-            />
-        )});
+        if(this.state.loaded){
+            debugger
+            notesList = this.filterNotes(allNotes).map(note=>{
+                return (
+                <NoteIndexItems
+                    key={note.id}
+                    note={note}
+                    noteId={note.id}
+                    removeNote={this.removeNote}
+                    handleClick={this.handleClick}
+                    body={this.props.notes}
+                    noteOpened={this.state.noteOpened}
+                    notebooks={this.state.notebooks}
+                />
+            )});
+        }
         
 
         return (
         <div className={this.state.contracted ? 'notetaking-space-contracted' : 'notetaking-space'}>
             <div className='note-index-items'>
-                {path.length<4?
+                {!path.includes('notebooks') ?
                 <div className='header-box'>
                     <h1 className='header-box-h1'>All Notes</h1>
                     <div className='number-of-notes'>
                         {`${this.state.allNotes.length} notes`}
                     </div>
-                </div>:<div className='header-box'>
+                </div>
+                :
+                <div className='header-box'>
                 <h1 className='header-box-h1'>{header}</h1>
                     <div className='number-of-notes'>
                     </div>
@@ -153,7 +182,7 @@ export default class NotesIndex extends React.Component{
                 }
                 <div className='notes-list'>
                     <ul className='notes-list-index'>
-                        {notesList}
+                        {notesList ? notesList : null}
                     </ul>
                 </div>
             </div>
