@@ -14,7 +14,6 @@ export default class SideBar extends React.Component{
         this.renderNotebooks = this.renderNotebooks.bind(this);
         this.renderNotes = this.renderNotes.bind(this);
         this.toggleTagPad = this.toggleTagPad.bind(this);
-        this.closeTagPad = this.closeTagPad.bind(this);
     };
     
     newNote(){ 
@@ -43,12 +42,6 @@ export default class SideBar extends React.Component{
         );
     };
     
-    closeTagPad(){ 
-        this.setState({tagPad:false});
-        switches.sendExpand(false);
-
-    };
-
     renderNotes(){
         this.props.history.push('/notes');
     };
@@ -59,11 +52,13 @@ export default class SideBar extends React.Component{
     
     toggleTagPad(){ 
         switches.sendExpand(!this.state.tagPad);
-        
-        this.state.tagPad ? this.setState({tagPad: false}) : this.setState({tagPad: true});
+        this.state.tagPad ? this.setState({tagPad: false}) 
+        : 
+        this.setState({tagPad: true});
     };
         
     render(){
+        const node = React.createRef();
         let current_path = this.props.location.pathname.split('/');
         return(
             <div className='whole-bar'>
@@ -84,12 +79,12 @@ export default class SideBar extends React.Component{
             <div className='sidebar-note'>
                 <button onClick={this.renderNotebooks} className='notebook-button'>Notebooks</button>
             </div>
-            <div className='sidebar-tag'>
-                <button onClick={this.toggleTagPad} className='notebook-button'>Tags</button>
+            <div className='sidebar-tag' ref={node}>
+                <button onClick={this.toggleTagPad} className='tag-button' disabled={current_path.includes('notebooks') && current_path.length===2}>Tags</button>
             </div>
             <div className='tag-pad' ref={this.myRef}>
                 {this.state.tagPad && current_path.includes('notes') ? 
-                <TagPad tagPad={this.state.tagPad} closeTagPad={this.closeTagPad}/> 
+                <TagPad tagPad={this.state.tagPad} toggleTagPad={this.toggleTagPad} node={node}/> 
                 : 
                 null}
             </div>

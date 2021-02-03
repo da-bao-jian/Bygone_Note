@@ -6,7 +6,7 @@ import {openModal} from '../../../actions/modal_actions';
 import {tagPadRegresh} from '../state_sharing';
 import {TagItem} from './tag_item';
 
-export const TagPad = ({tagPad, closeTagPad}) => { 
+export const TagPad = ({tagPad, toggleTagPad, node}) => { 
 
     const tags = useSelector(state => state.entities.tags);
     const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export const TagPad = ({tagPad, closeTagPad}) => {
     const history = useHistory();
     const params  = useParams();
     const match = useRouteMatch();
-    const node = useRef();
+    // const node = useRef();
 
     const [tagList, setTagList] = useState(null);
     const [tagSelected, setTagSelected] = useState([]);
@@ -40,8 +40,9 @@ export const TagPad = ({tagPad, closeTagPad}) => {
     function handleClick(e) {
         let modal = document.getElementsByClassName('modal-child-tag');
         if(node.current){//to prevent error message in the console
+            debugger
             if(!node.current.contains(e.target) && modal.length===0){
-                closeTagPad();
+                toggleTagPad();
             };
         };  
     };
