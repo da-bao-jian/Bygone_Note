@@ -24,7 +24,7 @@ export default class NotesIndex extends React.Component{
                 });
             })
             .then(()=>{
-                this.setState({noteOpened: this.state.allNotes[0].id})
+                this.setState({noteOpened: this.state.allNotes[0].id});
             })
             .then(()=>{
                 this.props.fetchNotebooks().then((res)=>{
@@ -35,8 +35,8 @@ export default class NotesIndex extends React.Component{
                 this.props.fetchTaggings().then(()=>(
 
                     this.setState({loaded: true})
-                ))
-                    debugger
+                ));
+                    
             });
 
         this.subscription = switches.receiveExpand().subscribe(command=>{                
@@ -60,7 +60,7 @@ export default class NotesIndex extends React.Component{
         let path_after_note_clicked=this.props.match.url;
         this.props.history.push(`${path_after_note_clicked}/${key}`);
         
-        this.setState({noteOpened: key})
+        this.setState({noteOpened: key});
     };
 
     removeNote(note){
@@ -101,6 +101,7 @@ export default class NotesIndex extends React.Component{
                 return notes.filter(note=> (note.notebook_id === current_notebook[0].id)); 
 
             } else {
+
                 this.props.fetchNotebooks().then(()=>{
                     current_notebook = this.props.notebooks.filter(nb=>(nb.title === current_notebook_title));
                     return current_notebook;
@@ -108,6 +109,7 @@ export default class NotesIndex extends React.Component{
                 return notes.filter(note=> (note.notebook_id === current_notebook[0].id)); 
             };
         } else if (current_path.includes('tag')){
+
                 let tagId = [];
                 let taggedNotes = [];
                 for(let i = 0; i<current_path.length-1; i++){ 
@@ -116,18 +118,19 @@ export default class NotesIndex extends React.Component{
                         i++;
                     };
                 };
-                debugger
-                Object.values(this.props.taggings).forEach(t=>{
-                    debugger
-                    if(tagId.includes(t.tag_id)){
-                        notes.forEach(n=>{ 
-                            if(t.note_id === n.id){
-                                taggedNotes.push(n);
-                            }
-                        });
+                notes.forEach(n=>{
+                    let taggingList = [];
+                    Object.values(this.props.taggings).forEach(t=>{
+                        if(n.id === t.note_id){
+                            taggingList.push(t.tag_id);
+                        };
+                    });
+                    if(tagId.every(t=>taggingList.includes(t))){
+                        taggedNotes.push(n);
                     };
-                })
+                });
                 return taggedNotes;
+
         } else {
             return notes;
         }; 
@@ -146,7 +149,6 @@ export default class NotesIndex extends React.Component{
             };
         };
         if(this.state.loaded){
-            debugger
             notesList = this.filterNotes(allNotes).map(note=>{
                 return (
                 <NoteIndexItems

@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {useLocation, useHistory, useParams, useRouteMatch} from "react-router-dom";
 import {fetchTags, fetchTag, createTag, updateTag, deleteTag} from '../../../actions/tag_actions';
 import {openModal} from '../../../actions/modal_actions';
-import {tagPadRegresh} from '../state_sharing';
 import {TagItem} from './tag_item';
 
 export const TagPad = ({tagPad, toggleTagPad, node}) => { 
@@ -14,7 +13,6 @@ export const TagPad = ({tagPad, toggleTagPad, node}) => {
     const history = useHistory();
     const params  = useParams();
     const match = useRouteMatch();
-    // const node = useRef();
 
     const [tagList, setTagList] = useState(null);
     const [tagSelected, setTagSelected] = useState([]);
@@ -26,7 +24,6 @@ export const TagPad = ({tagPad, toggleTagPad, node}) => {
         .then((data) => {
             setTagList(Object.values(Object.values(data)[1]).map(tag=>(tag.title)));    
         }); 
-
     }, []);
     
     useEffect(() => {
@@ -39,7 +36,7 @@ export const TagPad = ({tagPad, toggleTagPad, node}) => {
 
     function handleClick(e) {
         let modal = document.getElementsByClassName('modal-child-tag');
-        if(node.current){//to prevent error message in the console
+        if(node.current){
             if(!node.current.contains(e.target) && modal.length===0){
                 toggleTagPad();
             };

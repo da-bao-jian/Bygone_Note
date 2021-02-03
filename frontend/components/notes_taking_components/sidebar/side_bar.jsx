@@ -37,8 +37,7 @@ export default class SideBar extends React.Component{
             body: 'Start writing in the editor...',
             notebook_id: current_notebook_id 
         }).then(
-            returned=>{this.props.history.push(`${path}/${returned.note.id}`)}
-            
+            returned=>{this.props.history.push(`${path}/${returned.note.id}`)}  
         );
     };
     

@@ -150,10 +150,12 @@ export const Editor = (props) => {
 
     if(tags){
         Object.values(tags).forEach(t=>{
-            if(t.title.slice(0, searchInput.length).toLowerCase() === searchInput.toLowerCase() 
-            && !tagList.includes(t)
-            ){ 
-                dropdownResult.push(t);  
+            if(t.title.slice(0, searchInput.length).toLowerCase() === searchInput.toLowerCase()){  
+                let temptagList = [];
+                tagList.forEach(tl=>(temptagList.push(tl.id)));
+                if(!temptagList.includes(t.id)){
+                    dropdownResult.push(t);  
+                };
             };
         });
     };
