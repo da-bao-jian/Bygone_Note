@@ -17,6 +17,7 @@ export default class NotesIndex extends React.Component{
         this.filterNotes = this.filterNotes.bind(this);
         this.handleClick = this.handleClick.bind(this);
     };
+
     componentDidMount(){
         this.props.fetchNotes().then(()=>{
                 this.setState({allNotes: 
@@ -36,7 +37,6 @@ export default class NotesIndex extends React.Component{
 
                     this.setState({loaded: true})
                 ));
-                    
             });
 
         this.subscription = switches.receiveExpand().subscribe(command=>{                
@@ -59,7 +59,6 @@ export default class NotesIndex extends React.Component{
     handleClick(key){
         let path_after_note_clicked=this.props.match.url;
         this.props.history.push(`${path_after_note_clicked}/${key}`);
-        
         this.setState({noteOpened: key});
     };
 
@@ -92,7 +91,7 @@ export default class NotesIndex extends React.Component{
         let current_path = this.props.location.pathname.split('/');
         let current_notebook_title = current_path[2];
         
-        if (current_path.includes('notebooks') && current_path.length>2){
+        if (current_path.includes('notebooks') && current_path.length>2 && !current_path.includes('tag')){
             let current_notebook;
             
             if(this.props.notebooks.length){
@@ -108,29 +107,65 @@ export default class NotesIndex extends React.Component{
                 })
                 return notes.filter(note=> (note.notebook_id === current_notebook[0].id)); 
             };
-        } else if (current_path.includes('tag')){
+        } else if (current_path.includes('tag') && current_path[1] !== 'notes'){
+            let current_notebook;
+            if(this.props.notebooks.length){
+                
+                current_notebook = this.props.notebooks.filter(nb=>(nb.title === current_notebook_title));
+                notes= notes.filter(note=> (note.notebook_id === current_notebook[0].id)); 
 
-                let tagId = [];
-                let taggedNotes = [];
-                for(let i = 0; i<current_path.length-1; i++){ 
-                    if(current_path[i] === 'tag'){
-                        tagId.push(parseInt(current_path[i+1]));
-                        i++;
-                    };
+            } else {
+
+                this.props.fetchNotebooks().then(()=>{
+                    current_notebook = this.props.notebooks.filter(nb=>(nb.title === current_notebook_title));
+                    return current_notebook;
+                })
+                notes= notes.filter(note=> (note.notebook_id === current_notebook[0].id)); 
+            };
+            let tagId = [];
+            let taggedNotes = [];
+            for(let i = 0; i<current_path.length-1; i++){ 
+                if(current_path[i] === 'tag'){
+                    tagId.push(parseInt(current_path[i+1]));
+                    i++;
                 };
-                notes.forEach(n=>{
-                    let taggingList = [];
-                    Object.values(this.props.taggings).forEach(t=>{
-                        if(n.id === t.note_id){
-                            taggingList.push(t.tag_id);
-                        };
-                    });
-                    if(tagId.every(t=>taggingList.includes(t))){
-                        taggedNotes.push(n);
+            };
+
+            notes.forEach(n=>{
+                let taggingList = [];
+                Object.values(this.props.taggings).forEach(t=>{
+                    if(n.id === t.note_id){
+                        taggingList.push(t.tag_id);
                     };
                 });
-                return taggedNotes;
+                if(tagId.every(t=>taggingList.includes(t))){
+                    taggedNotes.push(n);
+                };
+            });
+            return taggedNotes;
 
+        } else if (current_path.includes('tag') && current_path[1] === 'notes') {
+            let tagId = [];
+            let taggedNotes = [];
+            for(let i = 0; i<current_path.length-1; i++){ 
+                if(current_path[i] === 'tag'){
+                    tagId.push(parseInt(current_path[i+1]));
+                    i++;
+                };
+            };
+
+            notes.forEach(n=>{
+                let taggingList = [];
+                Object.values(this.props.taggings).forEach(t=>{
+                    if(n.id === t.note_id){
+                        taggingList.push(t.tag_id);
+                    };
+                });
+                if(tagId.every(t=>taggingList.includes(t))){
+                    taggedNotes.push(n);
+                };
+            });
+            return taggedNotes;
         } else {
             return notes;
         }; 
@@ -162,35 +197,35 @@ export default class NotesIndex extends React.Component{
                     notebooks={this.state.notebooks}
                 />
             )});
-        }
+        };
         
 
         return (
-        <div className={this.state.contracted ? 'notetaking-space-contracted' : 'notetaking-space'}>
-            <div className='note-index-items'>
-                {!path.includes('notebooks') ?
-                <div className='header-box'>
-                    <h1 className='header-box-h1'>All Notes</h1>
-                    <div className='number-of-notes'>
-                        {`${this.state.allNotes.length} notes`}
+            <div className={this.state.contracted ? 'notetaking-space-contracted' : 'notetaking-space'}>
+                <div className='note-index-items'>
+                    {!path.includes('notebooks') ?
+                    <div className='header-box'>
+                        <h1 className='header-box-h1'>All Notes</h1>
+                        <div className='number-of-notes'>
+                            {`${notesList.length} notes`}
+                        </div>
                     </div>
-                </div>
-                :
-                <div className='header-box'>
-                <h1 className='header-box-h1'>{header}</h1>
-                    <div className='number-of-notes'>
+                    :
+                    <div className='header-box'>
+                    <h1 className='header-box-h1'>{header}</h1>
+                        <div className='number-of-notes'>
+                            {`${notesList.length} notes`}
+                        </div>
                     </div>
-                </div>
-                }
-                <div className='notes-list'>
-                    <ul className='notes-list-index'>
-                        {notesList ? notesList : null}
-                    </ul>
+                    }
+                    <div className='notes-list'>
+                        <ul className='notes-list-index'>
+                            {notesList ? notesList : null}
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        )
-    }
-
-}
+        );
+    };
+};
 

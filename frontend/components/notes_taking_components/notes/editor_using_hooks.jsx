@@ -13,6 +13,8 @@ export const Editor = (props) => {
     const current_user = useSelector(state => state.entities.users[state.session.id]);
     const tags = useSelector(state => state.entities.tags);
     const taggings = useSelector(state => state.entities.taggings);
+    const notes = useSelector(state => state.entities.notes);
+    const notebook = useSelector(state => state.entities.notebooks);
 
     const notebooks = useSelector(state => state.entities.notebooks);
     const dispatch = useDispatch();
@@ -69,7 +71,7 @@ export const Editor = (props) => {
         props.changeTitle(e.currentTarget.value);
     };
 
-
+    debugger
     function updateNoteTitles(name){ 
         let current_path = location.pathname.split('/');
         let current_notebook_id, matchingRoom;
@@ -89,11 +91,13 @@ export const Editor = (props) => {
             name = props.id.length<1 ? 'Untitled' : props.id;
         };
 
+        const noteBookId = notes[props.noteId].notebook_id;
+
         dispatch(updateNote({
             id: props.noteId,
             title: name,
             body: body,
-            notebook_id: current_notebook_id
+            notebook_id: noteBookId
         }))
         .then(
             returned=>{history.push(`${path}/${returned.note.id}`)}
@@ -115,13 +119,16 @@ export const Editor = (props) => {
         setBody(value);
         props.changeText(value);
 
+        const noteBookId = notes[props.noteId].notebook_id;
+
+
         if(currentChannels !== null) {
 
             currentChannels.send({
                 id: props.noteId,
                 title: props.id,
                 body: body,
-                notebook_id: current_notebook_id
+                notebook_id: noteBookId
             })
         }
     };

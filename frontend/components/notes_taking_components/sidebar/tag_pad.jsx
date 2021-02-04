@@ -50,6 +50,25 @@ export const TagPad = ({tagPad, toggleTagPad, node}) => {
             setTagSelected([...tagSelected, tag]);
         };
     };
+
+    function removeTag(t){ 
+        let ind = null;
+        let allTags = tags;
+        let current_path = location.pathname.split('/');
+        let index = tagSelected.indexOf(t);
+        setTagSelected(tagSelected.filter((_,i) => i !== index));
+        Object.values(allTags).forEach(tag=>{
+            if(tag.title === t){
+                ind = tag.id;
+            };
+        });
+        if(current_path.includes('tag')){
+            let toBeDeletedTagId = current_path.indexOf(ind.toString());
+            current_path.splice(toBeDeletedTagId,1);
+            current_path.splice(toBeDeletedTagId-1,1);
+            history.replace(`${current_path.join('/')}`);
+        };
+    };
         
     Object.values(tags).forEach(t=>{
         if(!orderedTags.hasOwnProperty(t.title[0])){ 
@@ -70,7 +89,7 @@ export const TagPad = ({tagPad, toggleTagPad, node}) => {
                 tagObj={t}
                 tagSelection={tagSelection}
             />)
-        }           
+        };           
     });
 
 
@@ -91,6 +110,7 @@ export const TagPad = ({tagPad, toggleTagPad, node}) => {
                         return (
                             <div className='tag--search-selected'>
                                 {t}
+                                <button onClick={()=>{removeTag(t)}}>delete</button>
                             </div>
                         )
                     })}
