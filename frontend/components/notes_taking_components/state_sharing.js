@@ -10,3 +10,8 @@ export const tagPadRegresh = {
     sendTag: tag => subject.next(tag),
     receiveTag: () => subject.asObservable()
 };
+
+export const selectNoteIndexItem = {
+    sendNoteOpen: noteId => subject.next(noteId),
+    receiveNoteOpen: () => subject.asObservable()
+};

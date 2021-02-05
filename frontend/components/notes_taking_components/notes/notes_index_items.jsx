@@ -65,7 +65,7 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
     };
     
     return (
-        <div className="single-note-item">
+        <div className="single-note-item" id={`note-${noteId}`}>
             <div onClick={()=>{handleClick(noteId)}} className="single-note-item-side" >
                 <li className='note-list-index-items' >
                     <div className='list-header'>

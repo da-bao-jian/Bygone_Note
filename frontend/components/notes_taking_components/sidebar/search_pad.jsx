@@ -59,11 +59,12 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
     };
 
     function boyer_moore(arr, sub) {
+        
         let processedNotes = [];
         arr.forEach(note => {
             let str_ind = Object.keys(note)[0];
             let body = Object.values(note)[0];
-                            
+               
             let skip;
             let bad_char = new Array(265).fill(-1);
 
@@ -87,7 +88,9 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
                     
                     const matchingNoteWithIndex = {};
                     matchingNoteWithIndex[str_ind] = [body, i];
+                    if(!processedNotes.includes(matchingNoteWithIndex)){
                         processedNotes.push(matchingNoteWithIndex);
+                    };
                     skip++;
                 };
             };
@@ -105,16 +108,28 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
         setDropDown(false);
     };
 
+    function findSearchResult(id){
+        const ele = document.getElementById(`note-${id}`);
+        ele.scrollIntoView();
+
+        let current_path = location.pathname.split('/');
+        if(!current_path.includes('tag')){
+            let path_after_note_clicked=match.url;
+            history.push(`${path_after_note_clicked}/${id}`);
+        };
+    };
+
     if(loaded && searchInput.length !== 0){
         let filteredNoteList = noteList.map(nl=>{ 
             let noteIndexBody = {};
             noteIndexBody[nl.id] =  removingHTMLTags(nl.body);
             return noteIndexBody;
         });
+        
         dropDownList = boyer_moore(filteredNoteList, searchInput).map(note=>{
-            debugger
+            const id = Object.keys(note)[0]
             return (
-                <div className="search-dropdown">
+                <div className="search-results" onClick={()=>{findSearchResult(id)}}>
                     {Object.values(note)[0][0]}
                 </div>
             )
@@ -133,16 +148,7 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
                     placeholder='Search'
                 />
                 {dropDown && searchInput.length !== 0 && loaded ? 
-                    // <SearchBarDropdown className='search-bar-dropdown-container'
-                    //     handleDropDown={this.handleDropDown}
-                    //     searchInput={this.state.searchInput} 
-                    //     allRooms={this.props.allRooms}
-                    //     roomsAvailable={this.props.roomsAvailable}
-                    //     user={this.props.user}
-                    //     editClosedFor= {this.props.editClosedFor}
-                    //     />
-                    <ul>
-
+                    <ul className="search-dropdown">
                         {dropDownList}
                     </ul>
                     : null
