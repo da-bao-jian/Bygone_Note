@@ -45,7 +45,7 @@ export const TagPad = ({tagPad, toggleTagPad, node}) => {
 
     function tagSelection(tagId, tag){ 
         if(!tagSelected.includes(tag)){ 
-            let current_path = match.url;
+            let current_path = location.pathname;
             history.push(`${current_path}/tag/${tagId}`);
             setTagSelected([...tagSelected, tag]);
         };
@@ -93,8 +93,6 @@ export const TagPad = ({tagPad, toggleTagPad, node}) => {
     });
 
 
-
-    
     return ( 
         <div className="pad" ref={node}>
             <div className="tag-pad-header">     
@@ -108,7 +106,7 @@ export const TagPad = ({tagPad, toggleTagPad, node}) => {
                 <div className='tag-search'>
                     {tagSelected.map(t=>{
                         return (
-                            <div className='tag--search-selected'>
+                            <div className='tag-search-selected'>
                                 {t}
                                 <button onClick={()=>{removeTag(t)}}>delete</button>
                             </div>

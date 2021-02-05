@@ -12,7 +12,6 @@ export default class NotesIndex extends React.Component{
             contracted: false,
             loaded: false
         };
-
         this.removeNote=this.removeNote.bind(this);
         this.filterNotes = this.filterNotes.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -57,8 +56,11 @@ export default class NotesIndex extends React.Component{
     };
 
     handleClick(key){
-        let path_after_note_clicked=this.props.match.url;
-        this.props.history.push(`${path_after_note_clicked}/${key}`);
+        let current_path = this.props.location.pathname.split('/');
+        if(!current_path.includes('tag')){
+            let path_after_note_clicked=this.props.match.url;
+            this.props.history.push(`${path_after_note_clicked}/${key}`);
+        };
         this.setState({noteOpened: key});
     };
 
@@ -67,7 +69,7 @@ export default class NotesIndex extends React.Component{
         let notebook_number = null;
         if(current_path.length>2){
             notebook_number = current_path[2];
-        }
+        };
         if(current_path.length<4){
             this.props.deleteNotes(note.id)
             .then(()=>{this.setState({allNotes: 
@@ -84,8 +86,8 @@ export default class NotesIndex extends React.Component{
             .then(
                 ()=>{this.props.history.replace(`/notebooks/${notebook_number}/notes`)}
             );
-        }
-    }
+        };
+    };
 
     filterNotes(notes){
         let current_path = this.props.location.pathname.split('/');

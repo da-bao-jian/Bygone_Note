@@ -63,15 +63,12 @@ export const Editor = (props) => {
     }, []);
 
     
-
-
-    
     function handleTitleInput(e){
         setTitle(e.currentTarget.value);
         props.changeTitle(e.currentTarget.value);
     };
 
-    debugger
+    
     function updateNoteTitles(name){ 
         let current_path = location.pathname.split('/');
         let current_notebook_id, matchingRoom;
@@ -236,4 +233,4 @@ export const Editor = (props) => {
                     }) : null }
             </div>
     );
-}
+};
