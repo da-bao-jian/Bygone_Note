@@ -4,10 +4,10 @@ import {ACContext} from './../../root';
 import {fetchTags, fetchTag, createTag, updateTag, deleteTag} from '../../../actions/tag_actions';
 import {createTagging, deleteTagging, fetchTaggings} from '../../../actions/tagging_action';
 import {useDispatch, useSelector} from "react-redux";
+import {selectNoteIndexItem} from '../state_sharing';
 
 const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body, noteOpened}) => {
     let notebookTitle = '';
-
 
     let dispatch = useDispatch();
     let [title, setTitle] = useState(`${note.title}`);
@@ -29,6 +29,13 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
             setLoaded(true);
         });
         
+        selectNoteIndexItem.receiveNoteOpen().subscribe(data=>{      
+            debugger          
+            
+            if(parseInt(data) === noteId){
+                handleClick(noteId);
+            };
+        });
     },[]);
 
 
@@ -57,7 +64,6 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
         return res; 
     };
 
-
     if(dummyTitle.length > 10) {
         dummyTitle = `${title.slice(0,10)}...`;
     } else if (dummyTitle.length < 1) { 
@@ -67,7 +73,7 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
     return (
         <div className="single-note-item" id={`note-${noteId}`}>
             <div onClick={()=>{handleClick(noteId)}} className="single-note-item-side" >
-                <li className='note-list-index-items' >
+                <li className='note-list-index-items'>
                     <div className='list-header'>
                         {dummyTitle}
                     </div>

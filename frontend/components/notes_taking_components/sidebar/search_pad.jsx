@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation, useHistory, useParams, useRouteMatch} from "react-router-dom";
 import {fetchNotes} from '../../../actions/note_actions';
+import {selectNoteIndexItem} from '../state_sharing';
 
 export const SearchPad = ({searchPad, toggleSearchPad}) => { 
     let dropDownList = null;
@@ -112,11 +113,13 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
         const ele = document.getElementById(`note-${id}`);
         ele.scrollIntoView();
 
-        let current_path = location.pathname.split('/');
-        if(!current_path.includes('tag')){
-            let path_after_note_clicked=match.url;
-            history.push(`${path_after_note_clicked}/${id}`);
-        };
+        // let current_path = location.pathname.split('/');
+        // if(!current_path.includes('tag')){
+        //     let path_after_note_clicked=match.url;
+        //     history.push(`${path_after_note_clicked}/${id}`);
+        // };
+        debugger
+        selectNoteIndexItem.sendNoteOpen(id);
     };
 
     if(loaded && searchInput.length !== 0){
