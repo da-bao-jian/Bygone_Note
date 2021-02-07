@@ -28,10 +28,7 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
         dispatch(fetchTags()).then(()=>{
             setLoaded(true);
         });
-        
         selectNoteIndexItem.receiveNoteOpen().subscribe(data=>{      
-            debugger          
-            
             if(parseInt(data) === noteId){
                 handleClick(noteId);
             };

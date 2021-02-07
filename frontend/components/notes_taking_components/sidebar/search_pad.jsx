@@ -63,6 +63,7 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
         
         let processedNotes = [];
         arr.forEach(note => {
+
             let str_ind = Object.keys(note)[0];
             let body = Object.values(note)[0];
                
@@ -112,13 +113,6 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
     function findSearchResult(id){
         const ele = document.getElementById(`note-${id}`);
         ele.scrollIntoView();
-
-        // let current_path = location.pathname.split('/');
-        // if(!current_path.includes('tag')){
-        //     let path_after_note_clicked=match.url;
-        //     history.push(`${path_after_note_clicked}/${id}`);
-        // };
-        debugger
         selectNoteIndexItem.sendNoteOpen(id);
     };
 
@@ -130,12 +124,16 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
         });
         
         dropDownList = boyer_moore(filteredNoteList, searchInput).map(note=>{
-            const id = Object.keys(note)[0]
+            const id = Object.keys(note)[0];
+            const matchingSubString = Object.values(note)[0][0];
+            const highlightedIndex = Object.values(note)[0][1];
+            debugger
             return (
                 <div className="search-results" onClick={()=>{findSearchResult(id)}}>
-                    {Object.values(note)[0][0]}
+                    {matchingSubString.slice(0, highlightedIndex)}<mark>{matchingSubString.slice(highlightedIndex, highlightedIndex+searchInput.length)}</mark>
+                    {matchingSubString.slice(highlightedIndex+searchInput.length, matchingSubString.length)}
                 </div>
-            )
+            );
         });
     };
     

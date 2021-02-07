@@ -6,6 +6,7 @@ export const switches = {
     sendExpand: size => subject.next(size),
     receiveExpand: () => subject.asObservable()
 };
+
 export const tagPadRegresh = {
     sendTag: tag => subject.next(tag),
     receiveTag: () => subject.asObservable()
