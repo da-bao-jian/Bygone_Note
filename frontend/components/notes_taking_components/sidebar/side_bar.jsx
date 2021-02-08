@@ -75,16 +75,17 @@ export default class SideBar extends React.Component{
         let current_path = this.props.location.pathname.split('/');
         return(
             <div className='whole-bar'>
+                <link rel="stylesheet" href="https://unpkg.com/98.css" />
                 <div className='account-dropdown'> 
                     <AccountDropdown logout={this.props.logout}/>
                 </div>
                 <div className='create-new-note'>
                     <button onClick={this.newNote} className='create-new-note-button'>
-                        {'+  Create A New Note'}
+                        {'+ New Note'}
                         <img id='create-note-button-img' src=''></img>
                     </button>
                 </div>
-                <div className='sidebar-tag'>
+                <div className='sidebar-note'>
                     <button onClick={this.toggleSearchPad} className='search-button' disabled={current_path.includes('notebooks') && current_path.length===2}>Search</button>
                 </div>
                 <div className='search-pad'>
@@ -101,7 +102,7 @@ export default class SideBar extends React.Component{
                 <div className='sidebar-note'>
                     <button onClick={this.renderNotebooks} className='notebook-button'>Notebooks</button>
                 </div>
-                <div className='sidebar-tag' ref={node}>
+                <div className='sidebar-note' ref={node}>
                     <button onClick={this.toggleTagPad} className='tag-button' disabled={current_path.includes('notebooks') && current_path.length===2}>Tags</button>
                 </div>
                 <div className='tag-pad' ref={node}>

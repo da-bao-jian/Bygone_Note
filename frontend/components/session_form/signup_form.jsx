@@ -47,15 +47,6 @@ class SignupForm extends React.Component{
       }
 
     render(){
-      // <div className='login-page'>
-      // <link rel="stylesheet" href="https://unpkg.com/98.css" />
-        // <div className='form-backgound'>
-            // <div className='window'>
-              // <div className='title-bar'>
-              //     <div className='title-bar-text'>
-              //       Bygone Note
-              //     </div> 
-              // </div>
         return (
           <div className='login-page'>
             <link rel="stylesheet" href="https://unpkg.com/98.css" />

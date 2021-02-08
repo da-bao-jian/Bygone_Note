@@ -1,6 +1,5 @@
 .whole-bar{
     display: block;
-    // padding: 80px;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
@@ -9,7 +8,7 @@
     width: 200px;
     height: 100vh;
     position: absolute;
-    border-right: honeydew 1px solid;
+    border-right: rgb(153, 158, 153) 1px solid;
 
     .create-new-note{
         width: 90%;
@@ -20,60 +19,81 @@
         background-color: black;
         text-decoration: none;
         position: relative;
-        margin-top: 20px;
+        margin-top: 50px;
         margin-bottom: 50px;
         margin-left: 10px;
         overflow: hidden;
-        transition: 0.3s;
+        transition: 0.5s;
         .create-new-note-button{
             font-family: $notes;
             width: 100%;
             padding: 5%;
-            color: black;
-            background-color: rgb(218, 238, 180);
             border: 0px;
             outline: none;
             cursor: pointer;
-
-        }
-    }
+        };
+    };
     .sidebar-note{
         position: relative;
-        font-family: $notes;
         width: 100%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         .all-notes-button{
-            width: 100%;
+            width: 90%;
+            margin: 5%;
             height: 7vh;
             cursor: pointer;
             font-size: 15px;
             font-weight: 400;
+            background-color: $note_taking_sidebar;
             text-decoration: none;
             letter-spacing: 2px;
-            background-color: $note_taking_sidebar;
-            color: white;
             border: 0px;
             outline: none;
-            padding-right: 50%;
-
-        }
-        .notebook-button{
+        };
+        .notebook-button {
             margin-top: 50px;
-            width: 100%;
+            width: 90%;
+            margin: 5%;
             height: 7vh;
             cursor: pointer;
             font-size: 15px;
             font-weight: 400;
+            background-color: $note_taking_sidebar;
             text-decoration: none;
             letter-spacing: 2px;
-            background-color: $note_taking_sidebar;
-            color: white;
             border: 0px;
             outline: none;
-            padding-right: 45%;
             
+        }
+        .search-button{
+            margin-top: 50px;
+            width: 90%;
+            margin: 5%;
+            height: 7vh;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 400;
+            background-color: $note_taking_sidebar;
+            text-decoration: none;
+            letter-spacing: 2px;
+            border: 0px;
+            outline: none;
+        }
+        .tag-button{
+            margin-top: 50px;
+            width: 90%;
+            margin: 5%;
+            height: 7vh;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 400;
+            background-color: $note_taking_sidebar;
+            text-decoration: none;
+            letter-spacing: 2px;
+            border: 0px;
+            outline: none;
         }
         .all-notes-button:hover{
             color: black;
@@ -81,6 +101,16 @@
             box-shadow:  0 0 10px rgb(218, 238, 180), 0 0 30px rgb(218, 238, 180), 0 0 60px rgb(218, 238, 180);
         }
         .notebook-button:hover{
+            color: black;
+            background: rgb(218, 238, 180);
+            box-shadow:  0 0 10px rgb(218, 238, 180), 0 0 30px rgb(218, 238, 180), 0 0 60px rgb(218, 238, 180);
+        }
+        .search-button:hover{
+            color: black;
+            background: rgb(218, 238, 180);
+            box-shadow:  0 0 10px rgb(218, 238, 180), 0 0 30px rgb(218, 238, 180), 0 0 60px rgb(218, 238, 180);
+        }
+        .tag-button:hover{
             color: black;
             background: rgb(218, 238, 180);
             box-shadow:  0 0 10px rgb(218, 238, 180), 0 0 30px rgb(218, 238, 180), 0 0 60px rgb(218, 238, 180);
@@ -112,10 +142,10 @@
     z-index: 99;
     display: flex;
     height: 100%;
-    background-color: blanchedalmond;
+    background-color: darkgrey;
     top: 0;
     width: 200px;
-}
+};
 
 .tag-pad-header{  
     height: 118px;
@@ -125,17 +155,19 @@
 };
 
 .create-new-tag-modal-button{
-    margin-top: 46%;
-    margin-left: 56%;
+    margin-top: 13%;
+    margin-left: 57%;
 }
 .tag-pad-index {
     position: relative;
-    margin-top: 66%;
+    margin-top: -50%;
     width: 100%;
 };
 
 .tag-initial{
     padding: 12px;
+    color: white;
+    font-size: 18px;
 };
 
 .tag-items-group{
@@ -144,10 +176,90 @@
 };
 
 .tag-search-selected{
-    margin: 5px
+    display: flex;
+    border-bottom: white solid 1px;
+    margin: 5px;
 };
 
 .tag-search{
     display: flex;
-    margin-left: 10px;
+    width: 14%;
+    margin-left: 18px;
+    border-bottom: white solid 1px;
+    position: fixed;
+    top: 20%;
 };
+
+.sidebar-tag{
+     margin-top: 50px;
+    width: 90%;
+    margin: 5%;
+    height: 7vh;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 400;
+    background-color: $note_taking_sidebar;
+    text-decoration: none;
+    letter-spacing: 2px;
+    border: 0px;
+    outline: none;
+};
+.sidebar-tag:hover{
+    color: black;
+    background: rgb(218, 238, 180);
+    box-shadow:  0 0 10px rgb(218, 238, 180), 0 0 30px rgb(218, 238, 180), 0 0 60px rgb(218, 238, 180);
+};
+.account-dropdown{
+    bottom: 0;
+    position: absolute;
+}
+.title-bar{
+    width: 100%;
+}
+.search-bar{
+    width: 75%;
+    margin: 10%;
+    position: absolute;
+}
+.search-bar-container{
+    height: 70%;
+}
+.dropdown-area{
+    position: absolute;
+    height: 57%;
+    margin: 20px;
+}
+.search-dropdown{
+    width: 115%;
+    position: relative;
+}
+.search-results{
+    margin: 8px;
+    font-size: 15px;
+    color: whitesmoke;
+}
+.matching-text{
+    margin: 3px;
+}
+.matching-text-note-title{
+    margin: 3px;
+}
+.searchpad-header{
+    position: absolute;
+    color: white;
+    margin: 25px;
+    font-size: 20px;
+}
+.tag-pad-header{
+    height: 13.8%;
+    position: absolute;
+    top: 0;
+}
+.styles_wordart__UPt3m.styles_superhero__2H9rF{
+    margin:24px;
+}
+.tag-search-selected-tag{
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}

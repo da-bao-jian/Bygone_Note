@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useLocation, useHistory, useParams, useRouteMatch} from "react-router-dom";
 import {fetchNotes} from '../../../actions/note_actions';
 import {selectNoteIndexItem} from '../state_sharing';
+import WordArt from 'react-wordart';
+
 
 export const SearchPad = ({searchPad, toggleSearchPad}) => { 
     let dropDownList = null;
@@ -65,8 +67,9 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
         arr.forEach(note => {
 
             let str_ind = Object.keys(note)[0];
-            let body = Object.values(note)[0];
-               
+            let body = Object.values(note)[0][0];
+            let title = Object.values(note)[0][1];
+            
             let skip;
             let bad_char = new Array(265).fill(-1);
 
@@ -89,7 +92,7 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
                 if (skip === 0) {
                     
                     const matchingNoteWithIndex = {};
-                    matchingNoteWithIndex[str_ind] = [body, i];
+                    matchingNoteWithIndex[str_ind] = [body, i, title];
                     if(!processedNotes.includes(matchingNoteWithIndex)){
                         processedNotes.push(matchingNoteWithIndex);
                     };
@@ -119,7 +122,8 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
     if(loaded && searchInput.length !== 0){
         let filteredNoteList = noteList.map(nl=>{ 
             let noteIndexBody = {};
-            noteIndexBody[nl.id] =  removingHTMLTags(nl.body);
+            noteIndexBody[nl.id] =  [removingHTMLTags(nl.body), nl.title];
+            
             return noteIndexBody;
         });
         
@@ -127,11 +131,18 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
             const id = Object.keys(note)[0];
             const matchingSubString = Object.values(note)[0][0];
             const highlightedIndex = Object.values(note)[0][1];
-            debugger
+            const matchingNoteTitle = Object.values(note)[0][2];
+            
             return (
                 <div className="search-results" onClick={()=>{findSearchResult(id)}}>
-                    {matchingSubString.slice(0, highlightedIndex)}<mark>{matchingSubString.slice(highlightedIndex, highlightedIndex+searchInput.length)}</mark>
-                    {matchingSubString.slice(highlightedIndex+searchInput.length, matchingSubString.length)}
+                    <div className="matching-text">
+                        Matching Text: {matchingSubString.slice(0, highlightedIndex)}<mark>{matchingSubString.slice(highlightedIndex, highlightedIndex+searchInput.length)}</mark>
+                        {matchingSubString.slice(highlightedIndex+searchInput.length, matchingSubString.length)}
+                    </div>
+                    <div className='matching-text-note-title'>
+                        Note Title: {matchingNoteTitle}
+                    </div>
+                    
                 </div>
             );
         });
@@ -139,21 +150,29 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
     
     return ( 
         <div className="pad" ref={searchNode}>
-            <div className='search-bar-container'>
-                <input 
-                    className='search-bar' 
-                    type='text'
-                    onChange={handleSearchInput}
-                    onKeyDown={handleDropDown}
-                    value={searchInput}
-                    placeholder='Search'
-                />
-                {dropDown && searchInput.length !== 0 && loaded ? 
-                    <ul className="search-dropdown">
-                        {dropDownList}
-                    </ul>
-                    : null
-                }
+            <div className='searchpad-header'>
+                <WordArt text='Search Pad' theme={`superhero`} fontSize={25} />
+
+            </div>
+            <div class="title-bar">
+                <div className='search-bar-container'>
+                    <input 
+                        className='search-bar' 
+                        type='text'
+                        onChange={handleSearchInput}
+                        onKeyDown={handleDropDown}
+                        value={searchInput}
+                        placeholder='Search'
+                        />
+                </div>
+                <div className='dropdown-area'>
+                    {dropDown && searchInput.length !== 0 && loaded ? 
+                        <ul className="search-dropdown">
+                            {dropDownList}
+                        </ul>
+                        : null
+                    }
+                </div>
             </div>
         </div>
     );

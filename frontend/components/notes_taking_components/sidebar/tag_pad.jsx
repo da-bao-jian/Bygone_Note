@@ -4,6 +4,8 @@ import {useLocation, useHistory, useParams, useRouteMatch} from "react-router-do
 import {fetchTags, fetchTag, createTag, updateTag, deleteTag} from '../../../actions/tag_actions';
 import {openModal} from '../../../actions/modal_actions';
 import {TagItem} from './tag_item';
+import WordArt from 'react-wordart';
+
 
 export const TagPad = ({tagPad, toggleTagPad, node}) => { 
 
@@ -93,46 +95,53 @@ export const TagPad = ({tagPad, toggleTagPad, node}) => {
     });
 
 
-    return ( 
+    return (
         <div className="pad" ref={node}>
-            <div className="tag-pad-header">     
-                <div className='create-new-tag-modal'>
-                    <button onClick={()=>dispatch(openModal('createTag'))} className='create-new-tag-modal-button'>
-                        + New Tag
-                    </button>
+            <div class="title-bar">
+                <div className="tag-pad-header">   
+                    <div className="wordart-tag">
+                        <WordArt text='Tag Pad' theme={`superhero`} fontSize={15} />
+                    </div>  
+                    <div className='create-new-tag-modal'>
+                        <button onClick={()=>dispatch(openModal('createTag'))} className='create-new-tag-modal-button'>
+                            + New Tag
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div className='tag-pad-index'>
                 <div className='tag-search'>
                     {tagSelected.map(t=>{
                         return (
                             <div className='tag-search-selected'>
-                                {t}
-                                <button onClick={()=>{removeTag(t)}}>delete</button>
+                                <div className='tag-search-selected-tag' onClick={()=>{removeTag(t)}}>
+                                    {t}
+                                </div>
                             </div>
                         )
                     })}
                 </div>
-                <ul className='tag-initializers'>
-                    {orderedTags ? Object.entries(orderedTags).sort().map(alpha => {
-                        return(
-                            <div classname='tag-groups'>
-                                <div className='tag-initial'>
-                                    {alpha[0]}
+                <div className='tag-pad-index'>
+                    <ul className='tag-initializers'>
+                        {orderedTags ? Object.entries(orderedTags).sort().map(alpha => {
+                            return(
+                                <div classname='tag-groups'>
+                                    <div className='tag-initial'>
+                                        {alpha[0]}
+                                    </div>
+                                    <div className='tag-items-group'>
+                                        <ul>
+                                            {alpha[1].map(t=>(
+                                                t
+                                            ))}
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div className='tag-items-group'>
-                                    <ul>
-                                        {alpha[1].map(t=>(
-                                            t
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                        )
-                    }): null}
-                </ul>
+                            )
+                        }): null}
+                    </ul>
+                </div>
             </div>
         </div>
+ 
     );
 
 };
