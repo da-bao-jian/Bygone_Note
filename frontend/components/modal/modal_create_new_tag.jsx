@@ -24,7 +24,15 @@ class ModalCreateNewTag extends React.Component{
         let {closeModal, createTag} = this.props;
         return(
             <div className="modal-child-tag">
-                <div className='create-new-tag-form'>
+                {/* <div class='title-bar'>
+                    <div class="title-bar-text">Create a New Tag</div>
+                    <div class="title-bar-controls">
+                        <div className='create-new-tag-form'>
+                            <button aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div> */}
+                <div className='modal-body'>
                     <form>
                         <h1 className='head-tagline'>Create a new tag</h1>
                         <div className='input-area'>

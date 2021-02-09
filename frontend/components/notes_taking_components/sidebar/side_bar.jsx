@@ -75,41 +75,43 @@ export default class SideBar extends React.Component{
         let current_path = this.props.location.pathname.split('/');
         return(
             <div className='whole-bar'>
-                <link rel="stylesheet" href="https://unpkg.com/98.css" />
-                <div className='account-dropdown'> 
-                    <AccountDropdown logout={this.props.logout}/>
-                </div>
-                <div className='create-new-note'>
-                    <button onClick={this.newNote} className='create-new-note-button'>
-                        {'+ New Note'}
-                        <img id='create-note-button-img' src=''></img>
-                    </button>
-                </div>
-                <div className='sidebar-note'>
-                    <button onClick={this.toggleSearchPad} className='search-button' disabled={current_path.includes('notebooks') && current_path.length===2}>Search</button>
-                </div>
-                <div className='search-pad'>
-                    {this.state.searchPad  ? 
-                    <SearchPad searchPad={this.state.searchPad} toggleSearchPad={this.toggleSearchPad}/> 
-                    : 
-                    null}
-                </div>
-                <div className='sidebar-note'>
-                    <button onClick={this.renderNotes} className='all-notes-button'>
-                    {'  All Notes'}
-                    </button>
-                </div>
-                <div className='sidebar-note'>
-                    <button onClick={this.renderNotebooks} className='notebook-button'>Notebooks</button>
-                </div>
-                <div className='sidebar-note' ref={node}>
-                    <button onClick={this.toggleTagPad} className='tag-button' disabled={current_path.includes('notebooks') && current_path.length===2}>Tags</button>
-                </div>
-                <div className='tag-pad' ref={node}>
-                    {this.state.tagPad  ? 
-                    <TagPad tagPad={this.state.tagPad} toggleTagPad={this.toggleTagPad} node={node}/> 
-                    : 
-                    null}
+                <div className='sidebar-content'>
+                    <link rel="stylesheet" href="https://unpkg.com/98.css" />
+                    <div className='account-dropdown'> 
+                        <AccountDropdown logout={this.props.logout}/>
+                    </div>
+                    <div className='create-new-note'>
+                        <button onClick={this.newNote} className='create-new-note-button'>
+                            {'+ New Note'}
+                            <img id='create-note-button-img' src=''></img>
+                        </button>
+                    </div>
+                    <div className='sidebar-note'>
+                        <button onClick={this.toggleSearchPad} className='search-button' disabled={current_path.includes('notebooks') && current_path.length===2}>Search</button>
+                    </div>
+                    <div className='search-pad'>
+                        {this.state.searchPad  ? 
+                        <SearchPad searchPad={this.state.searchPad} toggleSearchPad={this.toggleSearchPad}/> 
+                        : 
+                        null}
+                    </div>
+                    <div className='sidebar-note'>
+                        <button onClick={this.renderNotes} className='all-notes-button'>
+                        {'  All Notes'}
+                        </button>
+                    </div>
+                    <div className='sidebar-note'>
+                        <button onClick={this.renderNotebooks} className='notebook-button'>Notebooks</button>
+                    </div>
+                    <div className='sidebar-note' ref={node}>
+                        <button onClick={this.toggleTagPad} className='tag-button' disabled={current_path.includes('notebooks') && current_path.length===2}>Tags</button>
+                    </div>
+                    <div className='tag-pad' ref={node}>
+                        {this.state.tagPad  ? 
+                        <TagPad tagPad={this.state.tagPad} toggleTagPad={this.toggleTagPad} node={node}/> 
+                        : 
+                        null}
+                    </div>
                 </div>
             </div>
         )

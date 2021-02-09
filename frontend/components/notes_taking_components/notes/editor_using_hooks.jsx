@@ -178,15 +178,18 @@ export const Editor = (props) => {
     return (
         <div className="text-editor">
             <div className='edit-area'>
+                
                 <div className='tool-bar'>
                     <div className='toolbar-notebook-title'>
-                        {props.id}
+                        <img src='https://win98icons.alexmeub.com/icons/png/help_book_small-1.png'></img>
+                        
+                        {props.notebookTitle}
                     </div>
                     <QuillToolbar />
                 </div>
-                <div className='title-bar'>
+                <div className='editor-title-bar'>
                     <input id='input-box'
-                        type="text"
+                        // type="text"
                         placeholder={props.id.length > 1 ? props.id : 'Untitled'}
                         onChange={handleTitleInput}
                         onBlur={()=>updateNoteTitles(title)}
@@ -214,7 +217,7 @@ export const Editor = (props) => {
                 }            
                 <input 
                     className='tag-search-bar' 
-                    type='text'
+                    // type='text'
                     onChange={handleSearchInput}
                     value={searchInput}
                     placeholder='type here to search tags'

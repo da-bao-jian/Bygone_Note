@@ -13,8 +13,13 @@ export const TagItem = (props) => {
 
     return ( 
         <div className='tag-items'>
-            <button onClick={()=>{props.tagSelection(props.id, props.title)}}>{props.title}</button>
-            <button onClick={()=>dispatch(deleteTag(props.id))}>delete</button>
+            <button onClick={()=>{props.tagSelection(props.id, props.title)}} className='tag-selection-button'>{props.title}</button>
+            <div class="title-bar-item">
+                <div class="title-bar-controls">
+                    <button onClick={()=>dispatch(deleteTag(props.id))} aria-label="Close" ></button>
+                </div>
+            </div>
+
         </div>
     );
 };

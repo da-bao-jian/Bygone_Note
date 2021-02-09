@@ -83,9 +83,9 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
                     <div className='time-since-updated'>
                         {note.time_ago_updated}
                     </div>
-                    <button className='note-delete-button' onClick={()=>removeNote(note)}>
-                        Delete
-                    </button>
+                    <div className='note-delete-button' onClick={()=>removeNote(note)}>
+                        <img src='https://win98icons.alexmeub.com/icons/png/recycle_bin_full-3.png'/>
+                    </div>
                 </li>
             </div>
             <div>
