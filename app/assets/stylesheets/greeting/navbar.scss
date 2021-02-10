@@ -1,7 +1,8 @@
 body {background-color: $background}
 
 .main-page{
-    position: relative;
+    position: absolute;
+    width: 100%;
 }
 
 .greeting-nav-bar{
@@ -91,9 +92,58 @@ body {background-color: $background}
       );
     
 }
+.gretting-page{
+    display: flex;
+}
+
+.photo-container{
+    /* width: 26%; */
+    top: 1.5%;
+    /* margin-left: 0%; */
+    position: absolute;
+    width: 397px;
+}
+
+.middle{
+margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    position: absolute;
+    width: 100%;
+}
 
 .bottom-line{
     border-color: rgb(218, 238, 180);
 }
 
-
+.stock-photos{
+    background-image: url(neon_PC.jpg);
+    background-size: cover;
+    width: 43%;
+    height: 81%;
+    margin-left: 109%;
+    max-height: 600px;
+    min-height: 608px;
+    resize: both;
+    max-width: 400px;
+    min-width: 591px;
+}    
+.side-list{
+    display: grid;
+    right: 0;
+    width: 228px;
+    background-color: transparent;
+    position: fixed;
+    height: 621px;
+    width: 503px;
+}
+.selection{
+        border-bottom: 3px solid #daeeb4;
+    background: transparent;
+    color: #daeeb4;
+    border-left: transparent;
+    border-right: transparent;
+    font-size: 37px;
+}
