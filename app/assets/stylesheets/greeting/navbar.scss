@@ -79,7 +79,7 @@ body {background-color: $background}
     padding-left: 25px;
     line-height: 50px;
     border-color: transparent;
-    font-size: 25px;
+    font-size: 35px;
     color: yellowgreen;
     font-family: $text;
     text-shadow: 3px 3px green;
@@ -146,4 +146,65 @@ margin: 0;
     border-left: transparent;
     border-right: transparent;
     font-size: 37px;
+}
+.matrix{
+    background-image: url(matrix.gif);
+    background-size: cover;
+    width: 43%;
+    height: 81%;
+    margin-left: 109%;
+    max-height: 600px;
+    min-height: 608px;
+    resize: both;
+    max-width: 400px;
+    min-width: 591px;
+    background-size: contain;
+
+}
+.cyberpunk{
+    background-image: url(cyberpunk_purple.gif);
+    background-size: cover;
+    width: 43%;
+    height: 81%;
+    margin-left: 109%;
+    max-height: 600px;
+    min-height: 608px;
+    resize: both;
+    max-width: 400px;
+    min-width: 591px;
+    background-size: auto;
+
+}
+.selection1{
+    border-bottom: 3px solid #daeeb4;
+    background: transparent;
+    color: #daeeb4;
+    border-left: transparent;
+    border-right: transparent;
+    font-size: 37px;
+    &:hover{
+        text-shadow: 3px 3px yellowgreen;
+        background-color: rgb(243, 13, 243);
+    }
+}
+.greeting-textarea1{
+    resize: vertical; max-height: 600px; min-height: 600px;
+    resize: horizontal; max-width:400px; min-width: 400px;
+    height: 90%;
+    padding-top: 15px;
+    padding-left: 25px;
+    line-height: 50px;
+    border-color: transparent;
+    font-size: 35px;
+    color: rgb(243, 13, 243);
+    font-family: $text;
+    text-shadow: 3px 3px rgb(150, 6, 78);
+    background: repeating-linear-gradient(
+        0,
+        $background,
+        rgb(243, 13, 243) 3px,
+        $background 1px,
+        $background 50px
+      );
+    
 }
