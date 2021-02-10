@@ -47,7 +47,7 @@ class NotebooksIndexItem extends React.Component{
                         
                         <ul className='dots-menu'>
                             <li><button onClick={()=>{this.props.removeNotebook(notebook);this.actionDropdownClicked}}>Delete notebook</button></li>
-                            <li><button>Add new note</button></li>
+                            {/* <li><button>Add new note</button></li> */}
                         </ul>
                     ):null} 
                 </td>

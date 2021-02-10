@@ -207,33 +207,35 @@ export const Editor = (props) => {
                     />
                 </div>
             </div>
-            <div>
-            <div className='tag-search-bar-container'>
+            <div className='tag-area-container'>
                 {dropDown && searchInput.length !== 0 ? 
                     <div className='tag-selections'>
                         {dropDownSelection}
                     </div>
                     : null
                 }            
-                <input 
-                    className='tag-search-bar' 
-                    // type='text'
-                    onChange={handleSearchInput}
-                    value={searchInput}
-                    placeholder='type here to search tags'
-                />
+                <div className='tag-area'>
+                    <div className='tag-search-bar-container'>
+                        <input 
+                            className='tag-search-bar' 
+                            // type='text'
+                            onChange={handleSearchInput}
+                            value={searchInput}
+                            placeholder='Search Tag Names'
+                            />
+                    </div>
+                        {loaded ? tagList.map(t=>{
+                            return (
+                                <div>
+                                        <ul key='t.title' className='selected-tags'>
+                                            
+                                            <button onClick={()=>{removeTag(t.title); dispatch(deleteTagging(t, props.noteId))}}>{t.title}</button>
+                                        </ul>
+                                </div>
+                                )
+                            }) : null }
+                </div>
             </div>
-            </div>
-                {loaded ? tagList.map(t=>{
-                        return (
-                            <div>
-                                <ul key='t.title' className='selected-tags'>
-                                    {t.title}
-                                    <button onClick={()=>{removeTag(t.title); dispatch(deleteTagging(t, props.noteId))}}>delete</button>
-                                </ul>
-                            </div>
-                        )
-                    }) : null }
-            </div>
+        </div>
     );
 };

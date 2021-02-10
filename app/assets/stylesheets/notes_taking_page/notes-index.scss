@@ -16,13 +16,13 @@
     
     .header-box{
         font-family: $notes;
-        background-color: rgb(218, 238, 180);
+        background-color: lightgray;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         border-bottom: honeydew 2px solid;
         width: 100%;
-        height: 137px;
+        height: 146px;
         border-right: white;
         .header-box-h1{
             color: black;
@@ -41,7 +41,7 @@
         }
     }
     .notes-list{
-        background-color: rgb(218, 238, 180);
+        background-color: lightgray;
         width: 100%;
         height: 100%;
         display: flex;
@@ -93,12 +93,15 @@
     .text-editor{
         background-color: honeydew;
         position: fixed; 
-        width: 67%; 
-        height: 100%;
+        width: 66.2%; 
+        height: 99%;
         margin-left: 20%;  
         top: 0;
+        border: lightgray solid 5px;
+
         .edit-area{
-            width: 100%;
+           width: 100%;
+            height: 31%;
         }
         .tool-bar{
             position: relative;
@@ -114,8 +117,10 @@
                 border: outset;
             }
             .toolbar-notebook-title{
-                position: absolute;
-                margin: 13px;
+                    position: absolute;
+                    margin: 9px;
+                    margin-left: 20px;
+                    font-size: 15px;
             }
         }
         .editor-title-bar{
@@ -148,4 +153,22 @@
 
 .notetaking-space-contracted{
     margin-left: 200px;
+}
+.tag-area{
+    display: flex;
+    width: 100%;
+    background-color: lightgray;
+    position: fixed;
+    bottom: 0;
+}
+.tag-search-bar-container{
+    display: flex;
+}
+.tag-search-bar{
+    height: 75%;
+}
+.tag-area-container{
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 1.5%;
 }

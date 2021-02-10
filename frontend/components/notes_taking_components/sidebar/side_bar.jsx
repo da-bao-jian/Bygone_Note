@@ -4,6 +4,7 @@ import {TagPad} from './tag_pad';
 import {SearchPad} from './search_pad';
 import {switches} from '../../notes_taking_components/state_sharing';
 
+
 export default class SideBar extends React.Component{
     constructor(props){
         super(props)
@@ -75,6 +76,12 @@ export default class SideBar extends React.Component{
         let current_path = this.props.location.pathname.split('/');
         return(
             <div className='whole-bar'>
+                <a href="https://github.com/dabaojian1992">
+                    <img src="https://www.seekpng.com/png/full/101-1017465_github-github-icon-png-grey.png" className='github'></img>
+                </a>
+                <a href='https://www.linkedin.com/in/harry-haoyuan-g-9135b4193/'>
+                    <img src='https://www.seekpng.com/png/full/8-84419_linkedin-logo-png-icon-linkedin-logo-png.png' className='linkedin'></img>
+                </a>
                 <div className='sidebar-content'>
                     <link rel="stylesheet" href="https://unpkg.com/98.css" />
                     <div className='account-dropdown'> 
