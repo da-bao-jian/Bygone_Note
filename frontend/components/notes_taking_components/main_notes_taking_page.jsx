@@ -16,6 +16,7 @@ export default class MainNotesTakingPage extends React.Component{
     render(){
         return (
             <div className='note-taking-page'>
+
                 <Modal/>
                 <SideBar/> 
                 <Switch>
@@ -23,6 +24,7 @@ export default class MainNotesTakingPage extends React.Component{
                     <ProtectedRoute path='/notebooks/:notebook_id/notes' component={NotesIndex}/>
                     <ProtectedRoute path='/notes' component={NotesIndex}/>
                 </Switch>
+
             </div>
         );
     };

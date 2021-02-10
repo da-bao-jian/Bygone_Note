@@ -12,15 +12,14 @@
     justify-content: flex-start;
     height: 100vh;
     background-color: rgb(218, 238, 180);
-    border-left: honeydew 1px solid;
-    
+    border-left: lightgray 3px solid;    
     .header-box{
         font-family: $notes;
         background-color: lightgray;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        border-bottom: honeydew 2px solid;
+        border-bottom: honeydew 1px solid;
         width: 100%;
         height: 146px;
         border-right: white;
@@ -89,15 +88,23 @@
             background-color: honeydew;
         }
     }
-
-    .text-editor{
+    .text-editor-contracted{
         background-color: honeydew;
-        position: fixed; 
-        width: 66.2%; 
-        height: 99%;
-        margin-left: 20%;  
+        position: fixed;
+        width: 68.2%;
+        height: 100%;
+        margin-left: 20%;
         top: 0;
         border: lightgray solid 5px;
+    }
+    .text-editor{
+        background-color: honeydew;
+        position: fixed;
+        width: 69.2%;
+        height: 100%;
+        margin-left: 18%;
+        top: 0;
+        // right: 0;
 
         .edit-area{
            width: 100%;
@@ -106,7 +113,7 @@
         .tool-bar{
             position: relative;
             background-color: #e2e5de;
-            height: 120px;
+            height: 125px;
             #toolbar{
                 height: 100%;
                 display: flex;

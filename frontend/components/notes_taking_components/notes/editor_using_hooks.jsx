@@ -6,6 +6,7 @@ import ReactQuill from "react-quill";
 import QuillToolbar, { modules, formats } from "./editorToolbar";
 import {ACContext} from './../../root';
 import {createTagging, deleteTagging, fetchTaggings} from '../../../actions/tagging_action';
+import {switches} from '../state_sharing';
 
 export const Editor = (props) => {
     let dropdownResult = [];
@@ -30,6 +31,7 @@ export const Editor = (props) => {
     const [dropDown, setDropDown] = useState(false);
     const [tagList, setTagList] = useState([]);
     const [loaded, setLoaded] = useState(false);
+    const [contracted, setContracted] = useState(false);
 
     let content = props.body.filter(b=>(b.id === props.noteId))[0].body
     
@@ -54,6 +56,10 @@ export const Editor = (props) => {
         }).then(()=>{
             setTagList(tagList);
             setLoaded(true);
+        });
+
+        switches.receiveExpand().subscribe(command=>{                
+            setContracted(command);
         });
 
         return () => {
@@ -176,7 +182,9 @@ export const Editor = (props) => {
 
     
     return (
-        <div className="text-editor">
+        // <div className={contracted ? "text-editor-contracted" : "text-editor"}>
+           <div className="text-editor">
+
             <div className='edit-area'>
                 
                 <div className='tool-bar'>
