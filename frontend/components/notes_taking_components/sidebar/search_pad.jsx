@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useLocation, useHistory, useParams, useRouteMatch} from "react-router-dom";
 import {fetchNotes} from '../../../actions/note_actions';
 import {selectNoteIndexItem} from '../state_sharing';
-import WordArt from 'react-wordart';
+// import WordArt from 'react-wordart';
 
 
 export const SearchPad = ({searchPad, toggleSearchPad}) => { 
@@ -151,7 +151,7 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
     return ( 
         <div className="pad" ref={searchNode}>
             <div className='searchpad-header'>
-                <WordArt text='Search Pad' theme={`superhero`} fontSize={25} />
+                {/* <WordArt text='Search Pad' theme={`superhero`} fontSize={25} /> */}
 
             </div>
             <div class="title-bar">
