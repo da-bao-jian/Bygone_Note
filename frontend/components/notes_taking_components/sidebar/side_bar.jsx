@@ -12,8 +12,8 @@ export default class SideBar extends React.Component{
 
     newNote(){ //always stays on the page
         let current_path = this.props.location.pathname.split('/');
-        let current_notebook_id;
-        let path = '';
+        let current_notebook_id=null;
+        let path = null;
         if (current_path.includes('notebooks') && current_path.length>2){
             path = `/notebooks/${current_path[2]}/notes`;
             current_notebook_id = current_path[2] 
@@ -24,14 +24,14 @@ export default class SideBar extends React.Component{
         // if(current_path.length > 2){
         // } else {
         // };
+         // console.log('a')
+
         this.props.createNote({
             title: 'Untitled',
             body: 'Start writing here...',
             notebook_id: current_notebook_id 
         }).then(
             returned=>{this.props.history.push(`${path}/${returned.note.id}`)}
-            //adding the change of address promise to the end of request 
-            //to redirect the page
         )
     };
 
@@ -50,7 +50,7 @@ export default class SideBar extends React.Component{
         <div className='whole-bar'>
                 <div className='account-dropdown'> 
                     <AccountDropdown logout={this.props.logout}/>
-                    {/* use toggle or onBlur */}
+                    {/* use toggle or onBlur for the dropdown */}
                 </div>
                 <div className='create-new-note'>
                     <button onClick={this.newNote} className='create-new-note-button'>

@@ -4,6 +4,9 @@ import { closeModal } from '../../actions/modal_actions';
 import ModalCreateNewNotebook from './modal_create_new_notebook';
 import ModalMoreActions from './modal_more_actions';
 
+
+//https://open.appacademy.io/learn/swe-in-person/full-stack-project/modalbnb
+
 function Modal({modal, closeModal}) {
   if (!modal) {
     return null;
@@ -20,7 +23,6 @@ function Modal({modal, closeModal}) {
       return null;
   }
   return (
-      
     <div className="modal-background" onClick={closeModal}>
       <div className="modal-child" onClick={e => e.stopPropagation()}>
         { component }

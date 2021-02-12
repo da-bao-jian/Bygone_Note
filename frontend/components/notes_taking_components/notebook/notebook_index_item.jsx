@@ -30,7 +30,7 @@ class NotebooksIndexItem extends React.Component{
         } else {
             this.setState({opened: true});
         }
-        // refer to https://codepen.io/quafoo/pen/jONdwWG for toggle actions
+        // refer to https://codepen.io/quafoo/pen/jONdwWG for toggle actions later
     };
 
 

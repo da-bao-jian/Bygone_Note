@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Quill } from "react-quill";
 //copied from https://medium.com/@mircea.calugaru/react-quill-editor-with-full-toolbar-options-and-custom-buttons-undo-redo-176d79f8d375

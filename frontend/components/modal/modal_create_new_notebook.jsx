@@ -58,8 +58,6 @@ const mSTP = state => ({
 const mDTP = dispatch => ({
     createNotebook: notebook => dispatch(createNotebook(notebook)),
     closeModal: () => dispatch(closeModal())
-
-
 })
 
 export default connect(mSTP, mDTP)(ModalCreateNewNotebook)

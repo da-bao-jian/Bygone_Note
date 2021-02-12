@@ -5,7 +5,7 @@ export default class NotebooksIndex extends React.Component{
     constructor(props) {
         super(props);
         this.state={
-            toggle:false
+            // toggle:false
         }
 
         this.removeNotebook=this.removeNotebook.bind(this);
@@ -14,7 +14,7 @@ export default class NotebooksIndex extends React.Component{
     componentDidMount(){
         this.props.fetchNotebooks();
     }
-    componentDidUpdate(prevProps){
+    componentDidUpdate(prevProps){ //set the state in constructor 
         console.log(this.props)
         console.log(prevProps)
         if(this.props.notebooks === prevProps.notebooks){

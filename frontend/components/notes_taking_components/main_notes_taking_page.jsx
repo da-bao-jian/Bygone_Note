@@ -13,8 +13,6 @@ export default class MainNotesTakingPage extends React.Component{
 
 
     };
- 
-
     render(){
 
         return (
