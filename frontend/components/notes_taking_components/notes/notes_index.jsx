@@ -1,125 +1,233 @@
-
 import React from 'react';
 import NoteIndexItems from './notes_index_items';
-import Editor from './editor_container';
+import {switches} from '../state_sharing';
 
 export default class NotesIndex extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            noteEditor: null
+            allNotes: [],
+            noteOpened: null,
+            notebooks: null,
+            contracted: false,
+            loaded: false
         };
-
         this.removeNote=this.removeNote.bind(this);
         this.filterNotes = this.filterNotes.bind(this);
         this.handleClick = this.handleClick.bind(this);
-
     };
 
     componentDidMount(){
+        this.props.fetchNotes().then(()=>{
+                this.setState({allNotes: 
+                    this.state.allNotes.concat(this.props.notes)
+                });
+            })
+            .then(()=>{
+                this.setState({noteOpened: this.state.allNotes[0].id});
+            })
+            .then(()=>{
+                this.props.fetchNotebooks().then((res)=>{
+                        this.setState({notebooks: res.notebooks})
+                });
+            })
+            .then(()=>{
+                this.props.fetchTaggings().then(()=>(
+
+                    this.setState({loaded: true})
+                ));
+            });
+
+        this.subscription = switches.receiveExpand().subscribe(command=>{                
+            this.setState({contracted: command});
+        });
         
-        this.props.fetchNotes();
-        //this.handleClick(this.props.notes[0].id)
     };
 
-    componentDidUpdate(prevProps){ //can use location.pathname to see if the location changed
-        if(this.props.notes === prevProps.notes){
-            this.props.fetchNotes();
-        }
-
+    componentDidUpdate(prevProps){ 
+        if(this.props.notes.length !== prevProps.notes.length){
+            this.props.fetchNotes().then(
+            ()=>{
+                this.setState({allNotes: 
+                    this.props.notes
+                });
+            });
+        };
     };
 
     handleClick(key){
-        let path_after_note_clicked=this.props.match.url;
-        // path_after_note_clicked=this.props.location.pathname; use match.url insread since notes index component is used for both /notes and //notebooks/:notebook_id/notes
-        //useful resource https://www.freecodecamp.org/news/hitchhikers-guide-to-react-router-v4-4b12e369d10/
-        this.props.history.push(`${path_after_note_clicked}/${key}`);
-        this.setState({
-            noteEditor: <Editor noteId={key}/>
-        });
-    }
+        let current_path = this.props.location.pathname.split('/');
+        if(!current_path.includes('tag')){
+            let path_after_note_clicked=this.props.match.url;
+            this.props.history.push(`${path_after_note_clicked}/${key}`);
+        };
+        this.setState({noteOpened: key});
+    };
 
     removeNote(note){
         let current_path = this.props.location.pathname.split('/');
         let notebook_number = null;
         if(current_path.length>2){
             notebook_number = current_path[2];
-        }
+        };
         if(current_path.length<4){
-            // console.log('a')
             this.props.deleteNotes(note.id)
+            .then(()=>{this.setState({allNotes: 
+                this.state.allNotes.filter(n => (n.id !== note.id))    
+            })})
             .then(
                 ()=>{this.props.history.replace('/notes')}
             );
         }else{
-            // console.log('b')
             this.props.deleteNotes(note.id)
+            .then(()=>{this.setState({allNotes: 
+                this.state.allNotes.filter(n => (n.id !== note.id))    
+            })})
             .then(
                 ()=>{this.props.history.replace(`/notebooks/${notebook_number}/notes`)}
             );
-        }
-    }
+        };
+    };
 
     filterNotes(notes){
         let current_path = this.props.location.pathname.split('/');
-        let current_notebook_id = Number(current_path[2])
+        let current_notebook_title = current_path[2];
         
-        if (current_path.includes('notebooks') && current_path.length>2){
-            return notes.filter(note=> (note.notebook_id === current_notebook_id)); 
+        if (current_path.includes('notebooks') && current_path.length>2 && !current_path.includes('tag')){
+            let current_notebook;
+            
+            if(this.props.notebooks.length){
+                
+                current_notebook = this.props.notebooks.filter(nb=>(nb.title === current_notebook_title));
+                return notes.filter(note=> (note.notebook_id === current_notebook[0].id)); 
+
+            } else {
+
+                this.props.fetchNotebooks().then(()=>{
+                    current_notebook = this.props.notebooks.filter(nb=>(nb.title === current_notebook_title));
+                    return current_notebook;
+                })
+                return notes.filter(note=> (note.notebook_id === current_notebook[0].id)); 
+            };
+        } else if (current_path.includes('tag') && current_path[1] !== 'notes'){
+            let current_notebook;
+            if(this.props.notebooks.length){
+                
+                current_notebook = this.props.notebooks.filter(nb=>(nb.title === current_notebook_title));
+                notes= notes.filter(note=> (note.notebook_id === current_notebook[0].id)); 
+
+            } else {
+
+                this.props.fetchNotebooks().then(()=>{
+                    current_notebook = this.props.notebooks.filter(nb=>(nb.title === current_notebook_title));
+                    return current_notebook;
+                })
+                notes= notes.filter(note=> (note.notebook_id === current_notebook[0].id)); 
+            };
+            let tagId = [];
+            let taggedNotes = [];
+            for(let i = 0; i<current_path.length-1; i++){ 
+                if(current_path[i] === 'tag'){
+                    tagId.push(parseInt(current_path[i+1]));
+                    i++;
+                };
+            };
+
+            notes.forEach(n=>{
+                let taggingList = [];
+                Object.values(this.props.taggings).forEach(t=>{
+                    if(n.id === t.note_id){
+                        taggingList.push(t.tag_id);
+                    };
+                });
+                if(tagId.every(t=>taggingList.includes(t))){
+                    taggedNotes.push(n);
+                };
+            });
+            return taggedNotes;
+
+        } else if (current_path.includes('tag') && current_path[1] === 'notes') {
+            let tagId = [];
+            let taggedNotes = [];
+            for(let i = 0; i<current_path.length-1; i++){ 
+                if(current_path[i] === 'tag'){
+                    tagId.push(parseInt(current_path[i+1]));
+                    i++;
+                };
+            };
+
+            notes.forEach(n=>{
+                let taggingList = [];
+                Object.values(this.props.taggings).forEach(t=>{
+                    if(n.id === t.note_id){
+                        taggingList.push(t.tag_id);
+                    };
+                });
+                if(tagId.every(t=>taggingList.includes(t))){
+                    taggedNotes.push(n);
+                };
+            });
+            return taggedNotes;
         } else {
             return notes;
         }; 
     };
 
 
-
+    
     render(){
-        const {notes, notebooks} = this.props;
-        // console.log(this.props)
+        const {allNotes} = this.state;
+        let notesList=[];
+        const path = this.props.location.pathname.split('/')
+        let header = path[2];
+        if(path.length>=3){
+            if(header.includes('%')){
+                header = header.split('%').join(' ');
+            };
+        };
+        if(this.state.loaded){
+            notesList = this.filterNotes(allNotes).map(note=>{
+                return (
+                <NoteIndexItems
+                    key={note.id}
+                    note={note}
+                    noteId={note.id}
+                    removeNote={this.removeNote}
+                    handleClick={this.handleClick}
+                    body={this.props.notes}
+                    noteOpened={this.state.noteOpened}
+                    notebooks={this.state.notebooks}
+                />
+            )});
+        };
+        
 
-        // console.log(notes)
-        const notesList = this.filterNotes(notes).map(note=>(
-            <NoteIndexItems
-                key={note.id}
-                note={note}
-                noteId={note.id}
-                removeNote={this.removeNote}
-                handleClick={this.handleClick}
-            />
-        ));
-        const path=this.props.location.pathname.split('/')
-        let notebook_to_render=null;
-        if(path.length>3){
-            // console.log(notebooks)
-            notebook_to_render = notebooks.filter(notebook=>(notebook.id === parseInt(path[2])));
-        }
-        // console.log(notebook_to_render)
         return (
-        <div className='notetaking-space'>
-            <div className='note-index-items'>
-                {path.length<4?
-                <div className='header-box'>
-                    <h1 className='header-box-h1'>All Notes</h1>
-                    <div className='number-of-notes'>
-                        {`${this.props.notes.length} notes`}
+            <div className={this.state.contracted ? 'notetaking-space-contracted' : 'notetaking-space'}>
+                <div className='note-index-items'>
+                    {!path.includes('notebooks') ?
+                    <div className='header-box'>
+                        <h1 className='header-box-h1'>All Notes</h1>
+                        <div className='number-of-notes'>
+                            {`${notesList.length} notes`}
+                        </div>
                     </div>
-                </div>:<div className='header-box'>
-                <h1 className='header-box-h1'>{notebook_to_render[0].title}</h1>
-                    <div className='number-of-notes'>
-                        {/* {`${notebook_to_render[0].notes.length} notes`} */}
+                    :
+                    <div className='header-box'>
+                    <h1 className='header-box-h1'>{header}</h1>
+                        <div className='number-of-notes'>
+                            {`${notesList.length} notes`}
+                        </div>
+                    </div>
+                    }
+                    <div className='notes-list'>
+                        <ul className='notes-list-index'>
+                            {notesList ? notesList : null}
+                        </ul>
                     </div>
                 </div>
-                }
-                <div className='notes-list'>
-                    <ul className='notes-list-index'>
-                        {notesList}
-                    </ul>
-                </div>
-                {this.state.noteEditor}
             </div>
-        </div>
-        )
-    }
-
-}
+        );
+    };
+};
 

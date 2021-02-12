@@ -16,6 +16,8 @@ const App = () => (
       <AuthRoute exact path='/signup' component={SignupContainer}/>
       <ProtectedRoute exact path='/notes' component={MainNotesTakingPage}/>
       <ProtectedRoute exact path='/notes/:noteId' component={MainNotesTakingPage}/>
+      <ProtectedRoute  path='/notes/:noteId/tag/:tagId' component={MainNotesTakingPage}/>
+      <ProtectedRoute  path='/notes/tag/:tagId' component={MainNotesTakingPage}/>
       <ProtectedRoute exact path='/notebooks' component={MainNotesTakingPage}/>
       <ProtectedRoute exact path='/notebooks/:notebooks_id/notes' component={MainNotesTakingPage}/>
       <ProtectedRoute exact path='/notebooks/:notebooks_id/notes/*' component={MainNotesTakingPage}/>

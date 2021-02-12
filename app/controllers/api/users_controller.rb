@@ -3,7 +3,6 @@ class Api::UsersController < ApplicationController
     
     def create
         @user = User.new(user_params)
-        # debugger
         if @user.save
             default_notebook = Notebook.create!(title: 'My First Notebook', user_id: @user.id)
             #do not allow user to delete defualt note

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { closeModal } from '../../actions/modal_actions';
 import ModalCreateNewNotebook from './modal_create_new_notebook';
+import ModalCreateNewTag from './modal_create_new_tag';
 import ModalMoreActions from './modal_more_actions';
 
 
@@ -16,6 +17,9 @@ function Modal({modal, closeModal}) {
     case 'createNotebook':
       component = <ModalCreateNewNotebook />;
       break;
+    case 'createTag': 
+      component = <ModalCreateNewTag/>;
+      break;
     case 'moreActions':
       component = <ModalMoreActions />;
       break;
@@ -24,7 +28,7 @@ function Modal({modal, closeModal}) {
   }
   return (
     <div className="modal-background" onClick={closeModal}>
-      <div className="modal-child" onClick={e => e.stopPropagation()}>
+      <div  onClick={e => e.stopPropagation()}>
         { component }
       </div>
     </div>

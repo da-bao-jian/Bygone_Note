@@ -10,23 +10,18 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    width: 300px;
     height: 100vh;
     background-color: rgb(218, 238, 180);
-    border-left: honeydew 1px solid;
-    // box-shadow:  0 0 10px honeydew, 0 0 10px honeydew, 0 0 20px honeydew;
-
-
-    
+    border-left: lightgray 3px solid;    
     .header-box{
         font-family: $notes;
-        background-color: rgb(218, 238, 180);
+        background-color: lightgray;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        border-bottom: honeydew 2px solid;
+        border-bottom: honeydew 1px solid;
         width: 100%;
-        height: 100px;
+        height: 146px;
         border-right: white;
         .header-box-h1{
             color: black;
@@ -45,8 +40,9 @@
         }
     }
     .notes-list{
-        background-color: rgb(218, 238, 180);
+        background-color: lightgray;
         width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         overflow: scroll;
@@ -58,8 +54,10 @@
             width: 100%;
             padding: 10px 10px 10px 10px;
             .list-header{
-                font-family: $notes;
+                font-family: "Roboto Condensed", sans-serif;
                 font-size: 20px;
+                margin-top: 10px;
+                margin-left: 3px;
                 font-weight: 250;
             }
             .time-since-created{
@@ -70,42 +68,69 @@
                 margin-top: 60px;
             }
             .note-text{
-                margin-top: 15px;
+                margin-top: 19px;
+                margin-left: 10px;                
                 font-weight: lighter;
             }
             .note-delete-button{
-                margin-left: 70%;
+                margin-left: 217px;
                 border: none;
                 text-decoration: none;
                 background-color: transparent;
                 color: rgb(112, 110, 106);
                 cursor: pointer;
             }
-
+            .single-note-item-side{
+                width: 56.5%
+            }
         }
         .note-list-index-items:hover{
             background-color: honeydew;
-            // box-shadow:  0 0 10px honeydew, 0 0 30px honeydew, 0 0 60px honeydew;
         }
+    }
+    .text-editor-contracted{
+        background-color: honeydew;
+        position: fixed;
+        width: 68.2%;
+        height: 100%;
+        margin-left: 20%;
+        top: 0;
+        border: lightgray solid 5px;
     }
     .text-editor{
         background-color: honeydew;
-        display: flex;
-        position: absolute; 
-        width: 60%px; 
+        position: fixed;
+        width: 69.2%;
         height: 100%;
-        margin-left: 300px;  
-        // z-index: 10;
-        overflow-y: auto;
-        overflow-x: auto;
+        margin-left: 18%;
+        top: 0;
+        // right: 0;
+
         .edit-area{
-            width: 100%;
+           width: 100%;
+            height: 31%;
         }
         .tool-bar{
             position: relative;
             background-color: #e2e5de;
+            height: 125px;
+            #toolbar{
+                height: 100%;
+                display: flex;
+            }
+            .ql-formats{
+                margin-right: 0px;
+                margin-top: 26px;
+                border: outset;
+            }
+            .toolbar-notebook-title{
+                    position: absolute;
+                    margin: 9px;
+                    margin-left: 20px;
+                    font-size: 15px;
+            }
         }
-        .title-bar{
+        .editor-title-bar{
             width: 100%;
             padding-top: 30px;
             padding-bottom: 30px;
@@ -118,6 +143,7 @@
                 text-decoration: none;
                 font-size: 30px;
             }
+
         }
         .editor-area{
             border: none;
@@ -130,4 +156,26 @@
             }
         }
     }
+};
+
+.notetaking-space-contracted{
+    margin-left: 200px;
+}
+.tag-area{
+    display: flex;
+    width: 100%;
+    background-color: lightgray;
+    position: fixed;
+    bottom: 0;
+}
+.tag-search-bar-container{
+    display: flex;
+}
+.tag-search-bar{
+    height: 75%;
+}
+.tag-area-container{
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 1.5%;
 }

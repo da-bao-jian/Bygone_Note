@@ -30,6 +30,7 @@ export const receiveNotebookErrors = errors => ({
 
 
 export const fetchNotebooks = () => dispatch => {
+    
     return NotebookApiUtil.fetchNotebooks().then(
         notebooks => dispatch(receiveNotebooks(notebooks))
         , err => (

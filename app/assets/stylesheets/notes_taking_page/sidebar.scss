@@ -1,6 +1,5 @@
 .whole-bar{
     display: block;
-    // padding: 80px;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
@@ -9,7 +8,7 @@
     width: 200px;
     height: 100vh;
     position: absolute;
-    border-right: honeydew 1px solid;
+    border-right: rgb(153, 158, 153) 1px solid;
 
     .create-new-note{
         width: 90%;
@@ -20,60 +19,81 @@
         background-color: black;
         text-decoration: none;
         position: relative;
-        margin-top: 20px;
+        margin-top: 50px;
         margin-bottom: 50px;
         margin-left: 10px;
         overflow: hidden;
-        transition: 0.3s;
+        transition: 0.5s;
         .create-new-note-button{
             font-family: $notes;
             width: 100%;
             padding: 5%;
-            color: black;
-            background-color: rgb(218, 238, 180);
             border: 0px;
             outline: none;
             cursor: pointer;
-
-        }
-    }
+        };
+    };
     .sidebar-note{
         position: relative;
-        font-family: $notes;
         width: 100%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         .all-notes-button{
-            width: 100%;
+            width: 90%;
+            margin: 5%;
             height: 7vh;
             cursor: pointer;
             font-size: 15px;
             font-weight: 400;
+            background-color: $note_taking_sidebar;
             text-decoration: none;
             letter-spacing: 2px;
-            background-color: $note_taking_sidebar;
-            color: white;
             border: 0px;
             outline: none;
-            padding-right: 50%;
-
-        }
-        .notebook-button{
+        };
+        .notebook-button {
             margin-top: 50px;
-            width: 100%;
+            width: 90%;
+            margin: 5%;
             height: 7vh;
             cursor: pointer;
             font-size: 15px;
             font-weight: 400;
+            background-color: $note_taking_sidebar;
             text-decoration: none;
             letter-spacing: 2px;
-            background-color: $note_taking_sidebar;
-            color: white;
             border: 0px;
             outline: none;
-            padding-right: 45%;
             
+        }
+        .search-button{
+            margin-top: 50px;
+            width: 90%;
+            margin: 5%;
+            height: 7vh;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 400;
+            background-color: $note_taking_sidebar;
+            text-decoration: none;
+            letter-spacing: 2px;
+            border: 0px;
+            outline: none;
+        }
+        .tag-button{
+            margin-top: 50px;
+            width: 90%;
+            margin: 5%;
+            height: 7vh;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 400;
+            background-color: $note_taking_sidebar;
+            text-decoration: none;
+            letter-spacing: 2px;
+            border: 0px;
+            outline: none;
         }
         .all-notes-button:hover{
             color: black;
@@ -85,16 +105,31 @@
             background: rgb(218, 238, 180);
             box-shadow:  0 0 10px rgb(218, 238, 180), 0 0 30px rgb(218, 238, 180), 0 0 60px rgb(218, 238, 180);
         }
+        .search-button:hover{
+            color: black;
+            background: rgb(218, 238, 180);
+            box-shadow:  0 0 10px rgb(218, 238, 180), 0 0 30px rgb(218, 238, 180), 0 0 60px rgb(218, 238, 180);
+        }
+        .tag-button:hover{
+            color: black;
+            background: rgb(218, 238, 180);
+            box-shadow:  0 0 10px rgb(218, 238, 180), 0 0 30px rgb(218, 238, 180), 0 0 60px rgb(218, 238, 180);
+        }
     }
 
     #dropdown-menu{
         position: relative;
+        margin-left: 74%;
+        margin-bottom: 123%;
         #log-out{
             position: relative;
             width: 90%;
             padding: 5px ;
             margin: 3%;
+            margin-bottom: 211%;
+            margin-left: 72%;
         }
+
 
     }
 
@@ -104,6 +139,169 @@
     color: rgb(218, 238, 180);
     background: rgb(218, 238, 180);
     box-shadow:  0 0 10px rgb(218, 238, 180), 0 0 30px rgb(218, 238, 180), 0 0 60px rgb(218, 238, 180);
+};
+
+.pad{ 
+    margin-left: 200px;
+    position: absolute;
+    z-index: 99;
+    display: flex;
+    height: 100%;
+    background-color: darkgrey;
+    top: 0;
+    width: 200px;
+};
+
+.tag-pad-header{  
+    height: 118px;
+    width: 100%;
+    border-bottom: white 1px solid;
+    position: absolute;
+};
+
+.create-new-tag-modal-button{
+    margin-top: 13%;
+    margin-left: 57%;
+}
+.tag-pad-index {
+    position: relative;
+    margin-top: -50%;
+    width: 100%;
+};
+
+.tag-initial{
+    padding: 12px;
+    color: white;
+    font-size: 18px;
+};
+
+.tag-items-group{
+    padding: 12px;
+};
+
+.tag-search-selected{
+    display: flex;
+    border-bottom: white solid 1px;
+    margin: 5px;
+};
+
+.tag-search{
+    display: flex;
+    width: 14%;
+    margin-left: 18px;
+    // border-bottom: white solid 1px;
+    position: fixed;
+    top: 20%;
+};
+
+.sidebar-tag{
+     margin-top: 50px;
+    width: 90%;
+    margin: 5%;
+    height: 7vh;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 400;
+    background-color: $note_taking_sidebar;
+    text-decoration: none;
+    letter-spacing: 2px;
+    border: 0px;
+    outline: none;
+};
+.sidebar-tag:hover{
+    color: black;
+    background: rgb(218, 238, 180);
+    box-shadow:  0 0 10px rgb(218, 238, 180), 0 0 30px rgb(218, 238, 180), 0 0 60px rgb(218, 238, 180);
+};
+.account-dropdown{
+    bottom: 0;
+    position: absolute;
+    margin-bottom: 170px;
+    margin-left: 62px;
+    cursor: pointer;
 }
 
-
+.title-bar{
+    width: 100%;
+}
+.search-bar{
+    width: 75%;
+    margin: 10%;
+    position: absolute;
+}
+.search-bar-container{
+    height: 70%;
+}
+.dropdown-area{
+    position: absolute;
+    height: 57%;
+    margin: 20px;
+}
+.search-dropdown{
+    width: 115%;
+    position: relative;
+}
+.search-results{
+    margin: 8px;
+    font-size: 15px;
+    color: whitesmoke;
+}
+.matching-text{
+    margin: 3px;
+}
+.matching-text-note-title{
+    margin: 3px;
+}
+.searchpad-header{
+    position: absolute;
+    color: white;
+    margin: 25px;
+    font-size: 20px;
+}
+.tag-pad-header{
+    height: 13.8%;
+    position: absolute;
+    top: 0;
+}
+.styles_wordart__UPt3m.styles_superhero__2H9rF{
+    margin:24px;
+}
+.tag-search-selected-tag{
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+.title-bar-item{
+    padding: 3px 2px 3px 3px;
+    justify-content: space-between;
+    align-items: center;
+    width: 10%;
+    position: absolute;
+}
+.tag-items{
+    display: flex;
+    margin: 10px;
+}
+.title-bar-controls{
+    margin-left: 265%;
+    margin-top: 7%;
+}
+.tag-selection-button{
+    height: 25px;
+    font-size: 12px;
+    color: black;
+    cursor: pointer;
+}
+.sidebar-content{
+    margin-top: 80px;
+}
+.github{
+    height: 36px;
+    /* width: auto; */
+    margin-top: 12px;
+    margin-left: 17px;
+}
+.linkedin{
+    height: 34px;
+    margin-left: 17px;
+}

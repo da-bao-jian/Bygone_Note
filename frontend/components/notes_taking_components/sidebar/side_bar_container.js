@@ -7,8 +7,9 @@ import {withRouter} from 'react-router-dom';
 
 const mSTP = (state) => ({
     notes: Object.values(state.entities.notes),
-    current_user: state.entities.users[state.session.id]
-
+    current_user: state.entities.users[state.session.id],
+    notebooks: state.entities.notebooks,
+    notes: state.entities.notes
 });
 
 const mDTP = (dispatch) => ({
@@ -17,5 +18,3 @@ const mDTP = (dispatch) => ({
 })
 
 export default withRouter(connect(mSTP, mDTP)(SideBar));
-// export default (connect(mSTP, mDTP)(SideBar)); 
-//withRouter gives current routing information which passes location, math, history to props
