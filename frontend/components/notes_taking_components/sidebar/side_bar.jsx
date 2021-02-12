@@ -22,13 +22,8 @@ export default class SideBar extends React.Component{
     newNote(){ 
         const {notebooks} = this.props;
         let current_path = this.props.location.pathname.split('/');
-<<<<<<< HEAD
-        let current_notebook_id=null;
-        let path = null;
-=======
         let current_notebook_id, matchingRoom;
         let path = '';
->>>>>>> bea0917f6e1f12f2e334b99bf102f4ef7326258b
         if (current_path.includes('notebooks') && current_path.length>2){
             path = `/notebooks/${current_path[2]}/notes`;
             matchingRoom = notebooks.filter(nb=>{
@@ -39,27 +34,14 @@ export default class SideBar extends React.Component{
             path = `/notes`;
             current_notebook_id = this.props.current_user.first_notebook_id;
         };
-<<<<<<< HEAD
-        // if(current_path.length > 2){
-        // } else {
-        // };
-         // console.log('a')
-
-=======
         
->>>>>>> bea0917f6e1f12f2e334b99bf102f4ef7326258b
         this.props.createNote({
             title: 'Untitled',
             body: 'Start writing in the editor...',
             notebook_id: current_notebook_id 
         }).then(
-<<<<<<< HEAD
-            returned=>{this.props.history.push(`${path}/${returned.note.id}`)}
-        )
-=======
             returned=>{this.props.history.push(`${path}/${returned.note.id}`)}  
         );
->>>>>>> bea0917f6e1f12f2e334b99bf102f4ef7326258b
     };
     
     renderNotes(){
@@ -93,26 +75,6 @@ export default class SideBar extends React.Component{
         const node = React.createRef();
         let current_path = this.props.location.pathname.split('/');
         return(
-<<<<<<< HEAD
-        <div className='whole-bar'>
-                <div className='account-dropdown'> 
-                    <AccountDropdown logout={this.props.logout}/>
-                    {/* use toggle or onBlur for the dropdown */}
-                </div>
-                <div className='create-new-note'>
-                    <button onClick={this.newNote} className='create-new-note-button'>
-                        {'+  Create A New Note'}
-                        <img id='create-note-button-img' src=''></img>
-                    </button>
-                </div>
-                <div className='sidebar-note'>
-                    <button onClick={this.renderNotes} className='all-notes-button'>
-                    {'  All Notes'}
-                    </button>
-                </div>
-                <div className='sidebar-note'>
-                    <button onClick={this.renderNotebooks} className='notebook-button'>Notebooks</button>
-=======
             <div className='whole-bar'>
                 <a href="https://github.com/dabaojian1992">
                     <img src="https://www.seekpng.com/png/full/101-1017465_github-github-icon-png-grey.png" className='github'></img>
@@ -157,7 +119,6 @@ export default class SideBar extends React.Component{
                         : 
                         null}
                     </div>
->>>>>>> bea0917f6e1f12f2e334b99bf102f4ef7326258b
                 </div>
             </div>
         )

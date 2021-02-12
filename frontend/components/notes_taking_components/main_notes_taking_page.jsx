@@ -11,11 +11,8 @@ export default class MainNotesTakingPage extends React.Component{
     constructor(props) {
         super(props);
     };
-<<<<<<< HEAD
-=======
     
     
->>>>>>> bea0917f6e1f12f2e334b99bf102f4ef7326258b
     render(){
         return (
             <div className='note-taking-page'>

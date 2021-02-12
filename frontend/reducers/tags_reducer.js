@@ -7,7 +7,6 @@ const TagsReducer = (state = {}, action) => {
         case (RECEIVE_TAGS):
             return Object.assign({}, state, action.tags);
         case (RECEIVE_TAG):
-            debugger
             return Object.assign({}, state, { [action.tag.id]: action.tag });
         case (REMOVE_TAG):
             let nextState = Object.assign({}, state);

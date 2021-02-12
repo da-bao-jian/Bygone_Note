@@ -20,10 +20,6 @@ class NotebooksIndexItem extends React.Component{
         } else {
             this.setState({opened: true});
         }
-<<<<<<< HEAD
-        // refer to https://codepen.io/quafoo/pen/jONdwWG for toggle actions later
-=======
->>>>>>> bea0917f6e1f12f2e334b99bf102f4ef7326258b
     };
 
 
