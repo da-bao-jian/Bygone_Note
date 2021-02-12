@@ -47,7 +47,7 @@ const Middle = () => {
                 {hover3 ? 
                 <div>
                     <textarea  className='greeting-textarea3' rows='26' cols='50' >
-                        Bygone Note's tag system can help user to better navigate through notes 🏷️🏷️🏷️
+                        Bygone Note's tag system can help users to better navigate through notes 🏷️🏷️🏷️
                     </textarea>
                     <div className='photo-container' rows='26' cols='50'>
                          <div className='sky'></div>
@@ -57,6 +57,7 @@ const Middle = () => {
                 {hover4 ? 
                 <div>
                     <textarea  className='greeting-textarea4' rows='26' cols='50' >
+                        Bygone Note allows users to create, save, edit, and delete notes with complete ease 📝📝📝
                     </textarea>
                     <div className='photo-container' rows='26' cols='50'>
                          <div className='white'></div>
@@ -66,6 +67,7 @@ const Middle = () => {
                 {hover5 ? 
                 <div>
                     <textarea  className='greeting-textarea5' rows='26' cols='50' >
+                        Bygone Note allows users to categorize notes into notebooks 📚📚📚
                     </textarea>
                     <div className='photo-container' rows='26' cols='50'>
                          <div className='gray'></div>
@@ -103,8 +105,12 @@ function useHover(){
 
     const [hover, setHover] = useState(false);
 
-    const on = () => setHover(true);
-    const off = () => setHover(false);
+    const on = () => (
+        setHover(true)
+    );
+    const off = () => (
+        setHover(false)
+    );
 
     useEffect(() => {
         node.current.addEventListener('mouseenter', on);

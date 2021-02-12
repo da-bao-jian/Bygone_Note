@@ -4,7 +4,6 @@ import Middle from './middle_section';
 
 const Greeting = ({currentUser, logout}) => {
     
-    // debugger
     if(!!currentUser){ //if currentUser is in the databse
             return (
             <div>
@@ -40,7 +39,7 @@ const Greeting = ({currentUser, logout}) => {
                     <a href='https://www.linkedin.com/in/harry-haoyuan-g-9135b4193/'>
                         <img src='https://www.seekpng.com/png/full/8-84419_linkedin-logo-png-icon-linkedin-logo-png.png' className='linkedin'></img>
                     </a>
-                    <a className='personal-site'>
+                    <a href='https://www.linkedin.com/in/harry-haoyuan-g-9135b4193/' className='personal-site'>
                         <img src='https://win98icons.alexmeub.com/icons/png/msagent-4.png'></img>
                     </a>
                 </div>
