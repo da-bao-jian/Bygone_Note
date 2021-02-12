@@ -161,7 +161,7 @@ margin: 0;
     margin: auto;
 }
 .matrix{
-    background-image: url(matrix.gif);
+    background-image: image-url('matrix.gif');
     background-size: cover;
     width: 1100px;
     height: 81%;
@@ -175,7 +175,7 @@ margin: 0;
 
 }
 .cyberpunk{
-    background-image: url(cyberpunk_purple.gif);
+    background-image: image-url('cyberpunk_purple.gif');
     background-size: cover;
     width: 1100px;
     height: 81%;
@@ -189,7 +189,7 @@ margin: 0;
 
 }
 .sky{
-    background-image: url(sky.gif);
+    background-image: image-url('sky.gif');
     background-size: cover;
     width: 1100px;
     height: 81%;
@@ -202,7 +202,7 @@ margin: 0;
     z-index: 9999;
 }
 .white{
-    background-image: url(white.gif);
+    background-image: image-url('white.gif');
     background-size: cover;
     width: 1100px;
     height: 81%;
@@ -215,7 +215,7 @@ margin: 0;
     z-index: 9999;
 }
 .gray{
-    background-image: url(gray.gif);
+    background-image: image-url('gray.gif');
     background-size: cover;
     width: 1100px;
     height: 81%;
@@ -423,7 +423,7 @@ margin: 0;
       );   
 }
 .overlook{
-    background-image: url(overlook_hotel.gif);
+    background-image: image-url('overlook_hotel.gif');
     background-size: cover;
     width: 1069px;
     height: 81%;
