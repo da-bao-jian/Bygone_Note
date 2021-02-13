@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useLocation, useHistory, useParams, useRouteMatch} from "react-router-dom";
 import {fetchNotes} from '../../../actions/note_actions';
 import {selectNoteIndexItem} from '../state_sharing';
-import WordArt from 'react-wordart';
+// import WordArt from 'react-wordart';
 
 
 export const SearchPad = ({searchPad, toggleSearchPad}) => { 
@@ -136,8 +136,8 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
             return (
                 <div className="search-results" onClick={()=>{findSearchResult(id)}}>
                     <div className="matching-text">
-                        Matching Text: {matchingSubString.slice(0, highlightedIndex)}<mark>{matchingSubString.slice(highlightedIndex, highlightedIndex+searchInput.length)}</mark>
-                        {matchingSubString.slice(highlightedIndex+searchInput.length, matchingSubString.length)}
+                        Matching Text: {matchingSubString.slice(highlightedIndex-15, highlightedIndex)}<mark>{matchingSubString.slice(highlightedIndex, highlightedIndex+searchInput.length)}</mark>
+                        {`${matchingSubString.slice(highlightedIndex+searchInput.length, highlightedIndex+searchInput.length+30)}......`}
                     </div>
                     <div className='matching-text-note-title'>
                         Note Title: {matchingNoteTitle}
@@ -151,7 +151,7 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
     return ( 
         <div className="pad" ref={searchNode}>
             <div className='searchpad-header'>
-                <WordArt text='Search Pad' theme={`superhero`} fontSize={25} />
+                {/* <WordArt text='Search Pad' theme={`superhero`} fontSize={25} /> */}
 
             </div>
             <div class="title-bar">

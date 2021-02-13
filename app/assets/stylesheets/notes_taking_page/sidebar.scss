@@ -236,10 +236,14 @@
     position: absolute;
     height: 57%;
     margin: 20px;
+    overflow: hidden;
 }
 .search-dropdown{
-    width: 115%;
+width: 95%;
     position: relative;
+    height: 135%;
+    overflow-y: scroll;
+    padding-right: 25px;
 }
 .search-results{
     margin: 8px;

@@ -73,10 +73,13 @@ body {background-color: $background}
         text-shadow: 3px 3px yellowgreen
     }
 }
+.middle-section{
+    display: flex;
+}
 
 .greeting-textarea{
     resize: vertical; max-height: 550px; min-height: 550px;
-    resize: horizontal; max-width:547px; min-width: 107%;
+    resize: horizontal; max-width:547px; min-width: 50%;
     height: 90%;
     padding-top: 15px;
     padding-left: 25px;
@@ -101,21 +104,18 @@ body {background-color: $background}
 }
 
 .photo-container{
-    left: 112%;
     top: 0;
-    /* margin-left: 0%; */
-    position: absolute;
     right: 0;
     z-index: 9999;
 }
 
 .middle{
-margin: 0;
+    margin: 0;
     padding: 0;
     border: 0;
     font-size: 100%;
     font: inherit;
-    position: absolute;
+    width: 100%;
 }
 
 .bottom-line{
@@ -123,7 +123,7 @@ margin: 0;
 }
 
 .stock-photos{
-    background-image: url(neon_PC.jpg);
+    background-image: image-url('neon_PC.jpg');
     background-size: cover;
     width: 650px;
     height: 81%;
@@ -161,11 +161,10 @@ margin: 0;
     margin: auto;
 }
 .matrix{
-    background-image: url(matrix.gif);
+    background-image: image-url('matrix.gif');
     background-size: cover;
     width: 1100px;
     height: 81%;
-    margin-left: 37%;
     max-height: 550px;
     min-height: 568px;
     resize: both;
@@ -175,11 +174,10 @@ margin: 0;
 
 }
 .cyberpunk{
-    background-image: url(cyberpunk_purple.gif);
+    background-image: image-url('cyberpunk_purple.gif');
     background-size: cover;
     width: 1100px;
     height: 81%;
-    margin-left: 37%;
     max-height: 550px;
     min-height: 568px;
     resize: both;
@@ -189,11 +187,10 @@ margin: 0;
 
 }
 .sky{
-    background-image: url(sky.gif);
+    background-image: image-url('sky.gif');
     background-size: cover;
     width: 1100px;
     height: 81%;
-    margin-left: 37%;
     max-height: 550px;
     min-height: 568px;
     resize: both;
@@ -202,11 +199,10 @@ margin: 0;
     z-index: 9999;
 }
 .white{
-    background-image: url(white.gif);
+    background-image: image-url('white.gif');
     background-size: cover;
     width: 1100px;
     height: 81%;
-    margin-left: 37%;
     max-height: 550px;
     min-height: 568px;
     resize: both;
@@ -215,11 +211,10 @@ margin: 0;
     z-index: 9999;
 }
 .gray{
-    background-image: url(gray.gif);
+    background-image: image-url('gray.gif');
     background-size: cover;
     width: 1100px;
     height: 81%;
-    margin-left: 37%;
     max-height: 550px;
     min-height: 568px;
     resize: both;
@@ -319,7 +314,7 @@ margin: 0;
 }
 .greeting-textarea1{
     resize: vertical; max-height: 550px; min-height: 550px;
-    resize: horizontal; max-width:547px; min-width: 107%;
+    resize: horizontal; max-width:547px; min-width: 50%;
     height: 90%;
     padding-top: 15px;
     padding-left: 25px;
@@ -340,7 +335,7 @@ margin: 0;
 }
 .greeting-textarea2{
     resize: vertical; max-height: 550px; min-height: 550px;
-    resize: horizontal; max-width:547px; min-width: 107%;
+    resize: horizontal; max-width:547px; min-width: 50%;
     height: 90%;
     padding-top: 15px;
     padding-left: 25px;
@@ -361,7 +356,7 @@ margin: 0;
 }
 .greeting-textarea3{
     resize: vertical; max-height: 550px; min-height: 550px;
-    resize: horizontal; max-width:547px; min-width: 107%;
+    resize: horizontal; max-width:547px; min-width: 50%;
     height: 90%;
     padding-top: 15px;
     padding-left: 25px;
@@ -382,7 +377,7 @@ margin: 0;
 }
 .greeting-textarea4{
     resize: vertical; max-height: 550px; min-height: 550px;
-    resize: horizontal; max-width:547px; min-width: 107%;
+    resize: horizontal; max-width:547px; min-width: 50%;
     height: 90%;
     padding-top: 15px;
     padding-left: 25px;
@@ -403,7 +398,7 @@ margin: 0;
 }
 .greeting-textarea5{
     resize: vertical; max-height: 550px; min-height: 550px;
-    resize: horizontal; max-width:547px; min-width: 107%;
+    resize: horizontal; max-width:547px; min-width: 50%;
     height: 90%;
     padding-top: 15px;
     padding-left: 25px;
@@ -423,11 +418,10 @@ margin: 0;
       );   
 }
 .overlook{
-    background-image: url(overlook_hotel.gif);
+    background-image: image-url('overlook_hotel.gif');
     background-size: cover;
     width: 1069px;
     height: 81%;
-    margin-left: 109%;
     max-height: 550px;
     min-height: 568px;
     resize: both;

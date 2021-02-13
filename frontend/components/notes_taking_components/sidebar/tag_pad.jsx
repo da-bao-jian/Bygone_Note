@@ -4,7 +4,7 @@ import {useLocation, useHistory, useParams, useRouteMatch} from "react-router-do
 import {fetchTags, fetchTag, createTag, updateTag, deleteTag} from '../../../actions/tag_actions';
 import {openModal} from '../../../actions/modal_actions';
 import {TagItem} from './tag_item';
-import WordArt from 'react-wordart';
+// import WordArt from 'react-wordart';
 
 
 export const TagPad = ({tagPad, toggleTagPad, node}) => { 
@@ -100,7 +100,7 @@ export const TagPad = ({tagPad, toggleTagPad, node}) => {
             <div class="title-bar">
                 <div className="tag-pad-header">   
                     <div className="wordart-tag">
-                        <WordArt text='Tag Pad' theme={`superhero`} fontSize={15} />
+                        {/* <WordArt text='Tag Pad' theme={`superhero`} fontSize={15} /> */}
                     </div>  
                     <div className='create-new-tag-modal'>
                         <button onClick={()=>dispatch(openModal('createTag'))} className='create-new-tag-modal-button'>
