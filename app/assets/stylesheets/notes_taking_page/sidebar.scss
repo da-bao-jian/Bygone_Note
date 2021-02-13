@@ -234,16 +234,18 @@
 }
 .dropdown-area{
     position: absolute;
-    height: 57%;
-    margin: 20px;
+    height: 94%;
+    margin: 0px;
     overflow: hidden;
+    width: 96%;
 }
 .search-dropdown{
-width: 95%;
+    width: 100%;
     position: relative;
-    height: 135%;
+    height: 132%;
     overflow-y: scroll;
-    padding-right: 25px;
+    top: 20%;
+    padding-right: 20px;
 }
 .search-results{
     margin: 8px;
