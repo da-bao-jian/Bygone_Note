@@ -12,7 +12,7 @@ const Middle = () => {
         <div className='gretting-page'>
             <div className='middle'>
                 {!hover1 && !hover2 && !hover3 && !hover4 && !hover5 ? 
-                    <div>
+                <div className='middle-section'>
                         <textarea  className='greeting-textarea' rows='26' cols='50' >
                             Accomplish more with better notes:                                    Bygone Note helps you capture ideas and find them fast 📓📓📓
                         </textarea> 
@@ -24,7 +24,7 @@ const Middle = () => {
                     : null
                 }
                 {hover1 ? 
-                <div>
+                <div className='middle-section'>
                     <textarea  className='greeting-textarea1' rows='26' cols='50' >
                         Imrproved upon the original Evernote, Bygone Note uses Websocket for instant autosave that reduces delays. 💾💾💾
                     </textarea>
@@ -35,7 +35,7 @@ const Middle = () => {
                 </div> : null
                 }
                 {hover2 ? 
-                <div>
+                <div className='middle-section'>
                     <textarea  className='greeting-textarea2' rows='26' cols='50' >
                         For ease of use, Bygone Note uses algorithmic solution to speed up lookup time 🔎🔎🔎
                     </textarea>
@@ -45,7 +45,7 @@ const Middle = () => {
                     </div>
                 </div> : null}
                 {hover3 ? 
-                <div>
+                <div className='middle-section'>
                     <textarea  className='greeting-textarea3' rows='26' cols='50' >
                         Bygone Note's tag system can help users to better navigate through notes 🏷️🏷️🏷️
                     </textarea>
@@ -55,7 +55,7 @@ const Middle = () => {
                     </div>
                 </div> : null}
                 {hover4 ? 
-                <div>
+                <div className='middle-section'>
                     <textarea  className='greeting-textarea4' rows='26' cols='50' >
                         Bygone Note allows users to create, save, edit, and delete notes with complete ease 📝📝📝
                     </textarea>
@@ -65,7 +65,7 @@ const Middle = () => {
                     </div>
                 </div> : null}
                 {hover5 ? 
-                <div>
+                <div className='middle-section'>
                     <textarea  className='greeting-textarea5' rows='26' cols='50' >
                         Bygone Note allows users to categorize notes into notebooks 📚📚📚
                     </textarea>
@@ -79,19 +79,19 @@ const Middle = () => {
                 <hr className='bottom-line'/>
                 <div className='side-list'>
                     <button className='selection1' ref={node1}>
-                        Autosave <img src='https://win98icons.alexmeub.com/icons/png/diskettes_copy-0.png'></img>
+                        Autosave 
                     </button>
                     <button className='selection2' ref={node2}>
-                        Search <img src='https://win98icons.alexmeub.com/icons/png/magnifying_glass-0.png'></img>
+                        Search 
                     </button>
                     <button className='selection3' ref={node3}>
-                        Tag <img src='https://win98icons.alexmeub.com/icons/png/game_freecell-1.png'></img>
+                        Tag 
                     </button>
                     <button className='selection4' ref={node4}>
-                        Notes <img src='https://win98icons.alexmeub.com/icons/png/message_file-0.png'></img>
+                        Notes 
                     </button>
                     <button className='selection5' ref={node5}>
-                        Notebooks <img src='https://win98icons.alexmeub.com/icons/png/help_book_cool-0.png'></img>
+                        Notebooks 
                     </button>
                 </div>
             </div>

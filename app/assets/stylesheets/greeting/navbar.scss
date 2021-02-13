@@ -1,10 +1,8 @@
 body {background-color: $background}
-
 .main-page{
     position: absolute;
     width: 100%;
 }
-
 .greeting-nav-bar{
     width: 100%;
     padding: 5px 25px;
@@ -12,8 +10,6 @@ body {background-color: $background}
     justify-content: space-between;
     border-bottom: 0.3px solid rgb(218, 238, 180);
 }
-
-
 .navbar-logo {
     color: rgb(218, 238, 180);
     font-family: $text;
@@ -27,11 +23,9 @@ body {background-color: $background}
     from {text-shadow: 0 0 10px yellowgreen, 0 0 20px yellowgreen, 0 0 30px yellowgreen;} //start color
     to {text-shadow: 00 20px yellowgreen, 0 0 20px yellowgreen, 0 0 30px yellowgreen;}
 }
-
 .personal-icons{
     margin-right: 34px;
 }
-
 .signup-button {
     padding: 10px 5px;
 }
@@ -44,20 +38,17 @@ body {background-color: $background}
     margin-left: 400px;
     padding-top: 10px;
 }
-
 .su-button {
     font-size: 20px;
     font-family: $text;
     padding-left: 40px ;
     display: flex;
-
 }
 .li-button {
     font-size: 20px;
     font-family: $text;
     padding-left: 40px;
     display: flex;
-
 }
 #su{
     text-decoration: none;
@@ -73,10 +64,12 @@ body {background-color: $background}
         text-shadow: 3px 3px yellowgreen
     }
 }
-
+.middle-section{
+    display: flex;
+}
 .greeting-textarea{
     resize: vertical; max-height: 550px; min-height: 550px;
-    resize: horizontal; max-width:547px; min-width: 107%;
+    resize: horizontal; max-width:547px; min-width: 50%;
     height: 90%;
     padding-top: 15px;
     padding-left: 25px;
@@ -94,36 +87,28 @@ body {background-color: $background}
         $background 1px,
         $background 50px
       );
-    
 }
 .gretting-page{
     display: flex;
 }
-
 .photo-container{
-    left: 112%;
     top: 0;
-    /* margin-left: 0%; */
-    position: absolute;
     right: 0;
     z-index: 9999;
 }
-
 .middle{
-margin: 0;
+    margin: 0;
     padding: 0;
     border: 0;
     font-size: 100%;
     font: inherit;
-    position: absolute;
+    width: 100%;
 }
-
 .bottom-line{
     border-color: rgb(218, 238, 180);
 }
-
 .stock-photos{
-    background-image: url(neon_PC.jpg);
+    background-image: image-url('neon_PC.jpg');
     background-size: cover;
     width: 650px;
     height: 81%;
@@ -145,11 +130,10 @@ margin: 0;
     width: 100%;
     z-index: -1;
     width: 100%;
-
 }
 .selection{
     background: transparent;
-    color: #daeeb4;
+    color: #DAEEB4;
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
@@ -165,35 +149,30 @@ margin: 0;
     background-size: cover;
     width: 1100px;
     height: 81%;
-    margin-left: 37%;
     max-height: 550px;
     min-height: 568px;
     resize: both;
     /* max-width: 500px; */
     min-width: 600px;
     background-size: cover;
-
 }
 .cyberpunk{
     background-image: image-url('cyberpunk_purple.gif');
     background-size: cover;
     width: 1100px;
     height: 81%;
-    margin-left: 37%;
     max-height: 550px;
     min-height: 568px;
     resize: both;
     min-width: 600px;
     background-size: cover;
     z-index: 9999;
-
 }
 .sky{
     background-image: image-url('sky.gif');
     background-size: cover;
     width: 1100px;
     height: 81%;
-    margin-left: 37%;
     max-height: 550px;
     min-height: 568px;
     resize: both;
@@ -206,7 +185,6 @@ margin: 0;
     background-size: cover;
     width: 1100px;
     height: 81%;
-    margin-left: 37%;
     max-height: 550px;
     min-height: 568px;
     resize: both;
@@ -219,7 +197,6 @@ margin: 0;
     background-size: cover;
     width: 1100px;
     height: 81%;
-    margin-left: 37%;
     max-height: 550px;
     min-height: 568px;
     resize: both;
@@ -229,7 +206,7 @@ margin: 0;
 }
 .selection1{
     background: transparent;
-    color: #daeeb4;
+    color: #DAEEB4;
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
@@ -239,7 +216,6 @@ margin: 0;
     padding: 74px;
     z-index: -1;
     width: 20%;
-
     &:hover{
         text-shadow: 3px 3px yellowgreen;
         background-color: rgb(243, 13, 243);
@@ -247,7 +223,7 @@ margin: 0;
 }
 .selection2{
     background: transparent;
-    color: #daeeb4;
+    color: #DAEEB4;
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
@@ -257,8 +233,6 @@ margin: 0;
     padding: 74px;
     z-index: -1;
     width: 20%;
-
-
     &:hover{
         text-shadow: 3px 3px yellowgreen;
         background-color: rgb(199, 180, 11);
@@ -266,7 +240,7 @@ margin: 0;
 }
 .selection3{
     background: transparent;
-    color: #daeeb4;
+    color: #DAEEB4;
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
@@ -275,7 +249,6 @@ margin: 0;
     padding: 74px;
     z-index: -1;
     width: 20%;
-
     &:hover{
         text-shadow: 3px 3px yellowgreen;
         background-color: rgb(18, 181, 245);
@@ -283,7 +256,7 @@ margin: 0;
 }
 .selection4{
     background: transparent;
-    color: #daeeb4;
+    color: #DAEEB4;
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
@@ -292,8 +265,6 @@ margin: 0;
     padding: 74px;
     z-index: -1;
     width: 20%;
-
-
     &:hover{
         text-shadow: 3px 3px yellowgreen;
         background-color: white;
@@ -301,7 +272,7 @@ margin: 0;
 }
 .selection5{
     background: transparent;
-    color: #daeeb4;
+    color: #DAEEB4;
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
@@ -311,7 +282,6 @@ margin: 0;
     padding: 74px;
     z-index: -1;
     width: 20%;
-
     &:hover{
         text-shadow: 3px 3px yellowgreen;
         background-color: gray;
@@ -319,7 +289,7 @@ margin: 0;
 }
 .greeting-textarea1{
     resize: vertical; max-height: 550px; min-height: 550px;
-    resize: horizontal; max-width:547px; min-width: 107%;
+    resize: horizontal; max-width:547px; min-width: 50%;
     height: 90%;
     padding-top: 15px;
     padding-left: 25px;
@@ -340,7 +310,7 @@ margin: 0;
 }
 .greeting-textarea2{
     resize: vertical; max-height: 550px; min-height: 550px;
-    resize: horizontal; max-width:547px; min-width: 107%;
+    resize: horizontal; max-width:547px; min-width: 50%;
     height: 90%;
     padding-top: 15px;
     padding-left: 25px;
@@ -361,7 +331,7 @@ margin: 0;
 }
 .greeting-textarea3{
     resize: vertical; max-height: 550px; min-height: 550px;
-    resize: horizontal; max-width:547px; min-width: 107%;
+    resize: horizontal; max-width:547px; min-width: 50%;
     height: 90%;
     padding-top: 15px;
     padding-left: 25px;
@@ -382,7 +352,7 @@ margin: 0;
 }
 .greeting-textarea4{
     resize: vertical; max-height: 550px; min-height: 550px;
-    resize: horizontal; max-width:547px; min-width: 107%;
+    resize: horizontal; max-width:547px; min-width: 50%;
     height: 90%;
     padding-top: 15px;
     padding-left: 25px;
@@ -403,7 +373,7 @@ margin: 0;
 }
 .greeting-textarea5{
     resize: vertical; max-height: 550px; min-height: 550px;
-    resize: horizontal; max-width:547px; min-width: 107%;
+    resize: horizontal; max-width:547px; min-width: 50%;
     height: 90%;
     padding-top: 15px;
     padding-left: 25px;
@@ -427,14 +397,12 @@ margin: 0;
     background-size: cover;
     width: 1069px;
     height: 81%;
-    margin-left: 109%;
     max-height: 550px;
     min-height: 568px;
     resize: both;
     min-width: 600px;
     background-size: cover;
     z-index: 9999;
-
 }
 .personal-site{
     margin-inline: 10px;
