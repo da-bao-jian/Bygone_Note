@@ -47,12 +47,16 @@ Therefore, I decided to take on the challenge to optimize some of Evernote's ori
 Frontend:
 * [React classes and hooks](https://reactjs.org/);
 * [Redux](https://redux.js.org/);
+
 Backend:
 * [Rails](https://rubyonrails.org/);
+
 Database:
 * [PostgreSQL](https://www.postgresql.org/);
+
 Styling:
 * [Node-sass](https://www.npmjs.com/package/node-sass);
+
 Others:
 * [RxJS](https://rxjs-dev.firebaseapp.com/) for cross component state sharing;
 * [ActionCable](https://guides.rubyonrails.org/action_cable_overview.html) for websocket connections;
@@ -76,7 +80,7 @@ Others:
 ## Code executions
 
 * Instant Autosave
- ![dashboard](https://github.com/dabaojian1992/Pillar/blob/main/gifs/Screenshot%202021-02-07%20235445.png)
+ ![autosave](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/autosave.gif)
   * Traditionally, autosave is executed using deboucing method - the rate of the saving function would be invoked between time intervals paced by a ```setTimeout()``` method;
   * However, when the database traffic gets clusterd, initiating multiple database queries per time interval set by the ```setTimeout()``` method would cause a delay when a user is typing, or even worse, cause permnant data lost; 
   * Lagging has forced some of the Evernote users to turn off the autosave feature, and many more struggled to 'find tune' a perfect time interval without interupting typing; 
