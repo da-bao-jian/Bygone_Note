@@ -88,7 +88,7 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
                     </div>
                 </li>
             </div>
-            <div>
+            <div className='editor-container'>
                 {loaded && note.id === noteOpened ?  
                             <Editor
                                 notebookTitle={notebookTitle}
