@@ -57,7 +57,7 @@ Others:
   * Traditionally, autosave is executed using deboucing method - the rate of the saving function would be invoked between time intervals paced by a ```setTimeout()``` method;
   * However, when the database traffic gets clusterd, initiating multiple database queries per time interval set by the ```setTimeout()``` method would cause a delay when a user is typing, or even worse, cause permnant data lost; 
   * Lagging has forced some of the Evernote users to turn off the autosave feature, and many more struggled to 'find tune' a perfect time interval without interupting typing; 
-  * I learned about websocket when I was making a real time chat app（check it out [here](https://github.com/dabaojian1992/Pillar), and I thought it could be exploited to help with autosave with some adjustments. Below is how I used websocket to achieve instant autosave without interuption: 
+  * I learned about websocket when I was making a real time chat app（check it out [here](https://github.com/dabaojian1992/Pillar)), and I thought it could be exploited to help with autosave with some adjustments. Below is how I used websocket to achieve instant autosave without interuption: 
   
     * Below is the code where we fetch data and connect websocket upon mounting:
   ```js
