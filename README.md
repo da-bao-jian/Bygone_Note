@@ -98,7 +98,7 @@ Others:
     }, []);
   ```
   
-  * Setting up [the subscription and receipt of websocket data](https://github.com/dabaojian1992/Bygone_Note/blob/master/app/channels/notes_channel.rb) in the backend: 
+  * Handling [the subscription and receipt of websocket data](https://github.com/dabaojian1992/Bygone_Note/blob/master/app/channels/notes_channel.rb) in the backend: 
   ```ruby
     class NotesChannel < ApplicationCable::Channel
       def subscribed
@@ -118,7 +118,7 @@ Others:
       end
     end
   ```
-  
+  * Another unique feature of Bygone Note is [the synchronous update in the editor and the note item to the left of editor(see the gif above)](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/notes/editor_using_hooks.jsx). This was done by wrapping the ```setState``` method in a callback function and then passing down to the child component (editor component) where it will be invoked. By doing so, a child component will be able to update the parent component's state at ease. 
   
 ## Quick start for local deployment
 
