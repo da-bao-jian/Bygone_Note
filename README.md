@@ -62,9 +62,9 @@ Others:
 * [ActionCable](https://guides.rubyonrails.org/action_cable_overview.html) for websocket connections;
 * [Quill](https://quilljs.com/) for editor
 
-### Development Process
+## Development Process
 
-## There are 5 features Bygone Note shares with the original Evernote: ##
+### There are 5 features Bygone Note shares with the original Evernote: ##
 * Notes CRUD operations;
 * Notebook CRUD Operations;
 * Tag CRUD operations;
