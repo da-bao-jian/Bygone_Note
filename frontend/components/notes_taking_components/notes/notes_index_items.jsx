@@ -75,7 +75,7 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
                         {dummyTitle}
                     </div>
                     <div className='note-text'>
-                        {cleanedText.length > 15 ? `${cleanedText.slice(0,15)}...` : cleanedText} 
+                        {cleanedText.length > 20 ? `${cleanedText.slice(0,20)}...` : cleanedText} 
                     </div>
                     <div className='time-since-created'>
                         {`created at ${note.created_at} ago`}
@@ -88,7 +88,7 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
                     </div>
                 </li>
             </div>
-            <div>
+            <div className='editor-container'>
                 {loaded && note.id === noteOpened ?  
                             <Editor
                                 notebookTitle={notebookTitle}

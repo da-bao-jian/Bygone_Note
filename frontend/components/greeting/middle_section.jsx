@@ -12,7 +12,7 @@ const Middle = () => {
         <div className='gretting-page'>
             <div className='middle'>
                 {!hover1 && !hover2 && !hover3 && !hover4 && !hover5 ? 
-                <div className='middle-section'>
+                    <div className='middle-section'>
                         <textarea  className='greeting-textarea' rows='26' cols='50' >
                             Accomplish more with better notes:                                    Bygone Note helps you capture ideas and find them fast 📓📓📓
                         </textarea> 
@@ -80,18 +80,23 @@ const Middle = () => {
                 <div className='side-list'>
                     <button className='selection1' ref={node1}>
                         Autosave 
+                        {/* <img src='https://win98icons.alexmeub.com/icons/png/diskettes_copy-0.png'></img> */}
                     </button>
                     <button className='selection2' ref={node2}>
                         Search 
+                        {/* <img src='https://win98icons.alexmeub.com/icons/png/magnifying_glass-0.png'></img> */}
                     </button>
                     <button className='selection3' ref={node3}>
                         Tag 
+                        {/* <img src='https://win98icons.alexmeub.com/icons/png/game_freecell-1.png'></img> */}
                     </button>
                     <button className='selection4' ref={node4}>
                         Notes 
+                        {/* <img src='https://win98icons.alexmeub.com/icons/png/message_file-0.png'></img> */}
                     </button>
                     <button className='selection5' ref={node5}>
                         Notebooks 
+                        {/* <img src='https://win98icons.alexmeub.com/icons/png/help_book_cool-0.png'></img> */}
                     </button>
                 </div>
             </div>

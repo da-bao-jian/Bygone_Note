@@ -4,8 +4,8 @@
     align-items: flex-start;
     justify-content: flex-start;
     background-color: $note_taking_sidebar;
-    min-width: 200px;
-    width: 200px;
+    min-width: 11.5%;
+    // width: 200px;
     height: 100vh;
     position: absolute;
     border-right: rgb(153, 158, 153) 1px solid;
@@ -232,19 +232,22 @@
 }
 .search-bar-container{
     height: 70%;
+    z-index: 9999;
 }
 .dropdown-area{
-    position: relative;
-    top: 11%;
-    height: 80%;
-    margin: 8px;
-    width: 100%;
-    overflow-y: scroll;
+    position: absolute;
+    height: 94%;
+    margin: 0px;
+    overflow: hidden;
+    width: 96%;
 }
 .search-dropdown{
     width: 100%;
     position: relative;
-    overflow-x: scroll;
+    height: 132%;
+    overflow-y: scroll;
+    top: 20%;
+    padding-right: 20px;
 }
 .search-results{
     margin: 8px;
@@ -288,7 +291,7 @@
     margin: 10px;
 }
 .title-bar-controls{
-    margin-left: 265%;
+    margin-left: -125%;
     margin-top: 7%;
 }
 .tag-selection-button{
