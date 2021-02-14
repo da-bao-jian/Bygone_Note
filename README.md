@@ -60,7 +60,7 @@ Others:
   
   Lagging has forced some of the Evernote users to turn off the autosave feature, and many more struggled to 'fine tune' a perfect time interval without interupting typing.
   
-  I learned about websocket when I was making a real time chat app（check it out [here](https://github.com/dabaojian1992/Pillar)) and started wondering if it could be exploited to help with autosave with a few adjustments. Below is how I used websocket to achieve instant autosave without interuption: 
+  I learned about websocket when I was making a real time chat app（check it out [here](https://github.com/dabaojian1992/Pillar)) and started wondering if it could be exploited to help Bygone Note's autosave feature with a few adjustments. Below is how I used websocket to achieve instant autosave without interuption: 
   
     * Below is the code where we fetch data and connect websocket upon mounting:
   ```js
