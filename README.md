@@ -7,16 +7,16 @@ See the [Live](https://pillrz.herokuapp.com/#/) demo or [download](https://githu
 
 ### Index
 
-[Background Info](#how-it-started)
+* [Background Info](#how-it-started)
 
-[Tech Stack](#tech-stack)
+* [Tech Stack](#tech-stack)
 
-[Features](#features)
+* [Features](#features)
 
-[Development Process](#development-process)
-* [Instant Autosave](#instant-autosave)
+* [Development Process](#development-process)
+  * [Instant Autosave](#instant-autosave)
 
-[Local Deployment](#quick-start-for-local-deployment)
+* [Local Deployment](#quick-start-for-local-deployment)
 
 ![sessions](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/session.gif)
 
