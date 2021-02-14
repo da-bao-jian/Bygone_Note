@@ -136,8 +136,8 @@ export const SearchPad = ({searchPad, toggleSearchPad}) => {
             return (
                 <div className="search-results" onClick={()=>{findSearchResult(id)}}>
                     <div className="matching-text">
-                        Matching Text: {matchingSubString.slice(0, highlightedIndex)}<mark>{matchingSubString.slice(highlightedIndex, highlightedIndex+searchInput.length)}</mark>
-                        {matchingSubString.slice(highlightedIndex+searchInput.length, matchingSubString.length)}
+                        Matching Text: {matchingSubString.slice(highlightedIndex-5, highlightedIndex)}<mark>{matchingSubString.slice(highlightedIndex, highlightedIndex+searchInput.length)}</mark>
+                        {matchingSubString.slice(highlightedIndex+searchInput.length, highlightedIndex+searchInput.length+20)}
                     </div>
                     <div className='matching-text-note-title'>
                         Note Title: {matchingNoteTitle}

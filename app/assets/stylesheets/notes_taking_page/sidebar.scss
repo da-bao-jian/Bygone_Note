@@ -223,6 +223,7 @@
 
 .title-bar{
     width: 100%;
+    // overflow-y: hidden;
 }
 .search-bar{
     width: 75%;
@@ -233,13 +234,17 @@
     height: 70%;
 }
 .dropdown-area{
-    position: absolute;
-    height: 57%;
-    margin: 20px;
+    position: relative;
+    top: 11%;
+    height: 80%;
+    margin: 8px;
+    width: 100%;
+    overflow-y: scroll;
 }
 .search-dropdown{
-    width: 115%;
+    width: 100%;
     position: relative;
+    overflow-x: scroll;
 }
 .search-results{
     margin: 8px;

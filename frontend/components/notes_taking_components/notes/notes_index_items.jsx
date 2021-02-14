@@ -61,8 +61,8 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
         return res; 
     };
 
-    if(dummyTitle.length > 10) {
-        dummyTitle = `${title.slice(0,10)}...`;
+    if(dummyTitle.length > 15) {
+        dummyTitle = `${title.slice(0,15)}...`;
     } else if (dummyTitle.length < 1) { 
         dummyTitle = 'Untitled';
     };
@@ -75,7 +75,7 @@ const NoteIndexItems = ({handleClick, removeNote, note, notebooks, noteId, body,
                         {dummyTitle}
                     </div>
                     <div className='note-text'>
-                        {cleanedText.length > 10 ? `${cleanedText.slice(0,10)}...` : cleanedText} 
+                        {cleanedText.length > 15 ? `${cleanedText.slice(0,15)}...` : cleanedText} 
                     </div>
                     <div className='time-since-created'>
                         {`created at ${note.created_at} ago`}
