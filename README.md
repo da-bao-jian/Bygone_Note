@@ -77,7 +77,7 @@ Others:
   
       const context = useContext(ACContext)
       //ACContext is the context variable created in the root component using createContext()
-      //then, further passed down to the child components using redux Provider
+      //then, further passed down to the child components using the redux Provider
       
       
       useEffect(() => {
@@ -85,7 +85,6 @@ Others:
             channel: 'NotesChannel',
             id: props.noteId
         }); 
-        //conext
         ...
         
         console.log(`Note ${props.id} is connected`);
@@ -111,8 +110,8 @@ Others:
         @note = Note.find_by(id: data['id'])
         @note.update(data) 
       end
-      //instead of broadcasting the received data, here the code simply saves the data to the database
-      //had it been a chat app, I would've used broadcast_to
+      #instead of broadcasting the received data, here the code simply saves the data to the database
+      #had it been a chat app, I would've put a broadcast_to inside of the receive function
       
       def unsubscribed
         stop_all_streams
