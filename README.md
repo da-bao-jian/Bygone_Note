@@ -56,7 +56,7 @@ Others:
  ![autosave](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/autosave.gif)
   Traditionally, autosave is executed using deboucing method - the saving function would be invoked between time intervals paced by a ```setTimeout()``` method.
   
-  However, when the database traffic gets clusterd, initiating multiple database queries per time interval set by the ```setTimeout()``` method would cause a delay while a user is typing, or even worse, cause permnant data lost.
+  However, when the database traffic gets clusterd, initiating a database query per time interval set by the ```setTimeout()``` method would cause a delay while a user is typing, or even worse, cause permnant data lost.
   
   Lagging has forced some of the Evernote users to turn off the autosave feature, and many more struggled to 'fine tune' a perfect time interval without interupting typing.
   
