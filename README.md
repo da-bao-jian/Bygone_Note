@@ -5,6 +5,11 @@ Take notes for old times' sake
 
 See the [Live](https://pillrz.herokuapp.com/#/) demo or [download](https://github.com/dabaojian1992/Bygone_Note/archive/master.zip) to your local machine. 
 
+
+
+![sessions](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/session.gif)
+
+
 ## Quick start for local deployment
 
 After download and extraction, run the following command in the terminal to install the required dependencies: 
@@ -30,8 +35,7 @@ For depoyment on localhost:
   ```
   **Voila!**
 
-![Splash Page Demo](https://github.com/dabaojian1992/Pillar/blob/main/gifs/splash2.gif)
-
+![Splash Page Demo](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/splash.gif)
 
 ## How it Started
 
@@ -58,28 +62,31 @@ Others:
 * [ActionCable](https://guides.rubyonrails.org/action_cable_overview.html) for websocket connections;
 * [Quill](https://quilljs.com/) for editor
 
-### Design roadmap
+### Development Process
 
-To enhance user experience, we sketched out a design to **optimize the efficiency for ease of use**, which includes: 
-* a single page dashboard that provides accessibility to all of Pillar's features; 
-![all features](https://github.com/dabaojian1992/Pillar/blob/main/gifs/all_features.gif)
+## There are 5 features Bygone Note shares with the original Evernote: ##
+* Notes CRUD operations;
+* Notebook CRUD Operations;
+* Tag CRUD operations;
+* Autosave;
+* Note search
 
-* lightweigt indempotent chatroom operations (create, delete, update, show, join/leave, post/delete messages); 
-![Chatroom Operations](https://github.com/dabaojian1992/Pillar/blob/main/gifs/chatroom_operations.gif)
+## Here are some of the improvements Bygone Note made based off of Evernote: ##
+* Instant autosave using websocket (evernote vs bygone);
+* Narrowing search results using tags;
+* High speed search result look up. 
 
-* cross device state preservation for chatroom display; 
-![state preservation](https://github.com/dabaojian1992/Pillar/blob/main/gifs/state_preservation.gif)
 
-* algorithmic solution(Boyer-Moore) for fast seach result lookup. 
-![searchbar](https://github.com/dabaojian1992/Pillar/blob/main/gifs/search.gif)
+### Code executions
 
-### Design execution
-
-* Single page dashboard
+* Instant Autosave
  ![dashboard](https://github.com/dabaojian1992/Pillar/blob/main/gifs/Screenshot%202021-02-07%20235445.png)
-  * For ease of use, we comprised all of Pillar's features into a single dashboard. 
-  * By design, 'DashBoard' component renders all of the sub-components. Therefore, its main functions are fetching all the necessary data upon mounting and setting up the websocket connection. 
-  * Below is the code where we fetch data and connect websocket upon mounting:
+  * Traditionally, autosave is executed using deboucing method - the rate of the saving function would be invoked between time intervals paced by a ```setTimeout()``` method;
+  * However, when the database traffic gets clusterd, initiating multiple database queries per time interval set by the ```setTimeout()``` method would cause a delay when a user is typing, or even worse, cause permnant data lost; 
+  * Lagging has forced some of the Evernote users to turn off the autosave feature, and many more struggled to 'find tune' a perfect time interval without interupting typing; 
+  * I learned about websocket when I was making a real time chat app（check it out [here](https://github.com/dabaojian1992/Pillar), and I thought it could be exploited to help with autosave with some adjustments. Below is how I used websocket to achieve instant autosave without interuption: 
+  
+    * Below is the code where we fetch data and connect websocket upon mounting:
   ```js
   componentDidMount(){
       
