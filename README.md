@@ -47,16 +47,12 @@ Therefore, I decided to take on the challenge to optimize some of Evernote's ori
 Frontend:
 * [React classes and hooks](https://reactjs.org/);
 * [Redux](https://redux.js.org/);
-
 Backend:
 * [Rails](https://rubyonrails.org/);
-
 Database:
 * [PostgreSQL](https://www.postgresql.org/);
-
 Styling:
 * [Node-sass](https://www.npmjs.com/package/node-sass);
-
 Others:
 * [RxJS](https://rxjs-dev.firebaseapp.com/) for cross component state sharing;
 * [ActionCable](https://guides.rubyonrails.org/action_cable_overview.html) for websocket connections;
@@ -71,13 +67,13 @@ Others:
 * Autosave;
 * Note search
 
-## Here are some of the improvements Bygone Note made based off of Evernote: ##
+### Here are some of the improvements Bygone Note made based off of Evernote: ###
 * Instant autosave using websocket (evernote vs bygone);
 * Narrowing search results using tags;
 * High speed search result look up. 
 
 
-### Code executions
+## Code executions
 
 * Instant Autosave
  ![dashboard](https://github.com/dabaojian1992/Pillar/blob/main/gifs/Screenshot%202021-02-07%20235445.png)
