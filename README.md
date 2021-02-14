@@ -73,7 +73,8 @@ Others:
   I learned about websocket when I was making a real time chat app（check it out [here](https://github.com/dabaojian1992/Pillar)) and started wondering if it could be exploited to help Bygone Note's autosave feature with a few adjustments. Below is how I used websocket to achieve instant autosave without interuption: 
   * Upon mounting, the websocket will be connected in a ```useEffect``` hook in the [editor component](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/notes/editor_using_hooks.jsx): 
   ```js
-  
+      const [currentChannels, setCurrentChannels] = useState(null);
+
       const context = useContext(ACContext)
       //ACContext is the context variable created in the root component using createContext()
       //then, further passed down to the child components using the redux Provider
