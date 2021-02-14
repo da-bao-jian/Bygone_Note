@@ -5,6 +5,17 @@ Take some notes for old times' sake
 
 See the [Live](https://pillrz.herokuapp.com/#/) demo or [download](https://github.com/dabaojian1992/Bygone_Note/archive/master.zip) to your local machine. 
 
+### Index
+
+[Background Info](#how-it-started)
+
+[Tech Stack](#tech-stack)
+
+[Features](#features)
+
+[Development Process](#development-process)
+* [Instant Autosave](#instant-autosave)
+
 [Local Deployment](#quick-start-for-local-deployment)
 
 ![sessions](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/session.gif)
@@ -61,35 +72,55 @@ Others:
   Lagging has forced some of the Evernote users to turn off the autosave feature, and many more struggled to 'fine tune' a perfect time interval without interupting typing.
   
   I learned about websocket when I was making a real time chat app（check it out [here](https://github.com/dabaojian1992/Pillar)) and started wondering if it could be exploited to help Bygone Note's autosave feature with a few adjustments. Below is how I used websocket to achieve instant autosave without interuption: 
-  
-    * Below is the code where we fetch data and connect websocket upon mounting:
+  * Upon mounting, the websocket will be connected in a ```useEffect``` hook in the [editor component](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/notes/editor_using_hooks.jsx): 
   ```js
-  componentDidMount(){
+  
+      const context = useContext(ACContext)
+      //ACContext is the context variable created in the root component using createContext()
+      //then, further passed down to the child components using redux Provider
       
-      getRooms(this.props.user.id)
-         .then(rooms => {
-            this.setState({
-               roomsJoined: rooms,
-            })
-         })
-         .then(()=>{
-            getAvailableRooms(this.props.user.id)                                
-            .then(rooms => {
-               this.setState({
-                  roomsAvailable: rooms,
-               })
-            })
-            .then(()=>{
-               this.setState({all: this.state.roomsAvailable.data.concat(this.state.roomsJoined.data)})
-            })
-         })
       
-      this.socket.on("user left", this.userLeft);
-      this.socket.on("user joined", this.userJoined);
-      this.socket.on("room deleted", this.roomDeleted);
-      this.socket.on("room created", this.roomCreated);
-   }
-   ```
+      useEffect(() => {
+        const c = context.subscriptions.create({
+            channel: 'NotesChannel',
+            id: props.noteId
+        }); 
+        //conext
+        ...
+        
+        console.log(`Note ${props.id} is connected`);
+        setCurrentChannels(c);
+
+        ...
+        return () => {
+            console.log(`Note ${props.id} is disconnected`)
+            c.unsubscribe()
+        };
+    }, []);
+  ```
+  
+  * Setting up [the subscription and receipt of websocket data](https://github.com/dabaojian1992/Bygone_Note/blob/master/app/channels/notes_channel.rb) in the backend: 
+  ```ruby
+    class NotesChannel < ApplicationCable::Channel
+      def subscribed
+        stop_all_streams
+        stream_for = Note.find_by(id: params['id'])
+      end
+      
+      def receive(data)
+        @note = Note.find_by(id: data['id'])
+        @note.update(data) 
+      end
+      //instead of broadcasting the received data, here the code simply saves the data to the database
+      //had it been a chat app, I would've used broadcast_to
+      
+      def unsubscribed
+        stop_all_streams
+      end
+    end
+  ```
+  
+  
 ## Quick start for local deployment
 
 After download and extraction, run the following command in the terminal to install the required dependencies: 
