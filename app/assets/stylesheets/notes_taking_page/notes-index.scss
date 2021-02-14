@@ -1,7 +1,7 @@
-// .notetaking-space{
+.notetaking-space{
 
-
-// }
+    overflow: hidden
+}
 
 .note-index-items{
     margin-left: 11.5%;
@@ -46,7 +46,8 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        overflow: scroll;
+        overflow-y: scroll;
+        overflow-x: hidden;
         border-right: white;
         position: relative;
         .note-list-index-items{
