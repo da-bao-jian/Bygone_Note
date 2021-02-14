@@ -1,7 +1,6 @@
 
 # Bygone Note
-
-Take some notes for old times' sake
+  Take some notes for old times' sake
 
 See the [Live](https://pillrz.herokuapp.com/#/) demo or [download](https://github.com/dabaojian1992/Bygone_Note/archive/master.zip) to your local machine. 
 
