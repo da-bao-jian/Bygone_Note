@@ -17,6 +17,8 @@ See the [Live](https://pillrz.herokuapp.com/#/) demo or [download](https://githu
   * [Searching based on multiple tags](#searching-based-on-multiple-tags)
   * [High Speed Search](#high-speed-search)
 * [Design Trivia](#design-trivia)
+  * [Cross Components Communication Pattern Using RxJS](#cross-component-communication-pattern-using-rxjs)
+  * [React Class vs. React Hooks](#react-hooks-vs.-react-classes)
 * [Local Deployment](#quick-start-for-local-deployment)
 
 ![sessions](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/session.gif)
@@ -61,6 +63,7 @@ Others:
 * Narrowing search results using tags;
 * High speed search result look up. 
 
+#### *The next section will be devoted to explaining how I achieved the said improvements. You can test the CRUD operations either by visiting the [live site](https://pillrz.herokuapp.com/#/) or [download](https://github.com/dabaojian1992/Bygone_Note/archive/master.zip) the zip file to you local machine
 
 ## Development process
 
@@ -212,6 +215,47 @@ Others:
     };
   ```
 ## Design Trivia 
+
+### Cross Components Communication Pattern Using RxJS
+   * A single page application often requires displaying all of the components all at once and having them communicate with each other. Parent-child components are easier to manipulate - parents can pass props to children and children can use callbacks to update parent's state. 
+   * Yet parallel/sibling components, or components that are too remotely connected can make cross components communication difficult. Redux is one approach to handle heavy duty communications. However, if the communication only requires toggling a component's state from true to false, Redux can be an overkill. 
+   * For Bygone Note, I discovered a pattern using RxJS for simple cross components communications like opening/closing of the tag and search pad and scrolltoView() when a search result is selected. 
+   * This pattern only requires a seperate file, which I named 'state_sharing', and couple lines of code: 
+   ```js
+   import { Subject } from 'rxjs';
+
+      const subject = new Subject();
+
+      export const switches = {
+          sendExpand: size => subject.next(size),
+          receiveExpand: () => subject.asObservable()
+      };
+
+
+      export const selectNoteIndexItem = {
+          sendNoteOpen: noteId => subject.next(noteId),
+          receiveNoteOpen: () => subject.asObservable()
+      };
+   ```
+   ```switches``` and ```selectNoteIndexItem``` are later used respectively in the [sidebar](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/sidebar/side_bar.jsx) component and [search pad](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/sidebar/search_pad.jsx) component to command state changes in directed components. 
+   
+### React Hooks vs. React Classes
+
+   * At App Academy, we were taught to use React classes, which is the foundation of the React ecosystem. 
+   * However, from time to time, I do find writing classes produces redundant code, especially for the implementation of container pattern. Additionally, life cycle methods like ```componentDidMount``` and ```componentDidUpdate``` can produce unwanted side effects as state and props logic grows exponentially more complex. 
+   * Therefore, I started to learn how to use React Hooks. As a result, Bygone Note's frontend folder has both React class components and functional components using Hooks. Here is an incomplete list: 
+   
+      * Components using class:
+             [notes_index](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/notes/notes_index.jsx),
+             [notebooks_index](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/notebook/notebooks_index.jsx),
+             [sidebar](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/sidebar/side_bar.jsx)
+   
+      * Components using Hooks:
+             [editor](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/notes/editor_using_hooks.jsx),
+             [tag_pad](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/sidebar/tag_pad.jsx),
+             [search_pad](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/sidebar/search_pad.jsx)
+   
+ 
 ## Quick start for local deployment
 
 After download and extraction, run the following command in the terminal to install the required dependencies: 
