@@ -1,10 +1,8 @@
 body {background-color: $background}
-
 .main-page{
     position: absolute;
     width: 100%;
 }
-
 .greeting-nav-bar{
     width: 100%;
     padding: 5px 25px;
@@ -12,8 +10,6 @@ body {background-color: $background}
     justify-content: space-between;
     border-bottom: 0.3px solid rgb(218, 238, 180);
 }
-
-
 .navbar-logo {
     color: rgb(218, 238, 180);
     font-family: $text;
@@ -27,11 +23,9 @@ body {background-color: $background}
     from {text-shadow: 0 0 10px yellowgreen, 0 0 20px yellowgreen, 0 0 30px yellowgreen;} //start color
     to {text-shadow: 00 20px yellowgreen, 0 0 20px yellowgreen, 0 0 30px yellowgreen;}
 }
-
 .personal-icons{
     margin-right: 34px;
 }
-
 .signup-button {
     padding: 10px 5px;
 }
@@ -44,20 +38,17 @@ body {background-color: $background}
     margin-left: 400px;
     padding-top: 10px;
 }
-
 .su-button {
     font-size: 20px;
     font-family: $text;
     padding-left: 40px ;
     display: flex;
-
 }
 .li-button {
     font-size: 20px;
     font-family: $text;
     padding-left: 40px;
     display: flex;
-
 }
 #su{
     text-decoration: none;
@@ -76,7 +67,6 @@ body {background-color: $background}
 .middle-section{
     display: flex;
 }
-
 .greeting-textarea{
     resize: vertical; max-height: 550px; min-height: 550px;
     resize: horizontal; max-width:547px; min-width: 50%;
@@ -97,18 +87,15 @@ body {background-color: $background}
         $background 1px,
         $background 50px
       );
-    
 }
 .gretting-page{
     display: flex;
 }
-
 .photo-container{
     top: 0;
     right: 0;
     z-index: 9999;
 }
-
 .middle{
     margin: 0;
     padding: 0;
@@ -117,11 +104,9 @@ body {background-color: $background}
     font: inherit;
     width: 100%;
 }
-
 .bottom-line{
     border-color: rgb(218, 238, 180);
 }
-
 .stock-photos{
     background-image: image-url('neon_PC.jpg');
     background-size: cover;
@@ -145,11 +130,10 @@ body {background-color: $background}
     width: 100%;
     z-index: -1;
     width: 100%;
-
 }
 .selection{
     background: transparent;
-    color: #daeeb4;
+    color: #DAEEB4;
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
@@ -170,7 +154,6 @@ body {background-color: $background}
     /* max-width: 500px; */
     min-width: 600px;
     background-size: cover;
-
 }
 .cyberpunk{
     background-image: image-url('cyberpunk_purple.gif');
@@ -183,7 +166,6 @@ body {background-color: $background}
     min-width: 600px;
     background-size: cover;
     z-index: 9999;
-
 }
 .sky{
     background-image: image-url('sky.gif');
@@ -223,7 +205,7 @@ body {background-color: $background}
 }
 .selection1{
     background: transparent;
-    color: #daeeb4;
+    color: #DAEEB4;
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
@@ -232,7 +214,6 @@ body {background-color: $background}
     padding: 74px;
     z-index: -1;
     width: 20%;
-
     &:hover{
         text-shadow: 3px 3px yellowgreen;
         background-color: rgb(243, 13, 243);
@@ -240,7 +221,7 @@ body {background-color: $background}
 }
 .selection2{
     background: transparent;
-    color: #daeeb4;
+    color: #DAEEB4;
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
@@ -249,8 +230,6 @@ body {background-color: $background}
     padding: 74px;
     z-index: -1;
     width: 20%;
-
-
     &:hover{
         text-shadow: 3px 3px yellowgreen;
         background-color: rgb(199, 180, 11);
@@ -258,7 +237,7 @@ body {background-color: $background}
 }
 .selection3{
     background: transparent;
-    color: #daeeb4;
+    color: #DAEEB4;
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
@@ -267,7 +246,6 @@ body {background-color: $background}
     padding: 74px;
     z-index: -1;
     width: 20%;
-
     &:hover{
         text-shadow: 3px 3px yellowgreen;
         background-color: rgb(18, 181, 245);
@@ -275,7 +253,7 @@ body {background-color: $background}
 }
 .selection4{
     background: transparent;
-    color: #daeeb4;
+    color: #DAEEB4;
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
@@ -284,8 +262,6 @@ body {background-color: $background}
     padding: 74px;
     z-index: -1;
     width: 20%;
-
-
     &:hover{
         text-shadow: 3px 3px yellowgreen;
         background-color: white;
@@ -293,7 +269,7 @@ body {background-color: $background}
 }
 .selection5{
     background: transparent;
-    color: #daeeb4;
+    color: #DAEEB4;
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
@@ -302,7 +278,6 @@ body {background-color: $background}
     padding: 74px;
     z-index: -1;
     width: 20%;
-
     &:hover{
         text-shadow: 3px 3px yellowgreen;
         background-color: gray;
@@ -424,7 +399,6 @@ body {background-color: $background}
     min-width: 600px;
     background-size: cover;
     z-index: 9999;
-
 }
 .personal-site{
     margin-inline: 10px;

@@ -3,11 +3,12 @@ import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import App from './App';
 import actioncable from 'actioncable';
+import { API_WS } from './key';
 export const ACContext = createContext();
 
 
 const action = {};
-action.cable = actioncable.createConsumer('ws://localhost:3000/cable'); //change this to prod mode when push to heroku 
+action.cable = actioncable.createConsumer(API_WS); //change this to prod mode when push to heroku 
 
 const Root = ({ store }) => (
   <Provider store={store}>
