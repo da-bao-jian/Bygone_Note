@@ -123,7 +123,7 @@ Others:
       end
     end
   ```
-  * Another unique feature of Bygone Note is [the synchronous update](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/notes/editor_using_hooks.jsx) in the editor and the note item to the left of editor(by comparison below is what it looks like without synchronous update). This was done by wrapping the ```setState``` method in a callback function and then passing the callback down to the child component (editor component) where it will be invoked. By doing so, a child component will be able to update the parent component's state at ease. 
+  * Another unique feature of Bygone Note is [the synchronous update](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/notes/editor_using_hooks.jsx) in the editor and the note item to the left of editor(by comparison below is what it looks like without synchronous update in the original Evernote dashboard). This was done by wrapping the ```setState``` method in a callback function and then passing the callback down to the child component (editor component) where it will be invoked. By doing so, a child component will be able to update the parent component's state at ease. 
   ![sync](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/sync1.gif)
 
 ### Narroing Tag Search with Multiple Tags
