@@ -17,6 +17,8 @@ See the [Live](https://pillrz.herokuapp.com/#/) demo or [download](https://githu
   * [Searching based on multiple tags](#searching-based-on-multiple-tags)
   * [High Speed Search](#high-speed-search)
 * [Design Trivia](#design-trivia)
+  * [Cross Components Communication Pattern Using RxJS](#cross-components-communication-pattern-using-rxjs)
+  * [React Class vs. React Hooks](#react-hooks-vs-react-classes)
 * [Local Deployment](#quick-start-for-local-deployment)
 
 ![sessions](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/session.gif)
@@ -61,6 +63,7 @@ Others:
 * Narrowing search results using tags;
 * High speed search result look up. 
 
+#### *The next section will be devoted to explaining how I achieved the said improvements. You can test the CRUD operations either by visiting the [live site](https://pillrz.herokuapp.com/#/) or [download](https://github.com/dabaojian1992/Bygone_Note/archive/master.zip) the zip file to you local machine
 
 ## Development process
 
@@ -68,7 +71,7 @@ Others:
  ![autosave](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/autosave.gif)
   Traditionally, autosave is executed using deboucing method - the saving function would be invoked between time intervals paced by a ```setTimeout()``` method.
   
-  However, when the database traffic gets clusterd, initiating a database query per time interval set by the ```setTimeout()``` method would cause a delay while a user is typing, or even worse, cause permnant data lost.
+  However, when the database traffic gets clusterd, initiating a database query per time interval set by the ```setTimeout()``` method would cause a delay while a user is typing, or even worse, cause permanent data lost.
   
   Lagging has forced some of the Evernote users to turn off the autosave feature, and many more struggled to 'fine tune' a perfect time interval without interupting typing.
   
@@ -120,11 +123,11 @@ Others:
       end
     end
   ```
-  * Another unique feature of Bygone Note is [the synchronous update](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/notes/editor_using_hooks.jsx) in the editor and the note item to the left of editor(by comparison below is what it looks like without synchronous update). This was done by wrapping the ```setState``` method in a callback function and then passing the callback down to the child component (editor component) where it will be invoked. By doing so, a child component will be able to update the parent component's state at ease. 
-  ![sync]()
+  * Another unique feature of Bygone Note is [the synchronous update](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/notes/editor_using_hooks.jsx) in the editor and the note item to the left of editor(by comparison below is what it looks like without synchronous update in the original Evernote dashboard). This was done by wrapping the ```setState``` method in a callback function and then passing the callback down to the child component (editor component) where it will be invoked. By doing so, a child component will be able to update the parent component's state at ease. 
+  ![sync](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/sync1.gif)
 
-### Searching based on multiple tags
-  ![tag]()
+### Narroing Tag Search with Multiple Tags
+  ![tag](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/tag.gif)
   Evernote allows tag search, but it's cumbersome to use. 
   Therefore, I expedited the whole process by making it as simple as a mouse click. 
   To achieve this, I used ```useLocation``` and ```useHistory``` hooks from React Router DOM: 
@@ -162,7 +165,7 @@ Others:
     //the above function gets invoked when the already selected tag gets clicked
   ```
 ### High Speed Search
-  ![search]()
+  ![search](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/search.gif)
   Evernote's searchbar is notoriously slow. 
   To speed things up, I used [Boyer-Moore](https://www.youtube.com/watch?v=4Xyhb72LCX4&t=17s) algorithm behind the scene and added scrolltoView(): 
   ```js
@@ -212,6 +215,48 @@ Others:
     };
   ```
 ## Design Trivia 
+
+### Cross Components Communication Pattern Using RxJS
+
+   * A single page application often requires displaying all of the components all at once and having them communicate with each other. Parent-child components are easier to manipulate - parents can pass props to children and children can use callbacks to update parent's state. 
+   * Yet parallel/sibling components, or components that are too remotely connected can make cross components communication difficult. Redux is one approach to handle heavy duty communications. However, if the communication only requires toggling a component's state from true to false, Redux can be an overkill. 
+   * For Bygone Note, I discovered a pattern using RxJS for simple cross components communications like opening/closing of the tag and search pad and scrolltoView() when a search result is selected. 
+   * This pattern only requires a seperate file, which I named 'state_sharing', and couple lines of code: 
+   ```js
+   import { Subject } from 'rxjs';
+
+      const subject = new Subject();
+
+      export const switches = {
+          sendExpand: size => subject.next(size),
+          receiveExpand: () => subject.asObservable()
+      };
+
+
+      export const selectNoteIndexItem = {
+          sendNoteOpen: noteId => subject.next(noteId),
+          receiveNoteOpen: () => subject.asObservable()
+      };
+   ```
+   ```switches``` and ```selectNoteIndexItem``` are later used respectively in the [sidebar](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/sidebar/side_bar.jsx) component and [search pad](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/sidebar/search_pad.jsx) component to command state changes in directed components. 
+   
+### React Hooks vs React Classes
+
+   * At App Academy, we were taught to use React classes, which is the foundation of the React ecosystem. 
+   * However, from time to time, I do find writing classes produces redundant code, especially for the implementation of container pattern. Additionally, life cycle methods like ```componentDidMount``` and ```componentDidUpdate``` can produce unwanted side effects as state and props logic grows exponentially more complex. 
+   * Therefore, I started to learn how to use React Hooks. As a result, Bygone Note's frontend folder has both React class components and functional components using Hooks. Here is an incomplete list: 
+   
+      * Components using class:
+             [notes_index](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/notes/notes_index.jsx),
+             [notebooks_index](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/notebook/notebooks_index.jsx),
+             [sidebar](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/sidebar/side_bar.jsx)
+   
+      * Components using Hooks:
+             [editor](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/notes/editor_using_hooks.jsx),
+             [tag_pad](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/sidebar/tag_pad.jsx),
+             [search_pad](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/sidebar/search_pad.jsx)
+   
+ 
 ## Quick start for local deployment
 
 After download and extraction, run the following command in the terminal to install the required dependencies: 
