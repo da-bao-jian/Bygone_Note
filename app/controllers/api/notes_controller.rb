@@ -1,5 +1,6 @@
 class Api::NotesController < ApplicationController
     def index
+        
         @notes = Note.all.where(user_id: current_user.id)
         render :index
     end
@@ -21,7 +22,6 @@ class Api::NotesController < ApplicationController
 
     def update
         @note = Note.find_by(id: params[:id])
-        # debugger
         if @note.update(note_params)
             render :show 
         else  

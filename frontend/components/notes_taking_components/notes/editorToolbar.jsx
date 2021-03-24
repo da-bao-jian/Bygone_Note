@@ -48,6 +48,19 @@ Font.whitelist = [
 ];
 Quill.register(Font, true);
 
+// const Font = Quill.import("formats/font");
+// Font.whitelist = [
+//   "arial",
+//   "comic-sans",
+//   "courier-new",
+//   "georgia",
+//   "helvetica",
+//   "lucida"
+// ];
+
+
+// Quill.register(Font, true);
+
 // Modules object for setting up the Quill editor
 export const modules = {
   toolbar: {
@@ -56,7 +69,8 @@ export const modules = {
       undo: undoChange,
       redo: redoChange
     }
-  },
+  }
+  ,
   history: {
     delay: 500,
     maxStack: 100,
@@ -90,14 +104,16 @@ export const formats = [
 export const QuillToolbar = () => (
   <div id="toolbar">
     <span className="ql-formats">
-      <select className="ql-font" defaultValue="arial">
-        <option value="arial">Arial</option>
+      {/* <select className="ql-font">
+        <option value="arial" >
+          Arial
+        </option>
         <option value="comic-sans">Comic Sans</option>
         <option value="courier-new">Courier New</option>
         <option value="georgia">Georgia</option>
         <option value="helvetica">Helvetica</option>
         <option value="lucida">Lucida</option>
-      </select>
+      </select> */}
       <select className="ql-size" defaultValue="medium">
         <option value="extra-small">Size 1</option>
         <option value="small">Size 2</option>
@@ -111,8 +127,8 @@ export const QuillToolbar = () => (
       </select>
     </span>
     <span className="ql-formats">
-      <button className="ql-bold" />
-      <button className="ql-italic" />
+      {/* <button className="ql-bold" />
+      <button className="ql-italic" /> */}
       <button className="ql-underline" />
     </span>
     <span className="ql-formats">

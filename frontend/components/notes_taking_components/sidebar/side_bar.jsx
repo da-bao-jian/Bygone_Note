@@ -76,10 +76,10 @@ export default class SideBar extends React.Component{
         let current_path = this.props.location.pathname.split('/');
         return(
             <div className='whole-bar'>
-                <a href="https://github.com/dabaojian1992">
+                <a href="https://github.com/dabaojian1992" target="_blank">
                     <img src="https://www.seekpng.com/png/full/101-1017465_github-github-icon-png-grey.png" className='github'></img>
                 </a>
-                <a href='https://www.linkedin.com/in/harry-haoyuan-g-9135b4193/'>
+                <a href='https://www.linkedin.com/in/harry-haoyuan-g-9135b4193/' target="_blank">
                     <img src='https://www.seekpng.com/png/full/8-84419_linkedin-logo-png-icon-linkedin-logo-png.png' className='linkedin'></img>
                 </a>
                 <div className='sidebar-content'>

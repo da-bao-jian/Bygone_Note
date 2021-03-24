@@ -13,9 +13,9 @@ const Middle = () => {
             <div className='middle'>
                 {!hover1 && !hover2 && !hover3 && !hover4 && !hover5 ? 
                     <div className='middle-section'>
-                        <textarea  className='greeting-textarea' rows='26' cols='50' >
-                            Accomplish more with better notes:                                    Bygone Note helps you capture ideas and find them fast 📓📓📓
-                        </textarea> 
+                        <textarea  className='greeting-textarea' rows='26' cols='50' 
+                           defaultValue='Accomplish more with better notes:                                    Bygone Note helps you capture ideas and find them fast 📓📓📓'
+                        ></textarea> 
                         
                         <div className='photo-container' rows='26' cols='50'>
                             <div className='matrix'></div>
@@ -25,9 +25,9 @@ const Middle = () => {
                 }
                 {hover1 ? 
                 <div className='middle-section'>
-                    <textarea  className='greeting-textarea1' rows='26' cols='50' >
-                        Imrproved upon the original Evernote, Bygone Note uses Websocket for instant autosave that reduces delays. 💾💾💾
-                    </textarea>
+                    <textarea  className='greeting-textarea1' rows='26' cols='50' 
+                     defaultValue='Imrproved upon the original Evernote, Bygone Note uses Websocket for instant autosave that reduces delays. 💾💾💾'
+                    ></textarea>
                     <div className='photo-container' rows='26' cols='50'>
                          <div className='cyberpunk'></div>
 
@@ -36,9 +36,9 @@ const Middle = () => {
                 }
                 {hover2 ? 
                 <div className='middle-section'>
-                    <textarea  className='greeting-textarea2' rows='26' cols='50' >
-                        For ease of use, Bygone Note uses algorithmic solution to speed up lookup time 🔎🔎🔎
-                    </textarea>
+                    <textarea  className='greeting-textarea2' rows='26' cols='50' 
+                     defaultValue='For ease of use, Bygone Note uses algorithmic solution to speed up lookup time 🔎🔎🔎'
+                    ></textarea>
                     <div className='photo-container' rows='26' cols='50'>
                          <div className='overlook'></div>
 
@@ -46,9 +46,9 @@ const Middle = () => {
                 </div> : null}
                 {hover3 ? 
                 <div className='middle-section'>
-                    <textarea  className='greeting-textarea3' rows='26' cols='50' >
-                        Bygone Note's tag system can help users to better navigate through notes 🏷️🏷️🏷️
-                    </textarea>
+                    <textarea  className='greeting-textarea3' rows='26' cols='50' 
+                        defaultValue= "Bygone Note's tag system can help users to better navigate through notes 🏷️🏷️🏷️"
+                    ></textarea>
                     <div className='photo-container' rows='26' cols='50'>
                          <div className='sky'></div>
 
@@ -56,9 +56,9 @@ const Middle = () => {
                 </div> : null}
                 {hover4 ? 
                 <div className='middle-section'>
-                    <textarea  className='greeting-textarea4' rows='26' cols='50' >
-                        Bygone Note allows users to create, save, edit, and delete notes with complete ease 📝📝📝
-                    </textarea>
+                    <textarea  className='greeting-textarea4' rows='26' cols='50' 
+                     defaultValue='Bygone Note allows users to create, save, edit, and delete notes with complete ease 📝📝📝'
+                    ></textarea>
                     <div className='photo-container' rows='26' cols='50'>
                          <div className='white'></div>
 
@@ -66,9 +66,9 @@ const Middle = () => {
                 </div> : null}
                 {hover5 ? 
                 <div className='middle-section'>
-                    <textarea  className='greeting-textarea5' rows='26' cols='50' >
-                        Bygone Note allows users to categorize notes into notebooks 📚📚📚
-                    </textarea>
+                    <textarea  className='greeting-textarea5' rows='26' cols='50' 
+                     defaultValue='Bygone Note allows users to categorize notes into notebooks 📚📚📚'
+                    ></textarea>
                     <div className='photo-container' rows='26' cols='50'>
                          <div className='gray'></div>
 
@@ -121,8 +121,10 @@ function useHover(){
         node.current.addEventListener('mouseenter', on);
         node.current.addEventListener('mouseleave', off);
         return () => {
-            node.current.removeEventListener('mouseenter', on);
-            node.current.removeEventListener('mouseleave', off);
+            if(node.current !== null){
+                node.current.removeEventListener('mouseenter', on);
+                node.current.removeEventListener('mouseleave', off);
+            }
         }
     }, [node]);
 

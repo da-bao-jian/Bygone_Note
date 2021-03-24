@@ -24,7 +24,9 @@ export default class NotesIndex extends React.Component{
                 });
             })
             .then(()=>{
-                this.setState({noteOpened: this.state.allNotes[0].id});
+                if(this.state.allNotes.length !==0){
+                    this.setState({noteOpened: this.state.allNotes[0].id});
+                }
             })
             .then(()=>{
                 this.props.fetchNotebooks().then((res)=>{
@@ -176,6 +178,7 @@ export default class NotesIndex extends React.Component{
 
     
     render(){
+        
         const {allNotes} = this.state;
         let notesList=[];
         const path = this.props.location.pathname.split('/')
@@ -201,7 +204,7 @@ export default class NotesIndex extends React.Component{
             )});
         };
         
-
+        
         return (
             <div className={this.state.contracted ? 'notetaking-space-contracted' : 'notetaking-space'}>
                 <div className='note-index-items'>

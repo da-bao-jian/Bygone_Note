@@ -2,6 +2,7 @@ class Api::UsersController < ApplicationController
 
     
     def create
+        
         @user = User.new(user_params)
         if @user.save
             default_notebook = Notebook.create!(title: 'My First Notebook', user_id: @user.id)
