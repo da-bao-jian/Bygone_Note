@@ -19,9 +19,35 @@ See the [Live](https://pillrz.herokuapp.com/#/) demo or [download](https://githu
 * [Design Trivia](#design-trivia)
   * [Cross Components Communication Pattern Using RxJS](#cross-components-communication-pattern-using-rxjs)
   * [React Class vs. React Hooks](#react-hooks-vs-react-classes)
-* [Local Deployment](#quick-start-for-local-deployment)
 
 ![sessions](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/session.gif)
+
+## Quick start for local deployment
+
+After download and extraction, run the following command in the terminal to install the required dependencies: 
+```
+gem install && npm install
+```
+then, run the following command to start the PostgreSQL server: 
+  * Mac
+  ```
+  brew services start postgresql
+  ```
+  * Linux
+  ```
+  sudo service postgresql start
+  ```
+For depoyment on localhost: 
+  * run the following commands in two seperate terminals:
+  ```
+  npm run webpack 
+  ```
+  ```
+  bundle exec rails server
+  ```
+  **Voila!**
+
+![Splash Page Demo](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/splash.gif)
 
 
 ## How it Started
@@ -257,29 +283,3 @@ Others:
              [search_pad](https://github.com/dabaojian1992/Bygone_Note/blob/master/frontend/components/notes_taking_components/sidebar/search_pad.jsx)
    
  
-## Quick start for local deployment
-
-After download and extraction, run the following command in the terminal to install the required dependencies: 
-```
-gem install && npm install
-```
-then, run the following command to start the PostgreSQL server: 
-  * Mac
-  ```
-  brew services start postgresql
-  ```
-  * Linux
-  ```
-  sudo service postgresql start
-  ```
-For depoyment on localhost: 
-  * run the following commands in two seperate terminals:
-  ```
-  npm run webpack 
-  ```
-  ```
-  bundle exec rails server
-  ```
-  **Voila!**
-
-![Splash Page Demo](https://github.com/dabaojian1992/Bygone_Note/blob/master/gifs/splash.gif)
