@@ -1,4 +1,4 @@
-
+[![code grade](https://www.code-inspector.com/project/23484/status/svg)](https://frontend.code-inspector.com/public/project/23484/Python/dashboard)
 # Bygone Note
   Take some notes for old times' sake
 
